@@ -1,0 +1,2 @@
+USER_CXXFLAGS=-I/path/to/boost -I$(HOME)/path/to/boost-numeric_bindings
+USER_LDFLAGS=-llapack
