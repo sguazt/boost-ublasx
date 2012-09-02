@@ -69,6 +69,7 @@ ublasx:	msg \
 		$(test_path)/sqrt \
 		$(test_path)/sum \
 		$(test_path)/svd \
+		$(test_path)/test_utils \
 		$(test_path)/trace \
 		$(test_path)/transform \
 		$(test_path)/tril \
@@ -142,6 +143,7 @@ build-clean:
 				$(test_path)/sqrt $(test_path)/sqrt.o \
 				$(test_path)/sum $(test_path)/sum.o \
 				$(test_path)/svd $(test_path)/svd.o \
+				$(test_path)/test_utils $(test_path)/test_utils.o \
 				$(test_path)/trace $(test_path)/trace.o \
 				$(test_path)/transform $(test_path)/transform.o \
 				$(test_path)/tril $(test_path)/tril.o \
