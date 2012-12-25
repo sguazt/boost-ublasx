@@ -101,6 +101,7 @@ build-clean:
 	@$(CLEANER)	$(test_path)/abs $(test_path)/abs.o \
 				$(test_path)/all $(test_path)/all.o \
 				$(test_path)/any $(test_path)/any.o \
+				$(test_path)/arithmetic_ops $(test_path)/arithmetic_ops.o \
 				$(test_path)/balance $(test_path)/balance.o \
 				$(test_path)/begin_end $(test_path)/begin_end.o \
 				$(test_path)/cat $(test_path)/cat.o \

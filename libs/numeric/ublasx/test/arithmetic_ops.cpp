@@ -20,7 +20,6 @@
 
 
 namespace ublas = ::boost::numeric::ublas;
-namespace ublasx = ::boost::numeric::ublasx;
 
 
 static const double tol(1e-5);
