@@ -9,7 +9,7 @@ USER_LDFLAGS=
 -include ./user-config.mk
 
 CXXFLAGS=-Wall -Wextra -pedantic -ansi -I$(src_path) $(USER_CXXFLAGS) -g -O0
-LDFLAGS+=$(USER_LDFLAGS) -lm -llapack
+LDFLAGS+=$(USER_LDFLAGS) -lm -llapack -lblas
 
 CLEANER=rm -rf
 DOXYGEN=doxygen
@@ -49,6 +49,7 @@ ublasx:	msg \
 		$(test_path)/matrix_diagonal_proxy \
 		$(test_path)/max \
 		$(test_path)/min \
+		$(test_path)/mldivide \
 		$(test_path)/num_columns \
 		$(test_path)/num_rows \
 		$(test_path)/pow2 \
@@ -123,6 +124,7 @@ build-clean:
 				$(test_path)/matrix_diagonal_proxy $(test_path)/matrix_diagonal_proxy.o \
 				$(test_path)/max $(test_path)/max.o \
 				$(test_path)/min $(test_path)/min.o \
+				$(test_path)/mldivide $(test_path)/mldivide.o \
 				$(test_path)/num_columns $(test_path)/num_rows.o \
 				$(test_path)/num_rows $(test_path)/num_columns.o \
 				$(test_path)/pow2 $(test_path)/pow2.o \
