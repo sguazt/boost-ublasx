@@ -225,7 +225,6 @@ BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT,LayoutT>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size1, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size2, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k=0, LayoutT /*l*/=LayoutT())
 {
 	typedef vector_matrix_diag_traits<VectorT,row_major> traits;
-	typedef typename traits::size_type size_type;
 	typedef typename traits::array_type array_type;
 	typedef typename traits::result_type result_type;
 
@@ -263,7 +262,6 @@ BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT const,LayoutT>::result_type diag(vector_expression<VectorT> const& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size1, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size2, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k=0, LayoutT /*l*/=LayoutT())
 {
 	typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
-	typedef typename traits::size_type size_type;
 	typedef typename traits::array_type array_type;
 	typedef typename traits::result_type result_type;
 
@@ -297,7 +295,6 @@ BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT,row_major>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size1, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size2, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k=0)
 {
 	typedef vector_matrix_diag_traits<VectorT,row_major> traits;
-	typedef typename traits::size_type size_type;
 	typedef typename traits::array_type array_type;
 	typedef typename traits::result_type result_type;
 
@@ -333,7 +330,6 @@ BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT const,row_major>::result_type diag(vector_expression<VectorT> const& v, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size1, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size2, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k=0)
 {
 	typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
-	typedef typename traits::size_type size_type;
 	typedef typename traits::array_type array_type;
 	typedef typename traits::result_type result_type;
 

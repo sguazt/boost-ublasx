@@ -86,7 +86,6 @@ BOOST_UBLAS_INLINE
 typename detail::vector_hold_functor_traits<VectorExprT>::result_type hold(vector_expression<VectorExprT> const& ve)
 {
 	typedef typename detail::vector_hold_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_hold_functor_traits<VectorExprT>::signature_argument_type value_type;
 
 	return expression_type(
 				ve(),

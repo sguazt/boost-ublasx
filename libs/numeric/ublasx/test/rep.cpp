@@ -87,7 +87,6 @@ BOOST_UBLASX_TEST_DEF( rep_vector )
 	typedef double value_type;
 	typedef ublas::vector<value_type> vector_type;
 	typedef ublas::matrix<value_type> matrix_type;
-	typedef ublas::matrix_vector_range<matrix_type> matrix_vector_range_type;
 
 	const ::std::size_t n(3);
 	const ::std::size_t out_nr(3*3);

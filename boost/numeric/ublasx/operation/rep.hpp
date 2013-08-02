@@ -61,7 +61,6 @@ matrix<typename vector_traits<VectorExprT>::value_type> rep(vector_expression<Ve
 {
 	typedef matrix<typename vector_traits<VectorExprT>::value_type> result_matrix_type;
 	typedef typename vector_traits<VectorExprT>::size_type size_type;
-	typedef matrix_vector_range<result_matrix_type> mat_vec_range_type;
 
 	size_type n_ve(size(ve));
 

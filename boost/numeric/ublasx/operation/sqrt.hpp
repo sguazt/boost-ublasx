@@ -92,7 +92,6 @@ BOOST_UBLAS_INLINE
 typename detail::vector_sqrt_functor_traits<VectorExprT>::result_type sqrt(vector_expression<VectorExprT> const& ve)
 {
 	typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 	typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
 
 	return expression_type(ve(), detail::sqrt_impl<signature_argument_type>);
@@ -121,7 +120,6 @@ BOOST_UBLAS_INLINE
 typename detail::matrix_sqrt_functor_traits<MatrixExprT>::result_type sqrt(matrix_expression<MatrixExprT> const& me)
 {
 	typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 	typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
 
 	return expression_type(me(), detail::sqrt_impl<signature_argument_type>);

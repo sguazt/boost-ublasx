@@ -188,7 +188,6 @@ BOOST_UBLASX_TEST_DEF( test_row_major_matrix_container )
 	typedef double value_type;
 	typedef ublas::matrix<value_type, ublas::row_major> matrix_type;
 	typedef ublas::zero_matrix<value_type> zero_matrix_type;
-	typedef ublas::vector<value_type> vector_type;
 	typedef ublas::matrix_traits<matrix_type>::size_type size_type;
 
 	size_type nr = 5;
@@ -327,7 +326,6 @@ BOOST_UBLASX_TEST_DEF( test_col_major_matrix_container )
 	typedef double value_type;
 	typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
 	typedef ublas::zero_matrix<value_type> zero_matrix_type;
-	typedef ublas::vector<value_type> vector_type;
 	typedef ublas::matrix_traits<matrix_type>::size_type size_type;
 
 	size_type nr = 5;
@@ -465,7 +463,6 @@ BOOST_UBLASX_TEST_DEF( test_matrix_expression )
 
 	typedef double value_type;
 	typedef ublas::matrix<value_type> matrix_type;
-	typedef ublas::vector<value_type> vector_type;
 	typedef ublas::matrix_traits<matrix_type>::size_type size_type;
 
 	size_type nr = 5;
@@ -554,7 +551,6 @@ BOOST_UBLASX_TEST_DEF( test_matrix_reference )
 	typedef double value_type;
 	typedef ublas::matrix<value_type> matrix_type;
 	typedef ublas::matrix_reference<matrix_type> matrix_reference_type;
-	typedef ublas::vector<value_type> vector_type;
 	typedef ublas::matrix_traits<matrix_type>::size_type size_type;
 
 	size_type nr = 5;

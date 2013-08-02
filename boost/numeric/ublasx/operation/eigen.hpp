@@ -1548,7 +1548,6 @@ template <
 >
 void eigen(matrix_expression<MatrixExprT> const& A, vector_container<OutVectorT>& v, matrix_container<OutLeftMatrixT>& LV, matrix_container<OutRightMatrixT>& RV)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category1;
 	typedef typename matrix_traits<OutLeftMatrixT>::orientation_category orientation_category2;
 	typedef typename matrix_traits<OutRightMatrixT>::orientation_category orientation_category3;
@@ -1604,7 +1603,6 @@ template <
 >
 void eigen(symmetric_matrix<ValueT,TriangularT,LayoutT> const& A, vector_container<OutVectorT>& v, matrix_container<OutMatrixT>& V)
 {
-	typedef ValueT value_type;
 	typedef symmetric_matrix<ValueT, TriangularT, LayoutT> matrix_type;
 	typedef typename matrix_traits<matrix_type>::orientation_category orientation_category1;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category2;
@@ -1660,7 +1658,6 @@ template <
 >
 void eigen(hermitian_matrix<ValueT,TriangularT,LayoutT> const& A, vector_container<OutVectorT>& v, matrix_container<OutMatrixT>& V)
 {
-	typedef ValueT value_type;
 	typedef hermitian_matrix<ValueT, TriangularT, LayoutT> matrix_type;
 	typedef typename matrix_traits<matrix_type>::orientation_category orientation_category1;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category2;
@@ -1714,10 +1711,6 @@ template <
 >
 void eigen(matrix_expression<AMatrixExprT> const& A, matrix_expression<BMatrixExprT> const& B, vector_container<OutVectorT>& v, matrix_container<OutLeftMatrixT>& LV, matrix_container<OutRightMatrixT>& RV)
 {
-	typedef typename promote_traits<
-				typename matrix_traits<AMatrixExprT>::value_type,
-				typename matrix_traits<BMatrixExprT>::value_type
-			>::promote_type value_type;
 	typedef typename matrix_traits<AMatrixExprT>::orientation_category orientation_category1;
 	typedef typename matrix_traits<BMatrixExprT>::orientation_category orientation_category2;
 	typedef typename matrix_traits<OutLeftMatrixT>::orientation_category orientation_category3;
@@ -1791,7 +1784,6 @@ void eigen(symmetric_matrix<AValueT,ATriangularT,ALayoutT> const& A, symmetric_m
 {
 	typedef symmetric_matrix<AValueT,ATriangularT,ALayoutT> A_matrix_type;
 	typedef symmetric_matrix<BValueT,BTriangularT,BLayoutT> B_matrix_type;
-	typedef typename promote_traits<AValueT,BValueT>::promote_type value_type;
 	typedef typename matrix_traits<A_matrix_type>::orientation_category orientation_category1;
 	typedef typename matrix_traits<B_matrix_type>::orientation_category orientation_category2;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category3;
@@ -1865,7 +1857,6 @@ void eigen(hermitian_matrix<AValueT,ATriangularT,ALayoutT> const& A, hermitian_m
 {
 	typedef symmetric_matrix<AValueT,ATriangularT,ALayoutT> A_matrix_type;
 	typedef symmetric_matrix<BValueT,BTriangularT,BLayoutT> B_matrix_type;
-	typedef typename promote_traits<AValueT,BValueT>::promote_type value_type;
 	typedef typename matrix_traits<A_matrix_type>::orientation_category orientation_category1;
 	typedef typename matrix_traits<B_matrix_type>::orientation_category orientation_category2;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category3;
@@ -1921,7 +1912,6 @@ template <
 >
 void left_eigen(matrix_expression<MatrixExprT> const& A, vector_container<OutVectorT>& v, matrix_container<OutMatrixT>& V)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category1;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category2;
 	typedef typename layout_type<OutMatrixT>::type out_layout_type;
@@ -1971,10 +1961,6 @@ template <
 >
 void left_eigen(matrix_expression<AMatrixExprT> const& A, matrix_expression<BMatrixExprT> const& B, vector_container<OutVectorT>& v, matrix_container<OutMatrixT>& V)
 {
-	typedef typename promote_traits<
-				typename matrix_traits<AMatrixExprT>::value_type,
-				typename matrix_traits<BMatrixExprT>::value_type
-			>::promote_type value_type;
 	typedef typename matrix_traits<AMatrixExprT>::orientation_category orientation_category1;
 	typedef typename matrix_traits<BMatrixExprT>::orientation_category orientation_category2;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category3;
@@ -2030,7 +2016,6 @@ template <
 >
 void right_eigen(matrix_expression<MatrixExprT> const& A, vector_container<OutVectorT>& v, matrix_container<OutMatrixT>& V)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category1;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category2;
 	typedef typename layout_type<OutMatrixT>::type out_layout_type;
@@ -2080,10 +2065,6 @@ template <
 >
 void right_eigen(matrix_expression<AMatrixExprT> const& A, matrix_expression<BMatrixExprT> const& B, vector_container<OutVectorT>& v, matrix_container<OutMatrixT>& V)
 {
-	typedef typename promote_traits<
-				typename matrix_traits<AMatrixExprT>::value_type,
-				typename matrix_traits<BMatrixExprT>::value_type
-			>::promote_type value_type;
 	typedef typename matrix_traits<AMatrixExprT>::orientation_category orientation_category1;
 	typedef typename matrix_traits<BMatrixExprT>::orientation_category orientation_category2;
 	typedef typename matrix_traits<OutMatrixT>::orientation_category orientation_category3;
@@ -2133,7 +2114,6 @@ template <
 >
 void eigenvalues(matrix_expression<MatrixExprT> const& A, vector_container<OutVectorT>& v)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type in_value_type;
 	typedef typename vector_traits<OutVectorT>::value_type out_value_type;
 	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
 
@@ -2173,11 +2153,7 @@ template <
 >
 void eigenvalues(symmetric_matrix<ValueT,TriangularT,LayoutT> const& A, vector_container<OutVectorT>& v)
 {
-	typedef ValueT value_type;
-	typedef symmetric_matrix<ValueT, TriangularT, LayoutT> matrix_type;
-	//typedef typename matrix_traits<matrix_type>::value_type in_value_type;
 	typedef typename vector_traits<OutVectorT>::value_type out_value_type;
-	typedef typename matrix_traits<matrix_type>::orientation_category orientation_category;
 
 	// precondition: A is square
 	BOOST_UBLAS_CHECK(
@@ -2215,9 +2191,6 @@ template <
 void eigenvalues(hermitian_matrix<ValueT,TriangularT,LayoutT> const& A, vector_container<OutVectorT>& v)
 {
 	typedef ValueT in_value_type;
-	typedef hermitian_matrix<ValueT, TriangularT, LayoutT> matrix_type;
-	typedef typename vector_traits<OutVectorT>::value_type out_value_type;
-	typedef typename matrix_traits<matrix_type>::orientation_category orientation_category;
 
 	// precondition: A is square
 	BOOST_UBLAS_CHECK(
@@ -2257,7 +2230,6 @@ template <
 >
 void eigenvectors(matrix_expression<MatrixExprT> const& A, matrix_container<OutLeftMatrixT>& LV, matrix_container<OutRightMatrixT>& RV)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type in_value_type;
 	typedef typename promote_traits<
 				typename matrix_traits<OutLeftMatrixT>::value_type,
 				typename matrix_traits<OutRightMatrixT>::value_type
@@ -2314,7 +2286,6 @@ template <
 >
 void eigenvectors(symmetric_matrix<ValueT, TriangularT, LayoutT> const& A, matrix_container<OutMatrixT>& V)
 {
-	typedef ValueT in_value_type;
 	typedef symmetric_matrix<ValueT, TriangularT, LayoutT> in_matrix_type;
 	typedef typename matrix_traits<OutMatrixT>::value_type out_value_type;
 	typedef typename matrix_traits<in_matrix_type>::orientation_category orientation_category1;
@@ -2365,7 +2336,6 @@ template <
 >
 void eigenvectors(hermitian_matrix<ValueT, TriangularT, LayoutT> const& A, matrix_container<OutMatrixT>& V)
 {
-	typedef ValueT in_value_type;
 	typedef hermitian_matrix<ValueT, TriangularT, LayoutT> in_matrix_type;
 	typedef typename matrix_traits<OutMatrixT>::value_type out_value_type;
 	typedef typename matrix_traits<in_matrix_type>::orientation_category orientation_category1;

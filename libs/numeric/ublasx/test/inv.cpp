@@ -257,6 +257,7 @@ BOOST_UBLASX_TEST_DEF( illconditioned_matrix )
 	expect = 1.0e+16*expect;
 	BOOST_UBLASX_DEBUG_TRACE("A^{-1} = " << B);
 //	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( B, expect, n, n, tol );
+	BOOST_UBLASX_TEST_CHECK( true ); // Just avoid unused variable warnings from the compiler
 }
 
 //#define BOOST_UBLAS_TYPE_CHECK 1

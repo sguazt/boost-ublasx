@@ -176,7 +176,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_real_column_major_matrix_full_mode )
 	typedef double real_type;
 	typedef real_type value_type;
 	typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(6);
@@ -212,7 +211,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_real_row_major_matrix_full_mode )
 	typedef double real_type;
 	typedef real_type value_type;
 	typedef ublas::matrix<value_type, ublas::row_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(6);
@@ -248,7 +246,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_complex_column_major_matrix_full_mode )
 	typedef double real_type;
 	typedef std::complex<real_type> value_type;
 	typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(4);
@@ -282,7 +279,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_complex_row_major_matrix_full_mode )
 	typedef double real_type;
 	typedef std::complex<real_type> value_type;
 	typedef ublas::matrix<value_type, ublas::row_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(4);
@@ -316,7 +312,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_real_column_major_matrix_eco_mode )
 	typedef double real_type;
 	typedef real_type value_type;
 	typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(6);
@@ -353,7 +348,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_real_row_major_matrix_eco_mode )
 	typedef double real_type;
 	typedef real_type value_type;
 	typedef ublas::matrix<value_type, ublas::row_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(6);
@@ -390,7 +384,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_complex_column_major_matrix_eco_mode )
 	typedef double real_type;
 	typedef std::complex<real_type> value_type;
 	typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(4);
@@ -426,7 +419,6 @@ BOOST_UBLASX_TEST_DEF( svd_oo_complex_row_major_matrix_eco_mode )
 	typedef double real_type;
 	typedef std::complex<real_type> value_type;
 	typedef ublas::matrix<value_type, ublas::row_major> matrix_type;
-	typedef ublas::vector<real_type> vector_type;
 
 
 	const std::size_t n(4);

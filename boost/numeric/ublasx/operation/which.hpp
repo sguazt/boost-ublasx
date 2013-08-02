@@ -107,7 +107,6 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::size_type> which(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
 	typedef typename vector_traits<VectorExprT>::value_type value_type;
 
     return which(ve, ::std::bind2nd(::std::not_equal_to<value_type>(), 0));

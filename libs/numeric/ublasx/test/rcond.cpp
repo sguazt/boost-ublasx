@@ -688,6 +688,8 @@ int main()
 	BOOST_UBLASX_TEST_DO( norm_1_complex_lower_triangular_matrix_row_major );
 	BOOST_UBLASX_TEST_DO( norm_1_complex_banded_matrix_column_major );
 	BOOST_UBLASX_TEST_DO( norm_1_complex_banded_matrix_row_major );
+	BOOST_UBLASX_TEST_DO( norm_1_complex_lower_hermitian_matrix_column_major );
+	BOOST_UBLASX_TEST_DO( norm_1_real_lower_hermitian_matrix_row_major );
 
 	BOOST_UBLASX_TEST_END();
 }

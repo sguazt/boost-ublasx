@@ -1615,7 +1615,6 @@ BOOST_UBLASX_TEST_DEF( test_real_column_major_oo_decomp )
 
 	typedef double value_type;
 	typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
-	typedef ublas::vector<value_type> vector_type;
 
 	const std::size_t n(5);
 

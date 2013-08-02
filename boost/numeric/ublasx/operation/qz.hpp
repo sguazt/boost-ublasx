@@ -59,6 +59,14 @@
  *
  * For more information see [1,2].
  *
+ * \note
+ * Matlab users: the Matlab \c qz function return the Hermitian of the \f$Q\f$
+ * matrix computed by this decomposition, so that:
+ * \f{align}
+ *  S &= Q^H*A*Z,\\
+ *  T &= Q^H*B*Z
+ * \f}
+ *
  * References:
  * - [1] Anderson et al,
  *       <em>The LAPACK User Guide</em>,
@@ -691,10 +699,6 @@ struct qz_decomposition_impl;
  * However, \f$\alpha\f$ will be always less than and usually
  * comparable with \f$\operatorname{norm}(A)\f$ in magnitude, and \f\beta\f$
  * always less than and usually comparable with \f$\operatorname{norm}(B)\f$.
- *
- * \note
- * Matlab users: the Matlab \c qz function return the Hermitian of the \f$Q\f$
- * matrix computed by this decomposition.
  *
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
@@ -1860,7 +1864,7 @@ class qz_decomposition
 	private: alpha_vector_type alpha_; // == diag(S_)
 	/// The denominator of the generalized Schur eigenvalues.
 	private: beta_vector_type beta_;
-};
+}; // qz_decomposition
 
 
 /**

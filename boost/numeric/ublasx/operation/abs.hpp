@@ -77,12 +77,8 @@ typename detail::vector_abs_functor_traits<VectorExprT>::result_type abs(vector_
 {
 	typedef typename detail::vector_abs_functor_traits<VectorExprT>::expression_type expression_type;
 	typedef typename detail::vector_abs_functor_traits<VectorExprT>::signature_result_type signature_result_type;
-	typedef typename detail::vector_abs_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
 
 	return expression_type(ve(), ::std::abs<signature_result_type>);
-//	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-//	fun_ptr_type ptr_abs_fun(&::std::abs);
-//	return expression_type(ve(), ptr_abs_fun);
 }
 
 

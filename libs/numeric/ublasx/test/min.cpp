@@ -311,7 +311,7 @@ BOOST_UBLASX_TEST_DEF( complex_matrix )
 	BOOST_UBLASX_DEBUG_TRACE( "Test Case: Complex Matrix" );
 
 	typedef double real_type;
-	typedef ::std::complex<double> value_type;
+	typedef ::std::complex<real_type> value_type;
 	typedef ublas::matrix<value_type> matrix_type;
 	typedef ublas::vector<value_type> vector_type;
 

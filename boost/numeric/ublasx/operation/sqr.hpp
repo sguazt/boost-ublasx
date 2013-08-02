@@ -88,7 +88,6 @@ typename detail::vector_sqr_functor_traits<VectorExprT>::result_type sqr(vector_
 {
 	typedef typename detail::vector_sqr_functor_traits<VectorExprT>::expression_type expression_type;
 	typedef typename detail::vector_sqr_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
-	typedef typename detail::vector_sqr_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 
 	return expression_type(ve(), detail::sqr_impl<signature_argument_type>);
 //	return expression_type(ve(), detail::sqr_impl<signature_result_type>);
@@ -115,7 +114,6 @@ typename detail::matrix_sqr_functor_traits<MatrixExprT>::result_type sqr(matrix_
 {
 	typedef typename detail::matrix_sqr_functor_traits<MatrixExprT>::expression_type expression_type;
 	typedef typename detail::matrix_sqr_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
-	typedef typename detail::matrix_sqr_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 
 	return expression_type(me(), detail::sqr_impl<signature_argument_type>);
 //	return expression_type(me(), detail::sqr_impl<signature_result_type>(signature_argument_type));
