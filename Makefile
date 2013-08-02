@@ -43,6 +43,7 @@ ublasx:	msg \
 		$(test_path)/inv \
 		$(test_path)/isinf \
 		$(test_path)/layout_type \
+		$(test_path)/linspace \
 		$(test_path)/log2 \
 		$(test_path)/lsq \
 		$(test_path)/lu \
@@ -119,6 +120,7 @@ build-clean:
 				$(test_path)/inv $(test_path)/inv.o \
 				$(test_path)/isinf $(test_path)/isinf.o \
 				$(test_path)/layout_type $(test_path)/layout_type.o \
+				$(test_path)/linspace $(test_path)/linspace.o \
 				$(test_path)/log2 $(test_path)/log2.o \
 				$(test_path)/lsq $(test_path)/lsq.o \
 				$(test_path)/lu $(test_path)/lu.o \
