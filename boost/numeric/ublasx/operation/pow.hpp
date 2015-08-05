@@ -3,7 +3,7 @@
  *
  * \brief Apply the \c std::pow function to a vector or matrix expression.
  *
- * Copyright (c) 2011, Marco Guazzone
+ * Copyright (c) 2015, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
@@ -17,8 +17,8 @@
 
 
 #include <boost/numeric/ublas/traits.hpp>
-#include <boost/numeric/ublasx/expression/matrix_unary_functor.hpp>
-#include <boost/numeric/ublasx/expression/vector_unary_functor.hpp>
+#include <boost/numeric/ublasx/expression/matrix_binary_functor.hpp>
+#include <boost/numeric/ublasx/expression/vector_binary_functor.hpp>
 #include <cmath>
 #include <complex>
 
@@ -29,34 +29,63 @@ using namespace ::boost::numeric::ublas;
 
 namespace detail {
 
-template <typename VectorExprT>
+template <typename VectorExprT, typename Arg2T>
 struct vector_pow_functor_traits
 {
 	typedef VectorExprT input_expression_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef vector_unary_functor_traits<
+	typedef typename vector_traits<input_expression_type>::value_type signature_argument1_type;
+	typedef Arg2T signature_argument2_type;
+	//typedef signature_argument_type signature_result_type;
+	typedef typename promote_traits<
+				signature_argument1_type,
+				signature_argument2_type
+			>::promote_type signature_result_type;
+	typedef vector_binary_functor1_traits<
 				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+				Arg2T,
+				signature_result_type (signature_argument1_type, signature_argument2_type)
+			> binary_functor_expression_type;
+	typedef typename binary_functor_expression_type::result_type result_type;
+	typedef typename binary_functor_expression_type::expression_type expression_type;
 };
 
 
-template <typename MatrixExprT>
+template <typename MatrixExprT, typename Arg2T>
 struct matrix_pow_functor_traits
 {
 	typedef MatrixExprT input_expression_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef matrix_unary_functor_traits<
+	typedef typename matrix_traits<input_expression_type>::value_type signature_argument1_type;
+	typedef Arg2T signature_argument2_type;
+	//typedef signature_argument_type signature_result_type;
+	typedef typename promote_traits<
+				signature_argument1_type,
+				signature_argument2_type
+			>::promote_type signature_result_type;
+	typedef matrix_binary_functor1_traits<
 				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+				Arg2T,
+				signature_result_type (signature_argument1_type, signature_argument2_type)
+			> binary_functor_expression_type;
+	typedef typename binary_functor_expression_type::result_type result_type;
+	typedef typename binary_functor_expression_type::expression_type expression_type;
 };
+
+
+// Wrappers to the std::pow function to avoid compiler errors
+
+template <typename T1, typename T2>
+BOOST_UBLAS_INLINE
+typename promote_traits<T1,T2>::promote_type pow(T1 x, T2 y)
+{
+    return ::std::pow(x, y);
+}
+
+template <typename T1, typename T2>
+BOOST_UBLAS_INLINE
+std::complex<T1> pow(std::complex<T1> const& x, T2 y)
+{
+    return ::std::pow(x, y);
+}
 
 } // Namespace detail
 
@@ -72,19 +101,20 @@ struct matrix_pow_functor_traits
  *
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
-template <typename VectorExprT>
+template <typename VectorExprT, typename T>
 BOOST_UBLAS_INLINE
-typename detail::vector_pow_functor_traits<VectorExprT>::result_type pow(vector_expression<VectorExprT> const& ve)
+typename detail::vector_pow_functor_traits<VectorExprT,T>::result_type pow(vector_expression<VectorExprT> const& ve, T e)
 {
-	typedef typename detail::vector_pow_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_pow_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
-	typedef typename detail::vector_pow_functor_traits<VectorExprT>::signature_result_type signature_result_type;
+	typedef typename detail::vector_pow_functor_traits<VectorExprT,T>::expression_type expression_type;
+	typedef typename detail::vector_pow_functor_traits<VectorExprT,T>::signature_argument1_type signature_argument1_type;
+	typedef typename detail::vector_pow_functor_traits<VectorExprT,T>::signature_argument2_type signature_argument2_type;
+	typedef typename detail::vector_pow_functor_traits<VectorExprT,T>::signature_result_type signature_result_type;
 
 //	return expression_type(ve(), detail::pow<signature_result_type>);
 //	signature_result_type (*)(ptr_pow_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_POW_NS_::pow); 
-	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-	fun_ptr_type ptr_pow_fun(&::std::pow); 
-	return expression_type(ve(), ptr_pow_fun);
+	typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
+	fun_ptr_type ptr_pow_fun(&detail::pow); 
+	return expression_type(ve(), e, ptr_pow_fun);
 }
 
 
@@ -99,18 +129,19 @@ typename detail::vector_pow_functor_traits<VectorExprT>::result_type pow(vector_
  *
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
-template <typename MatrixExprT>
+template <typename MatrixExprT, typename T>
 BOOST_UBLAS_INLINE
-typename detail::matrix_pow_functor_traits<MatrixExprT>::result_type pow(matrix_expression<MatrixExprT> const& me)
+typename detail::matrix_pow_functor_traits<MatrixExprT,T>::result_type pow(matrix_expression<MatrixExprT> const& me, T e)
 {
-	typedef typename detail::matrix_pow_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_pow_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
-	typedef typename detail::matrix_pow_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
+	typedef typename detail::matrix_pow_functor_traits<MatrixExprT,T>::expression_type expression_type;
+	typedef typename detail::matrix_pow_functor_traits<MatrixExprT,T>::signature_argument1_type signature_argument1_type;
+	typedef typename detail::matrix_pow_functor_traits<MatrixExprT,T>::signature_argument2_type signature_argument2_type;
+	typedef typename detail::matrix_pow_functor_traits<MatrixExprT,T>::signature_result_type signature_result_type;
 
 //	return expression_type(me(), detail::pow<signature_result_type>(signature_argument_type));
-	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-	fun_ptr_type ptr_pow_fun(&::std::pow); 
-	return expression_type(me(), ptr_pow_fun);
+	typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
+	fun_ptr_type ptr_pow_fun(&detail::pow); 
+	return expression_type(me(), e, ptr_pow_fun);
 }
 
 }}} // Namespace boost::numeric::ublasx

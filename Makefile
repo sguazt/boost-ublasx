@@ -53,6 +53,7 @@ ublasx:	msg \
 		$(test_path)/mldivide \
 		$(test_path)/num_columns \
 		$(test_path)/num_rows \
+		$(test_path)/pow \
 		$(test_path)/pow2 \
 		$(test_path)/ql \
 		$(test_path)/qr \
@@ -130,6 +131,7 @@ build-clean:
 				$(test_path)/mldivide $(test_path)/mldivide.o \
 				$(test_path)/num_columns $(test_path)/num_rows.o \
 				$(test_path)/num_rows $(test_path)/num_columns.o \
+				$(test_path)/pow $(test_path)/pow.o \
 				$(test_path)/pow2 $(test_path)/pow2.o \
 				$(test_path)/ql $(test_path)/ql.o \
 				$(test_path)/qr $(test_path)/qr.o \
