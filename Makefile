@@ -34,6 +34,7 @@ ublasx:	msg \
 		$(test_path)/diag \
 		$(test_path)/dot \
 		$(test_path)/eigen \
+		$(test_path)/element_pow \
 		$(test_path)/empty \
 		$(test_path)/eps \
 		$(test_path)/find \
@@ -112,6 +113,7 @@ build-clean:
 				$(test_path)/diag $(test_path)/diag.o \
 				$(test_path)/dot $(test_path)/dot.o \
 				$(test_path)/eigen $(test_path)/eigen.o \
+				$(test_path)/element_pow $(test_path)/element_pow.o \
 				$(test_path)/empty $(test_path)/empty.o \
 				$(test_path)/eps $(test_path)/eps.o \
 				$(test_path)/find $(test_path)/find.o \
