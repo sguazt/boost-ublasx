@@ -45,6 +45,7 @@ ublasx:	msg \
 		$(test_path)/isinf \
 		$(test_path)/layout_type \
 		$(test_path)/linspace \
+		$(test_path)/logspace \
 		$(test_path)/log2 \
 		$(test_path)/lsq \
 		$(test_path)/lu \
@@ -124,6 +125,7 @@ build-clean:
 				$(test_path)/isinf $(test_path)/isinf.o \
 				$(test_path)/layout_type $(test_path)/layout_type.o \
 				$(test_path)/linspace $(test_path)/linspace.o \
+				$(test_path)/logspace $(test_path)/logspace.o \
 				$(test_path)/log2 $(test_path)/log2.o \
 				$(test_path)/lsq $(test_path)/lsq.o \
 				$(test_path)/lu $(test_path)/lu.o \
