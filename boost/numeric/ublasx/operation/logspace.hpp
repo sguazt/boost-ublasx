@@ -47,6 +47,11 @@ using namespace ::boost::numeric::ublas;
  * \return A vector of logarithmically spaced values in
  *  \f$[\mathrm{base}^a,\mathrm{base}^b]\f$; if `n=1`, returns `pow(base,b)`.
  *
+ * The call `logspace(a,b,n)` is equivalent to the call:
+ * ```
+ *    base .^ linspace(a,b,n)
+ * ```
+ *
  * \author Marco Guazzone (marco.guazzone@gmail.com)
  */
 template <typename ValueT>
