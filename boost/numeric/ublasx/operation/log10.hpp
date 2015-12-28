@@ -13,8 +13,8 @@
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
-#ifndef BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
-#define BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
+#ifndef BOOST_NUMERIC_UBLASX_OPERATION_LOG10_HPP
+#define BOOST_NUMERIC_UBLASX_OPERATION_LOG10_HPP
 
 
 #include <boost/numeric/ublas/traits.hpp>
@@ -122,4 +122,4 @@ typename detail::matrix_log10_functor_traits<MatrixExprT>::result_type log10(mat
 }}} // Namespace boost::numeric::ublasx
 
 
-#endif // BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
+#endif // BOOST_NUMERIC_UBLASX_OPERATION_LOG10_HPP
