@@ -112,7 +112,7 @@ typename detail::vector_isinf_functor_traits<VectorExprT>::result_type isinf(vec
 	typedef typename detail::vector_isinf_functor_traits<VectorExprT>::expression_type expression_type;
 	typedef typename detail::vector_isinf_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
 
-	return expression_type(ve(), detail::isinf_impl<signature_argument_type const&>);
+	return expression_type(ve(), detail::isinf_impl<signature_argument_type>);
 }
 
 
