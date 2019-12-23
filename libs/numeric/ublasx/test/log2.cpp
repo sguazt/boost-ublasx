@@ -35,12 +35,9 @@ template <typename T>
 inline
 static T log2(T x)
 {
-#if __cplusplus > 199711L
-// C++0x has ::std::log2
-    return ::std::log2(x);
-#else
+// C++0x and higher has std::log2 but it 
+// doesn't work with complex numbers.
     return ::std::log(x)/::std::log(2);
-#endif //__cplusplus
 }
 
 }} // Namespace detail::<unnamed>

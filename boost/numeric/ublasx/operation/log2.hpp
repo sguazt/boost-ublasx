@@ -20,15 +20,7 @@
 #include <boost/numeric/ublasx/expression/matrix_unary_functor.hpp>
 #include <boost/numeric/ublasx/expression/vector_unary_functor.hpp>
 #include <cmath>
-
-
-#if __cplusplus > 199711L
-// C++0x has ::std::log2
-#   define BOOST_NUMERIC_UBLASX_OPERATION_LOG2_NS_ ::std
-#else
-// Use customer-made log2 function
-#   define BOOST_NUMERIC_UBLASX_OPERATION_LOG2_NS_ detail
-#endif // __cpluplus
+#include <complex>
 
 
 namespace boost { namespace numeric { namespace ublasx {
@@ -74,6 +66,8 @@ template <typename T>
 BOOST_UBLAS_INLINE
 T log2(T x)
 {
+  // C++0x and higher has std::log2 but it 
+  // doesn't work with complex numbers.
 	return ::std::log(x)/::std::log(2);
 }
 
@@ -100,7 +94,7 @@ typename detail::vector_log2_functor_traits<VectorExprT>::result_type log2(vecto
 	typedef typename detail::vector_log2_functor_traits<VectorExprT>::expression_type expression_type;
 	typedef typename detail::vector_log2_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 
-	return expression_type(ve(), BOOST_NUMERIC_UBLASX_OPERATION_LOG2_NS_::log2<signature_result_type>);
+	return expression_type(ve(), detail::log2<signature_result_type>);
 }
 
 
@@ -122,7 +116,7 @@ typename detail::matrix_log2_functor_traits<MatrixExprT>::result_type log2(matri
 	typedef typename detail::matrix_log2_functor_traits<MatrixExprT>::expression_type expression_type;
 	typedef typename detail::matrix_log2_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 
-	return expression_type(me(), BOOST_NUMERIC_UBLASX_OPERATION_LOG2_NS_::log2<signature_result_type>);
+	return expression_type(me(), detail::log2<signature_result_type>);
 }
 
 }}} // Namespace boost::numeric::ublasx

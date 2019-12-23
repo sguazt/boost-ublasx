@@ -35,12 +35,12 @@ template <typename T>
 inline
 static T round(T x)
 {
-#if __cplusplus > 199711L
+//#if __cplusplus > 199711L
 // C++0x has ::std::round
-    return ::std::round(x);
-#else
+//    return ::std::round(x);
+//#else
     return (x > 0.0) ? ::std::floor(x+0.5) : ::std::ceil(x-0.5);
-#endif //__cplusplus
+//#endif //__cplusplus
 }
 
 template <typename T>
