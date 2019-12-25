@@ -76,7 +76,7 @@ BOOST_UBLASX_TEST_DEF( float_scalar_arg )
 	eps = ublasx::eps<value_type>(val);
 	BOOST_UBLASX_DEBUG_TRACE("val = " << val);
 	BOOST_UBLASX_DEBUG_TRACE("eps = " << eps);
-	BOOST_UBLASX_TEST_CHECK(isnan(eps));
+	BOOST_UBLASX_TEST_CHECK(std::isnan(eps));
 
 	val = ::std::numeric_limits<value_type>::quiet_NaN();
 	eps = ublasx::eps<value_type>(val);
@@ -136,7 +136,7 @@ BOOST_UBLASX_TEST_DEF( double_scalar_arg )
 	eps = ublasx::eps<value_type>(val);
 	BOOST_UBLASX_DEBUG_TRACE("val = " << val);
 	BOOST_UBLASX_DEBUG_TRACE("eps = " << eps);
-	BOOST_UBLASX_TEST_CHECK(isnan(eps));
+	BOOST_UBLASX_TEST_CHECK(std::isnan(eps));
 
 	val = ::std::numeric_limits<value_type>::quiet_NaN();
 	eps = ublasx::eps<value_type>(val);
