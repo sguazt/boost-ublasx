@@ -12,6 +12,9 @@
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
+//ATTENTION: test fails
+//TODO: fix it
+
 //#include <boost/numeric/ublas/banded.hpp>
 #include <boost/numeric/ublas/fwd.hpp>
 #include <boost/numeric/ublas/io.hpp>
