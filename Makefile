@@ -72,6 +72,7 @@ ublasx:	msg \
 		$(test_path)/round \
 		$(test_path)/seq \
 		$(test_path)/sequence_vector \
+		$(test_path)/sign \
 		$(test_path)/size \
 		$(test_path)/sqr \
 		$(test_path)/sqrt \
@@ -157,6 +158,7 @@ build-clean:
 				$(test_path)/round $(test_path)/round.o \
 				$(test_path)/seq $(test_path)/seq.o \
 				$(test_path)/sequence_vector $(test_path)/sequence_vector.o \
+				$(test_path)/sign $(test_path)/sign.o \
 				$(test_path)/size $(test_path)/size.o \
 				$(test_path)/sqr $(test_path)/sqr.o \
 				$(test_path)/sqrt $(test_path)/sqrt.o \
