@@ -1,26 +1,24 @@
 /**
- * \file boost/numeric/ublasx/operation/log2.hpp
+ * \file boost/numeric/ublasx/operation/tanh.hpp
  *
- * \brief Apply the \c std::log2 function to a vector or matrix expression.
+ * \brief Apply the \c std::tanh function to each element of a vector or
+ *  matrix expression.
  *
- * Copyright (c) 2011, Marco Guazzone
- * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
  *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author comcon1, [at pm dot me]
  */
 
-#ifndef BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
-#define BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
+#ifndef BOOST_NUMERIC_UBLASX_OPERATION_TANH_HPP
+#define BOOST_NUMERIC_UBLASX_OPERATION_TANH_HPP
 
 
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublasx/expression/matrix_unary_functor.hpp>
 #include <boost/numeric/ublasx/expression/vector_unary_functor.hpp>
 #include <cmath>
-#include <complex>
 
 
 namespace boost { namespace numeric { namespace ublasx {
@@ -30,7 +28,7 @@ using namespace ::boost::numeric::ublas;
 namespace detail {
 
 template <typename VectorExprT>
-struct vector_log2_functor_traits
+struct vector_tanh_functor_traits
 {
 	typedef VectorExprT input_expression_type;
 	typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
@@ -45,7 +43,7 @@ struct vector_log2_functor_traits
 
 
 template <typename MatrixExprT>
-struct matrix_log2_functor_traits
+struct matrix_tanh_functor_traits
 {
 	typedef MatrixExprT input_expression_type;
 	typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
@@ -61,14 +59,11 @@ struct matrix_log2_functor_traits
 
 namespace /*<unnamed>*/ {
 
-/// Auxiliary function used to replace ::std::log2 when that is not available.
 template <typename T>
 BOOST_UBLAS_INLINE
-T log2(T x)
+T tanh(T x)
 {
-  // C++0x and higher has std::log2 but it 
-  // doesn't work with complex numbers.
-	return ::std::log(x)/::std::log(2);
+	return ::std::tanh(x);
 }
 
 } // Namespace <unnamed>
@@ -77,49 +72,51 @@ T log2(T x)
 
 
 /**
- * \brief Applies the \c std::log2 function to a given vector expression.
+ * \brief Applies the \c std::tanh function to each element of a given vector
+ *  expression.
  *
  * \tparam VectorExprT The type of the input vector expression.
  *
  * \param ve The input vector expression.
- * \return A vector expression representing the application of \c std::log2 to
+ * \return A vector expression representing the application of \c std::tanh to
  *  each element of \a ve.
  *
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 template <typename VectorExprT>
 BOOST_UBLAS_INLINE
-typename detail::vector_log2_functor_traits<VectorExprT>::result_type log2(vector_expression<VectorExprT> const& ve)
+typename detail::vector_tanh_functor_traits<VectorExprT>::result_type tanh(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename detail::vector_log2_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_log2_functor_traits<VectorExprT>::signature_result_type signature_result_type;
+	typedef typename detail::vector_tanh_functor_traits<VectorExprT>::expression_type expression_type;
+	typedef typename detail::vector_tanh_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 
-	return expression_type(ve(), detail::log2<signature_result_type>);
+	return expression_type(ve(), detail::tanh<signature_result_type>);
 }
 
 
 /**
- * \brief Applies the \c std::log2 function to a given matrix expression.
+ * \brief Applies the \c std::tanh function to each element of a given matrix
+ *  expression.
  *
  * \tparam MatrixExprT The type of the input matrix expression.
  *
  * \param me The input matrix expression.
- * \return A matrix expression representing the application of \c std::log2 to
+ * \return A matrix expression representing the application of \c std::tanh to
  *  each element of \a me.
  *
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
-typename detail::matrix_log2_functor_traits<MatrixExprT>::result_type log2(matrix_expression<MatrixExprT> const& me)
+typename detail::matrix_tanh_functor_traits<MatrixExprT>::result_type tanh(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename detail::matrix_log2_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_log2_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
+	typedef typename detail::matrix_tanh_functor_traits<MatrixExprT>::expression_type expression_type;
+	typedef typename detail::matrix_tanh_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 
-	return expression_type(me(), detail::log2<signature_result_type>);
+	return expression_type(me(), detail::tanh<signature_result_type>);
 }
 
 }}} // Namespace boost::numeric::ublasx
 
 
-#endif // BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
+#endif // BOOST_NUMERIC_UBLASX_OPERATION_LOG_HPP

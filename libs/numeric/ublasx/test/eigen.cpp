@@ -24,6 +24,8 @@
 #include <boost/numeric/ublasx/operation/num_columns.hpp>
 #include <boost/numeric/ublasx/operation/num_rows.hpp>
 #include <boost/numeric/ublasx/operation/size.hpp>
+#include <boost/numeric/ublasx/operation/sum.hpp>
+#include <boost/numeric/ublasx/operation/abs.hpp>
 #include <complex>
 #include "libs/numeric/ublasx/test/utils.hpp"
 
@@ -232,25 +234,39 @@ BOOST_UBLASX_TEST_DEF( test_double_matrix_column_major_only_vectors )
 	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
 	BOOST_UBLASX_DEBUG_TRACE( "Left Eigenvectors = " << LV );
 	BOOST_UBLASX_DEBUG_TRACE( "Right Eigenvectors = " << RV );
+        //TODO: give more precise values!
+	expect_LV(0,0) = out_value_type( 0.04441241171439061 , 0.2879188413627367  ); expect_LV(0,1) = out_value_type( 0.04441241171439061 ,-0.2879188413627367  ); expect_LV(0,2) = out_value_type(-0.1325612054004949  ,-0.32728512393077713 ); expect_LV(0,3) = out_value_type(-0.1325612054004949  , 0.32728512393077713 ); expect_LV(0,4) = out_value_type( 0.0408372696405638 , 0.00000);
+	expect_LV(1,0) = out_value_type( 0.6181643032364803  , 0.0                 ); expect_LV(1,1) = out_value_type( 0.6181643032364803  , 0.                  ); expect_LV(1,2) = out_value_type( 0.6868696010430648  , 0.0                 ); expect_LV(1,3) = out_value_type( 0.6868696010430648  , 0.00                ); expect_LV(1,4) = out_value_type( 0.5599544102049594 , 0.00000);
+	expect_LV(2,0) = out_value_type(-0.035757599312428556,-0.5771114592618123  ); expect_LV(2,1) = out_value_type(-0.035757599312428556, 0.5771114592618123  ); expect_LV(2,2) = out_value_type(-0.39032805246732794 ,-0.07486636968983368 ); expect_LV(2,3) = out_value_type(-0.39032805246732794 , 0.07486636968983368 ); expect_LV(2,4) = out_value_type(-0.12850028050038304, 0.00000);
+	expect_LV(3,0) = out_value_type( 0.2837261355713329  , 0.011354678505118251); expect_LV(3,1) = out_value_type( 0.2837261355713329  ,-0.011354678505118251); expect_LV(3,2) = out_value_type(-0.018200866392540004,-0.1872688637882381  ); expect_LV(3,3) = out_value_type(-0.018200866392540004, 0.1872688637882381  ); expect_LV(3,4) = out_value_type(-0.7966991560727732 , 0.00000);
+	expect_LV(4,0) = out_value_type(-0.044953359596348524, 0.3406122092484726  ); expect_LV(4,1) = out_value_type(-0.044953359596348524,-0.3406122092484726  ); expect_LV(4,2) = out_value_type(-0.40321802640401727 , 0.2181180599737777  ); expect_LV(4,3) = out_value_type(-0.40321802640401727 ,-0.2181180599737777  ); expect_LV(4,4) = out_value_type( 0.18314340972192725, 0.00000);
 
-	expect_LV(0,0) = out_value_type( 0.04441, 0.28792); expect_LV(0,1) = out_value_type( 0.04441,-0.28792); expect_LV(0,2) = out_value_type(-0.13256,-0.32729); expect_LV(0,3) = out_value_type(-0.13256, 0.32729); expect_LV(0,4) = out_value_type( 0.04084,-0.00000);
-	expect_LV(1,0) = out_value_type( 0.61816, 0.00000); expect_LV(1,1) = out_value_type( 0.61816, 0.00000); expect_LV(1,2) = out_value_type( 0.68687, 0.00000); expect_LV(1,3) = out_value_type( 0.68687,-0.00000); expect_LV(1,4) = out_value_type( 0.55995,-0.00000);
-	expect_LV(2,0) = out_value_type(-0.03576,-0.57711); expect_LV(2,1) = out_value_type(-0.03576, 0.57711); expect_LV(2,2) = out_value_type(-0.39033,-0.07487); expect_LV(2,3) = out_value_type(-0.39033, 0.07487); expect_LV(2,4) = out_value_type(-0.12850,-0.00000);
-	expect_LV(3,0) = out_value_type( 0.28373, 0.01135); expect_LV(3,1) = out_value_type( 0.28373,-0.01135); expect_LV(3,2) = out_value_type(-0.01820,-0.18727); expect_LV(3,3) = out_value_type(-0.01820, 0.18727); expect_LV(3,4) = out_value_type(-0.79670,-0.00000);
-	expect_LV(4,0) = out_value_type(-0.04495, 0.34061); expect_LV(4,1) = out_value_type(-0.04495,-0.34061); expect_LV(4,2) = out_value_type(-0.40322, 0.21812); expect_LV(4,3) = out_value_type(-0.40322,-0.21812); expect_LV(4,4) = out_value_type( 0.18314,-0.00000);
-
-	expect_RV(0,0) = out_value_type(0.10806, 0.16865); expect_RV(0,1) = out_value_type(0.10806,-0.16865); expect_RV(0,2) = out_value_type( 0.73223, 0.00000); expect_RV(0,3) = out_value_type( 0.73223, 0.00000); expect_RV(0,4) = out_value_type( 0.46065, 0.00000);
-	expect_RV(1,0) = out_value_type(0.40631,-0.25901); expect_RV(1,1) = out_value_type(0.40631, 0.25901); expect_RV(1,2) = out_value_type(-0.02646,-0.01695); expect_RV(1,3) = out_value_type(-0.02646, 0.01695); expect_RV(1,4) = out_value_type( 0.33770, 0.00000);
-	expect_RV(2,0) = out_value_type(0.10236,-0.50880); expect_RV(2,1) = out_value_type(0.10236, 0.50880); expect_RV(2,2) = out_value_type( 0.19165,-0.29257); expect_RV(2,3) = out_value_type( 0.19165, 0.29257); expect_RV(2,4) = out_value_type( 0.30874, 0.00000);
-	expect_RV(3,0) = out_value_type(0.39863,-0.09133); expect_RV(3,1) = out_value_type(0.39863, 0.09133); expect_RV(3,2) = out_value_type(-0.07901,-0.07808); expect_RV(3,3) = out_value_type(-0.07901, 0.07808); expect_RV(3,4) = out_value_type(-0.74385, 0.00000);
-	expect_RV(4,0) = out_value_type(0.53954, 0.00000); expect_RV(4,1) = out_value_type(0.53954, 0.00000); expect_RV(4,2) = out_value_type(-0.29160,-0.49310); expect_RV(4,3) = out_value_type(-0.29160, 0.49310); expect_RV(4,4) = out_value_type( 0.15853, 0.00000);
+	expect_RV(0,0) = out_value_type(0.10806479130135167, 0.1686483435010072); expect_RV(0,1) = out_value_type(0.10806479130135167,-0.1686483435010072); expect_RV(0,2) = out_value_type( 0.7322339897837211  , 0.0                 ); expect_RV(0,3) = out_value_type( 0.7322339897837211  , 0.0                ); expect_RV(0,4) = out_value_type(-0.4606464366271303, 0.00000);
+	expect_RV(1,0) = out_value_type(0.40631288132267446,-0.2590097689205323); expect_RV(1,1) = out_value_type(0.40631288132267446, 0.2590097689205323); expect_RV(1,2) = out_value_type(-0.026463011089022395,-0.01694675437857112 ); expect_RV(1,3) = out_value_type(-0.026463011089022395, 0.01694675437857112); expect_RV(1,4) = out_value_type(-0.3377038282859721, 0.00000);
+	expect_RV(2,0) = out_value_type(0.10235768506156454,-0.5088023141787094); expect_RV(2,1) = out_value_type(0.10235768506156454, 0.5088023141787094); expect_RV(2,2) = out_value_type( 0.191648728080536   ,-0.2925659954756119  ); expect_RV(2,3) = out_value_type( 0.191648728080536   , 0.2925659954756119 ); expect_RV(2,4) = out_value_type(-0.3087439418541303, 0.00000);
+	expect_RV(3,0) = out_value_type(0.39863109808413577,-0.0913334523695411); expect_RV(3,1) = out_value_type(0.39863109808413577, 0.0913334523695411); expect_RV(3,2) = out_value_type(-0.07901106298430906 ,-0.07807593642682402 ); expect_RV(3,3) = out_value_type(-0.07901106298430906 , 0.07807593642682402); expect_RV(3,4) = out_value_type( 0.7438458375310733, 0.00000);
+	expect_RV(4,0) = out_value_type(0.5395350560474126 , 0.00000           ); expect_RV(4,1) = out_value_type(0.5395350560474126 , 0.00000           ); expect_RV(4,2) = out_value_type(-0.291604754325538   ,-0.493102293052802   ); expect_RV(4,3) = out_value_type(-0.291604754325538   , 0.493102293052802  ); expect_RV(4,4) = out_value_type(-0.1585292816478885, 0.00000);
 
 	BOOST_UBLASX_TEST_CHECK( ublasx::num_rows(LV) == n );
 	BOOST_UBLASX_TEST_CHECK( ublasx::num_columns(LV) == n );
 	BOOST_UBLASX_TEST_CHECK( ublasx::num_rows(RV) == n );
 	BOOST_UBLASX_TEST_CHECK( ublasx::num_columns(RV) == n );
-	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( LV, expect_LV, n, n, tol );
-	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( RV, expect_RV, n, n, tol );
+
+        for (std::size_t i=0; i<n; ++i) {
+          ublas::vector<out_value_type> vE( ublas::matrix_column<out_matrix_type>(expect_LV, i) );
+          ublas::vector<out_value_type> vT( ublas::matrix_column<out_matrix_type>(LV, i) );
+          double r0 = ublasx::sum( ublasx::abs( vE + vT ));
+          double r1 = ublasx::sum( ublasx::abs( vE - vT ));
+          if (r1 > r0) vT = -vT;
+	  BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( vE, vT, n, tol );
+
+          vE = ublas::matrix_column<out_matrix_type>(expect_RV, i);
+          vT = ublas::matrix_column<out_matrix_type>(RV, i);
+          r0 = ublasx::sum( ublasx::abs( vE + vT ));
+          r1 = ublasx::sum( ublasx::abs( vE - vT ));
+          if (r1 > r0) vT = -vT;
+	  BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( vE, vT, n, tol );
+        }
 }
 
 
@@ -404,11 +420,11 @@ BOOST_UBLASX_TEST_DEF( test_double_matrix_row_major_only_values )
 	out_vector_type expect_w;
 
 	expect_w = out_vector_type(n);
-	expect_w(0) = out_value_type(  2.85813, 10.76275);
-	expect_w(1) = out_value_type(  2.85813,-10.76275);
-	expect_w(2) = out_value_type(- 0.68667,  4.70426);
-	expect_w(3) = out_value_type(- 0.68667, -4.70426);
-	expect_w(4) = out_value_type(-10.46292,  0.00000);
+	expect_w(0) = out_value_type(2.8581328780343496,10.762749830715672);
+	expect_w(1) = out_value_type(2.8581328780343496,-10.762749830715672);
+	expect_w(2) = out_value_type(-0.6866745133059503,4.70426134062811);
+	expect_w(3) = out_value_type(-0.6866745133059503,-4.70426134062811);
+	expect_w(4) = out_value_type(-10.462916729456813,  0.00000);
 
 
 	ublasx::eigenvalues(A, w);
@@ -452,17 +468,17 @@ BOOST_UBLASX_TEST_DEF( test_double_matrix_row_major_only_vectors )
 	BOOST_UBLASX_DEBUG_TRACE( "Left Eigenvectors = " << LV );
 	BOOST_UBLASX_DEBUG_TRACE( "Right Eigenvectors = " << RV );
 
-	expect_LV(0,0) = out_value_type( 0.04441, 0.28792); expect_LV(0,1) = out_value_type( 0.04441,-0.28792); expect_LV(0,2) = out_value_type(-0.13256,-0.32729); expect_LV(0,3) = out_value_type(-0.13256, 0.32729); expect_LV(0,4) = out_value_type(-0.04084,-0.00000);
-	expect_LV(1,0) = out_value_type( 0.61816, 0.00000); expect_LV(1,1) = out_value_type( 0.61816, 0.00000); expect_LV(1,2) = out_value_type( 0.68687, 0.00000); expect_LV(1,3) = out_value_type( 0.68687,-0.00000); expect_LV(1,4) = out_value_type(-0.55995,-0.00000);
-	expect_LV(2,0) = out_value_type(-0.03576,-0.57711); expect_LV(2,1) = out_value_type(-0.03576, 0.57711); expect_LV(2,2) = out_value_type(-0.39033,-0.07487); expect_LV(2,3) = out_value_type(-0.39033, 0.07487); expect_LV(2,4) = out_value_type( 0.12850,-0.00000);
-	expect_LV(3,0) = out_value_type( 0.28373, 0.01135); expect_LV(3,1) = out_value_type( 0.28373,-0.01135); expect_LV(3,2) = out_value_type(-0.01820,-0.18727); expect_LV(3,3) = out_value_type(-0.01820, 0.18727); expect_LV(3,4) = out_value_type( 0.79670,-0.00000);
-	expect_LV(4,0) = out_value_type(-0.04495, 0.34061); expect_LV(4,1) = out_value_type(-0.04495,-0.34061); expect_LV(4,2) = out_value_type(-0.40322, 0.21812); expect_LV(4,3) = out_value_type(-0.40322,-0.21812); expect_LV(4,4) = out_value_type(-0.18314,-0.00000);
+	expect_LV(0,0) = out_value_type( 0.04441241171439061 , 0.2879188413627367  ); expect_LV(0,1) = out_value_type( 0.04441241171439061 ,-0.2879188413627367  ); expect_LV(0,2) = out_value_type(-0.1325612054004949  ,-0.32728512393077713 ); expect_LV(0,3) = out_value_type(-0.1325612054004949  , 0.32728512393077713 ); expect_LV(0,4) = out_value_type(-0.0408372696405638 , 0.00000);
+	expect_LV(1,0) = out_value_type( 0.6181643032364803  , 0.0                 ); expect_LV(1,1) = out_value_type( 0.6181643032364803  , 0.                  ); expect_LV(1,2) = out_value_type( 0.6868696010430648  , 0.0                 ); expect_LV(1,3) = out_value_type( 0.6868696010430648  , 0.00                ); expect_LV(1,4) = out_value_type(-0.5599544102049594 , 0.00000);
+	expect_LV(2,0) = out_value_type(-0.035757599312428556,-0.5771114592618123  ); expect_LV(2,1) = out_value_type(-0.035757599312428556, 0.5771114592618123  ); expect_LV(2,2) = out_value_type(-0.39032805246732794 ,-0.07486636968983368 ); expect_LV(2,3) = out_value_type(-0.39032805246732794 , 0.07486636968983368 ); expect_LV(2,4) = out_value_type( 0.12850028050038304, 0.00000);
+	expect_LV(3,0) = out_value_type( 0.2837261355713329  , 0.011354678505118251); expect_LV(3,1) = out_value_type( 0.2837261355713329  ,-0.011354678505118251); expect_LV(3,2) = out_value_type(-0.018200866392540004,-0.1872688637882381  ); expect_LV(3,3) = out_value_type(-0.018200866392540004, 0.1872688637882381  ); expect_LV(3,4) = out_value_type( 0.7966991560727732 , 0.00000);
+	expect_LV(4,0) = out_value_type(-0.044953359596348524, 0.3406122092484726  ); expect_LV(4,1) = out_value_type(-0.044953359596348524,-0.3406122092484726  ); expect_LV(4,2) = out_value_type(-0.40321802640401727 , 0.2181180599737777  ); expect_LV(4,3) = out_value_type(-0.40321802640401727 ,-0.2181180599737777  ); expect_LV(4,4) = out_value_type(-0.18314340972192725, 0.00000);
 
-	expect_RV(0,0) = out_value_type(0.10806, 0.16865); expect_RV(0,1) = out_value_type(0.10806,-0.16865); expect_RV(0,2) = out_value_type( 0.73223, 0.00000); expect_RV(0,3) = out_value_type( 0.73223, 0.00000); expect_RV(0,4) = out_value_type(-0.46065, 0.00000);
-	expect_RV(1,0) = out_value_type(0.40631,-0.25901); expect_RV(1,1) = out_value_type(0.40631, 0.25901); expect_RV(1,2) = out_value_type(-0.02646,-0.01695); expect_RV(1,3) = out_value_type(-0.02646, 0.01695); expect_RV(1,4) = out_value_type(-0.33770, 0.00000);
-	expect_RV(2,0) = out_value_type(0.10236,-0.50880); expect_RV(2,1) = out_value_type(0.10236, 0.50880); expect_RV(2,2) = out_value_type( 0.19165,-0.29257); expect_RV(2,3) = out_value_type( 0.19165, 0.29257); expect_RV(2,4) = out_value_type(-0.30874, 0.00000);
-	expect_RV(3,0) = out_value_type(0.39863,-0.09133); expect_RV(3,1) = out_value_type(0.39863, 0.09133); expect_RV(3,2) = out_value_type(-0.07901,-0.07808); expect_RV(3,3) = out_value_type(-0.07901, 0.07808); expect_RV(3,4) = out_value_type( 0.74385, 0.00000);
-	expect_RV(4,0) = out_value_type(0.53954, 0.00000); expect_RV(4,1) = out_value_type(0.53954, 0.00000); expect_RV(4,2) = out_value_type(-0.29160,-0.49310); expect_RV(4,3) = out_value_type(-0.29160, 0.49310); expect_RV(4,4) = out_value_type(-0.15853, 0.00000);
+        expect_RV(0,0) = out_value_type(0.10806479130135167, 0.1686483435010072); expect_RV(0,1) = out_value_type(0.10806479130135167,-0.1686483435010072); expect_RV(0,2) = out_value_type( 0.7322339897837211  , 0.0                 ); expect_RV(0,3) = out_value_type( 0.7322339897837211  , 0.0                ); expect_RV(0,4) = out_value_type(-0.4606464366271303, 0.00000);
+	expect_RV(1,0) = out_value_type(0.40631288132267446,-0.2590097689205323); expect_RV(1,1) = out_value_type(0.40631288132267446, 0.2590097689205323); expect_RV(1,2) = out_value_type(-0.026463011089022395,-0.01694675437857112 ); expect_RV(1,3) = out_value_type(-0.026463011089022395, 0.01694675437857112); expect_RV(1,4) = out_value_type(-0.3377038282859721, 0.00000);
+	expect_RV(2,0) = out_value_type(0.10235768506156454,-0.5088023141787094); expect_RV(2,1) = out_value_type(0.10235768506156454, 0.5088023141787094); expect_RV(2,2) = out_value_type( 0.191648728080536   ,-0.2925659954756119  ); expect_RV(2,3) = out_value_type( 0.191648728080536   , 0.2925659954756119 ); expect_RV(2,4) = out_value_type(-0.3087439418541303, 0.00000);
+	expect_RV(3,0) = out_value_type(0.39863109808413577,-0.0913334523695411); expect_RV(3,1) = out_value_type(0.39863109808413577, 0.0913334523695411); expect_RV(3,2) = out_value_type(-0.07901106298430906 ,-0.07807593642682402 ); expect_RV(3,3) = out_value_type(-0.07901106298430906 , 0.07807593642682402); expect_RV(3,4) = out_value_type( 0.7438458375310733, 0.00000);
+	expect_RV(4,0) = out_value_type(0.5395350560474126 , 0.00000           ); expect_RV(4,1) = out_value_type(0.5395350560474126 , 0.00000           ); expect_RV(4,2) = out_value_type(-0.291604754325538   ,-0.493102293052802   ); expect_RV(4,3) = out_value_type(-0.291604754325538   , 0.493102293052802  ); expect_RV(4,4) = out_value_type(-0.1585292816478885, 0.00000);
 
 	BOOST_UBLASX_TEST_CHECK( ublasx::num_rows(LV) == n );
 	BOOST_UBLASX_TEST_CHECK( ublasx::num_columns(LV) == n );
@@ -660,15 +676,15 @@ BOOST_UBLASX_TEST_DEF( test_complex_matrix_column_major_only_vectors )
 
 	ublasx::eigenvectors(A, LV, RV);
 
-	expect_LV(0,0) = out_value_type( 0.241443,-0.184652); expect_LV(0,1) = out_value_type( 0.613497, 0.00000); expect_LV(0,2) = out_value_type(-0.18283,-0.334722); expect_LV(0,3) = out_value_type( 0.27648, 0.08843);
-	expect_LV(1,0) = out_value_type( 0.786121, 0.000000); expect_LV(1,1) = out_value_type(-0.049905,-0.27212); expect_LV(1,2) = out_value_type( 0.82183, 0.000000); expect_LV(1,3) = out_value_type(-0.54771, 0.15723);
-	expect_LV(2,0) = out_value_type( 0.219515,-0.268865); expect_LV(2,1) = out_value_type(-0.208777, 0.53473); expect_LV(2,2) = out_value_type(-0.37143, 0.152499); expect_LV(2,3) = out_value_type( 0.44508, 0.09122);
-	expect_LV(3,0) = out_value_type(-0.016984, 0.410925); expect_LV(3,1) = out_value_type( 0.402720,-0.23531); expect_LV(3,2) = out_value_type( 0.05748, 0.120794); expect_LV(3,3) = out_value_type( 0.62016, 0.00000);
+	expect_LV(0,0) = out_value_type( 0.24144287163827527 ,-0.18465213100318006); expect_LV(0,1) = out_value_type( 0.6134970860903158 , 0.                 ); expect_LV(0,2) = out_value_type(-0.1828392867360731,-0.3347215349804258 ); expect_LV(0,3) = out_value_type( 0.2764845560844309, 0.08843771195325413);
+	expect_LV(1,0) = out_value_type( 0.7861209959278461  , 0.00               ); expect_LV(1,1) = out_value_type(-0.04990581295152956,-0.27212029611221916); expect_LV(1,2) = out_value_type( 0.8218391628323942, 0.000              ); expect_LV(1,3) = out_value_type(-0.5477176303872586, 0.15722956229438773);
+	expect_LV(2,0) = out_value_type( 0.21951507543794077 ,-0.2688645451415786 ); expect_LV(2,1) = out_value_type(-0.2087767673393235 , 0.5347329156020605 ); expect_LV(2,2) = out_value_type(-0.3714296893055094, 0.15249903883664429); expect_LV(2,3) = out_value_type( 0.4450824180745997, 0.09122872979332788);
+	expect_LV(3,0) = out_value_type(-0.016984399323421218, 0.41092484496969633); expect_LV(3,1) = out_value_type( 0.402719845692206  ,-0.23531038207619248); expect_LV(3,2) = out_value_type( 0.0574841440971407, 0.12079437865593233); expect_LV(3,3) = out_value_type( 0.6201598853812728, 0.00               );
 
-	expect_RV(0,0) = out_value_type( 0.430856520077611, 0.326812737812621); expect_RV(0,1) = out_value_type( 0.825682050767281, 0.000000000000000); expect_RV(0,2) = out_value_type( 0.598395978553945, 0.000000000000000); expect_RV(0,3) = out_value_type(-0.305431903484378, 0.033331648617999);
-	expect_RV(1,0) = out_value_type( 0.508741460297097,-0.028833421706928); expect_RV(1,1) = out_value_type( 0.075029167881412,-0.248728504509167); expect_RV(1,2) = out_value_type(-0.400476162752076,-0.201449222762560); expect_RV(1,3) = out_value_type( 0.039782828157833, 0.344507652215461);
-	expect_RV(2,0) = out_value_type( 0.619849652765775, 0.000000000000000); expect_RV(2,1) = out_value_type(-0.245755789978015, 0.278872402211696); expect_RV(2,2) = out_value_type(-0.090080019075949,-0.475264621539173); expect_RV(2,3) = out_value_type( 0.358325436515984, 0.060645069885247);
-	expect_RV(3,0) = out_value_type(-0.226928243319268, 0.110439278464036); expect_RV(3,1) = out_value_type(-0.103434063728144,-0.319201465363233); expect_RV(3,2) = out_value_type(-0.434840295495405, 0.133724917858160); expect_RV(3,3) = out_value_type( 0.808243289317835, 0.000000000000000);
+	expect_RV(0,0) = out_value_type( 0.43085652007761127, 0.32681273781262105  ); expect_RV(0,1) = out_value_type( 0.8256820507672814 , 0.                   ); expect_RV(0,2) = out_value_type( 0.598395978553945  , 0.                 ); expect_RV(0,3) = out_value_type(-0.3054319034843787 , 0.03333164861799852 );
+	expect_RV(1,0) = out_value_type( 0.5087414602970971 ,-0.028833421706927785 ); expect_RV(1,1) = out_value_type( 0.0750291678814112 ,-0.2487285045091667   ); expect_RV(1,2) = out_value_type(-0.4004761627520769 ,-0.20144922276256036); expect_RV(1,3) = out_value_type( 0.03978282815783318, 0.3445076522154613  );
+	expect_RV(2,0) = out_value_type( 0.6198496527657752 , 0.0                  ); expect_RV(2,1) = out_value_type(-0.24575578997801512, 0.27887240221169707  ); expect_RV(2,2) = out_value_type(-0.09008001907595067,-0.47526462153917304); expect_RV(2,3) = out_value_type( 0.35832543651598453, 0.060645069885246886);
+	expect_RV(3,0) = out_value_type(-0.22692824331926834, 0.1104392784640359   ); expect_RV(3,1) = out_value_type(-0.10343406372814366,-0.31920146536323224  ); expect_RV(3,2) = out_value_type(-0.4348402954954043 , 0.1337249178581602 ); expect_RV(3,3) = out_value_type( 0.8082432893178347 , 0.00                );
 
 
 	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
@@ -870,17 +886,16 @@ BOOST_UBLASX_TEST_DEF( test_complex_matrix_row_major_only_vectors )
 	out_matrix_type expect_LV(n, n);
 
 	ublasx::eigenvectors(A, LV, RV);
+	
+        expect_LV(0,0) = out_value_type( 0.24144287163827527 ,-0.18465213100318006); expect_LV(0,1) = out_value_type( 0.6134970860903158 , 0.                 ); expect_LV(0,2) = out_value_type(-0.1828392867360731,-0.3347215349804258 ); expect_LV(0,3) = out_value_type( 0.2764845560844309, 0.08843771195325413);
+	expect_LV(1,0) = out_value_type( 0.7861209959278461  , 0.00               ); expect_LV(1,1) = out_value_type(-0.04990581295152956,-0.27212029611221916); expect_LV(1,2) = out_value_type( 0.8218391628323942, 0.000              ); expect_LV(1,3) = out_value_type(-0.5477176303872586, 0.15722956229438773);
+	expect_LV(2,0) = out_value_type( 0.21951507543794077 ,-0.2688645451415786 ); expect_LV(2,1) = out_value_type(-0.2087767673393235 , 0.5347329156020605 ); expect_LV(2,2) = out_value_type(-0.3714296893055094, 0.15249903883664429); expect_LV(2,3) = out_value_type( 0.4450824180745997, 0.09122872979332788);
+	expect_LV(3,0) = out_value_type(-0.016984399323421218, 0.41092484496969633); expect_LV(3,1) = out_value_type( 0.402719845692206  ,-0.23531038207619248); expect_LV(3,2) = out_value_type( 0.0574841440971407, 0.12079437865593233); expect_LV(3,3) = out_value_type( 0.6201598853812728, 0.00               );
 
-	expect_LV(0,0) = out_value_type( 0.241443,-0.184652); expect_LV(0,1) = out_value_type( 0.613497, 0.00000); expect_LV(0,2) = out_value_type(-0.18283,-0.334722); expect_LV(0,3) = out_value_type( 0.27648, 0.08843);
-	expect_LV(1,0) = out_value_type( 0.786121, 0.000000); expect_LV(1,1) = out_value_type(-0.049905,-0.27212); expect_LV(1,2) = out_value_type( 0.82183, 0.000000); expect_LV(1,3) = out_value_type(-0.54771, 0.15723);
-	expect_LV(2,0) = out_value_type( 0.219515,-0.268865); expect_LV(2,1) = out_value_type(-0.208777, 0.53473); expect_LV(2,2) = out_value_type(-0.37143, 0.152499); expect_LV(2,3) = out_value_type( 0.44508, 0.09122);
-	expect_LV(3,0) = out_value_type(-0.016984, 0.410925); expect_LV(3,1) = out_value_type( 0.402720,-0.23531); expect_LV(3,2) = out_value_type( 0.05748, 0.120794); expect_LV(3,3) = out_value_type( 0.62016, 0.00000);
-
-	expect_RV(0,0) = out_value_type( 0.430856520077611, 0.326812737812621); expect_RV(0,1) = out_value_type( 0.825682050767281, 0.000000000000000); expect_RV(0,2) = out_value_type( 0.598395978553945, 0.000000000000000); expect_RV(0,3) = out_value_type(-0.305431903484378, 0.033331648617999);
-	expect_RV(1,0) = out_value_type( 0.508741460297097,-0.028833421706928); expect_RV(1,1) = out_value_type( 0.075029167881412,-0.248728504509167); expect_RV(1,2) = out_value_type(-0.400476162752076,-0.201449222762560); expect_RV(1,3) = out_value_type( 0.039782828157833, 0.344507652215461);
-	expect_RV(2,0) = out_value_type( 0.619849652765775, 0.000000000000000); expect_RV(2,1) = out_value_type(-0.245755789978015, 0.278872402211696); expect_RV(2,2) = out_value_type(-0.090080019075949,-0.475264621539173); expect_RV(2,3) = out_value_type( 0.358325436515984, 0.060645069885247);
-	expect_RV(3,0) = out_value_type(-0.226928243319268, 0.110439278464036); expect_RV(3,1) = out_value_type(-0.103434063728144,-0.319201465363233); expect_RV(3,2) = out_value_type(-0.434840295495405, 0.133724917858160); expect_RV(3,3) = out_value_type( 0.808243289317835, 0.000000000000000);
-
+	expect_RV(0,0) = out_value_type( 0.43085652007761127, 0.32681273781262105  ); expect_RV(0,1) = out_value_type( 0.8256820507672814 , 0.                   ); expect_RV(0,2) = out_value_type( 0.598395978553945  , 0.                 ); expect_RV(0,3) = out_value_type(-0.3054319034843787 , 0.03333164861799852 );
+	expect_RV(1,0) = out_value_type( 0.5087414602970971 ,-0.028833421706927785 ); expect_RV(1,1) = out_value_type( 0.0750291678814112 ,-0.2487285045091667   ); expect_RV(1,2) = out_value_type(-0.4004761627520769 ,-0.20144922276256036); expect_RV(1,3) = out_value_type( 0.03978282815783318, 0.3445076522154613  );
+	expect_RV(2,0) = out_value_type( 0.6198496527657752 , 0.0                  ); expect_RV(2,1) = out_value_type(-0.24575578997801512, 0.27887240221169707  ); expect_RV(2,2) = out_value_type(-0.09008001907595067,-0.47526462153917304); expect_RV(2,3) = out_value_type( 0.35832543651598453, 0.060645069885246886);
+	expect_RV(3,0) = out_value_type(-0.22692824331926834, 0.1104392784640359   ); expect_RV(3,1) = out_value_type(-0.10343406372814366,-0.31920146536323224  ); expect_RV(3,2) = out_value_type(-0.4348402954954043 , 0.1337249178581602 ); expect_RV(3,3) = out_value_type( 0.8082432893178347 , 0.00                );
 
 	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
 	BOOST_UBLASX_DEBUG_TRACE( "Left Eigenvectors = " << LV );

@@ -1,21 +1,19 @@
 /**
- * \file libs/numeric/ublasx/test/log2.cpp
+ * \file libs/numeric/ublasx/test/tanh.cpp
  *
- * \brief Test suite for the \c log2 operation.
- *
- * Copyright (c) 2011, Marco Guazzone
+ * \brief Test suite for the \c tanh operation.
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
  *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * Written by comcon1 based on code of Marco Guazzone
  */
 
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublasx/operation/log2.hpp>
+#include <boost/numeric/ublasx/operation/tanh.hpp>
 #include <cmath>
 #include <complex>
 #include <cstddef>
@@ -27,20 +25,6 @@ namespace ublasx = ::boost::numeric::ublasx;
 
 
 static const double tol = 1.0e-5;
-
-
-namespace detail { namespace /*<unnamed>*/ {
-
-template <typename T>
-inline
-static T log2(T x)
-{
-// C++0x and higher has std::log2 but it 
-// doesn't work with complex numbers.
-    return ::std::log(x)/::std::log(2);
-}
-
-}} // Namespace detail::<unnamed>
 
 
 BOOST_UBLASX_TEST_DEF( test_real_vector )
@@ -61,19 +45,19 @@ BOOST_UBLASX_TEST_DEF( test_real_vector )
 	v(3) = 4;
 
 	vector_type res;
-	vector_type expect_res(n);
+	vector_type tanhect_res(n);
 
-	res = ublasx::log2(v);
+	res = ublasx::tanh(v);
 
 	BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
-	BOOST_UBLASX_DEBUG_TRACE( "log2(v) = " << res );
+	BOOST_UBLASX_DEBUG_TRACE( "tanh(v) = " << res );
 
 	for (size_type i = 0; i < n; ++i)
 	{
-		expect_res(i) = detail::log2(v(i));
+		tanhect_res(i) = std::tanh(v(i));
 	}
 
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
+	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, tanhect_res, n, tol );
 }
 
 
@@ -99,19 +83,19 @@ BOOST_UBLASX_TEST_DEF( test_real_vector2 )
 	v(7) = 1.0;
 
 	vector_type res;
-	vector_type expect_res(n);
+	vector_type tanhect_res(n);
 
-	res = ublasx::log2(v);
+	res = ublasx::tanh(v);
 
 	BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
-	BOOST_UBLASX_DEBUG_TRACE( "log2(v) = " << res );
+	BOOST_UBLASX_DEBUG_TRACE( "tanh(v) = " << res );
 
 	for (size_type i = 0; i < n; ++i)
 	{
-		expect_res(i) = detail::log2(v(i));
+		tanhect_res(i) = std::tanh(v(i));
 	}
 
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
+	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, tanhect_res, n, tol );
 }
 
 
@@ -135,19 +119,19 @@ BOOST_UBLASX_TEST_DEF( test_complex_vector )
 	v(3) = in_value_type(4,5);
 
 	out_vector_type res;
-	out_vector_type expect_res(n);
+	out_vector_type tanhect_res(n);
 
-	res = ublasx::log2(v);
+	res = ublasx::tanh(v);
 
 	BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
-	BOOST_UBLASX_DEBUG_TRACE( "log2(v) = " << res );
+	BOOST_UBLASX_DEBUG_TRACE( "tanh(v) = " << res );
 
 	for (size_type i = 0; i < n; ++i)
 	{
-		expect_res(i) = detail::log2(v(i));
+		tanhect_res(i) = std::tanh(v(i));
 	}
 
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
+	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, tanhect_res, n, tol );
 }
 
 
@@ -168,22 +152,22 @@ BOOST_UBLASX_TEST_DEF( test_real_matrix )
 	A(1,0) = 4; A(1,1) = 5; A(1,2) = 6;
 
 	matrix_type R;
-	matrix_type expect_R(nr,nc);
+	matrix_type tanhect_R(nr,nc);
 
-	R = ublasx::log2(A);
+	R = ublasx::tanh(A);
 
 	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-	BOOST_UBLASX_DEBUG_TRACE( "log2(A) = " << R );
+	BOOST_UBLASX_DEBUG_TRACE( "tanh(A) = " << R );
 
 	for (size_type r = 0; r < nr; ++r)
 	{
 		for (size_type c = 0; c < nc; ++c)
 		{
-			expect_R(r,c) = detail::log2(A(r,c));
+			tanhect_R(r,c) = std::tanh(A(r,c));
 		}
 	}
 
-	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, nr, nc, tol );
+	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, tanhect_R, nr, nc, tol );
 }
 
 
@@ -206,29 +190,29 @@ BOOST_UBLASX_TEST_DEF( test_complex_matrix )
 	A(1,0) = in_value_type(4,5); A(1,1) = in_value_type(5,6); A(1,2) = in_value_type(6,7);
 
 	out_matrix_type R;
-	out_matrix_type expect_R(nr,nc);
+	out_matrix_type tanhect_R(nr,nc);
 
-	R = ublasx::log2(A);
+	R = ublasx::tanh(A);
 
 	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-	BOOST_UBLASX_DEBUG_TRACE( "log2(A) = " << R );
+	BOOST_UBLASX_DEBUG_TRACE( "tanh(A) = " << R );
 
 	for (size_type r = 0; r < nr; ++r)
 	{
 		for (size_type c = 0; c < nc; ++c)
 		{
-			expect_R(r,c) = detail::log2(A(r,c));
+			tanhect_R(r,c) = std::tanh(A(r,c));
 		}
 	}
 
-	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, nr, nc, tol );
+	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, tanhect_R, nr, nc, tol );
 }
 
 
 int main()
 {
 
-	BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'log2' operation");
+	BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'tanh' operation");
 
 	BOOST_UBLASX_TEST_BEGIN();
 

@@ -36,7 +36,6 @@ ublasx:	msg \
 		$(test_path)/eigen \
 		$(test_path)/element_pow \
 		$(test_path)/empty \
-		$(test_path)/eps \
 		$(test_path)/find \
 		$(test_path)/for_each \
 		$(test_path)/generalized_diagonal_matrix \
@@ -45,6 +44,8 @@ ublasx:	msg \
 		$(test_path)/isinf \
 		$(test_path)/layout_type \
 		$(test_path)/linspace \
+		$(test_path)/exp \
+		$(test_path)/tanh \
 		$(test_path)/log \
 		$(test_path)/logspace \
 		$(test_path)/log2 \
@@ -71,6 +72,7 @@ ublasx:	msg \
 		$(test_path)/round \
 		$(test_path)/seq \
 		$(test_path)/sequence_vector \
+		$(test_path)/sign \
 		$(test_path)/size \
 		$(test_path)/sqr \
 		$(test_path)/sqrt \
@@ -81,7 +83,8 @@ ublasx:	msg \
 		$(test_path)/transform \
 		$(test_path)/tril \
 		$(test_path)/triu \
-		$(test_path)/which
+		$(test_path)/which \
+		$(test_path)/eps
 
 msg:
 	@echo "=== Building binary targets ==="
@@ -127,6 +130,8 @@ build-clean:
 				$(test_path)/isinf $(test_path)/isinf.o \
 				$(test_path)/layout_type $(test_path)/layout_type.o \
 				$(test_path)/linspace $(test_path)/linspace.o \
+				$(test_path)/exp $(test_path)/exp.o \
+				$(test_path)/tanh $(test_path)/tanh.o \
 				$(test_path)/log $(test_path)/log.o \
 				$(test_path)/logspace $(test_path)/logspace.o \
 				$(test_path)/log2 $(test_path)/log2.o \
@@ -153,6 +158,7 @@ build-clean:
 				$(test_path)/round $(test_path)/round.o \
 				$(test_path)/seq $(test_path)/seq.o \
 				$(test_path)/sequence_vector $(test_path)/sequence_vector.o \
+				$(test_path)/sign $(test_path)/sign.o \
 				$(test_path)/size $(test_path)/size.o \
 				$(test_path)/sqr $(test_path)/sqr.o \
 				$(test_path)/sqrt $(test_path)/sqrt.o \

@@ -23,13 +23,13 @@
 #include <complex>
 
 
-#if __cplusplus > 199711L
+//#if __cplusplus > 199711L
 // C++0x has ::std::round
-#   define BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_ ::std
-#else
+//#   define BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_ ::std
+//#else
 // Use customer-made round function
 #   define BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_ detail
-#endif // __cpluplus
+//#endif // __cpluplus
 
 
 namespace boost { namespace numeric { namespace ublasx {
