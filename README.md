@@ -1,7 +1,11 @@
 Boost.uBLASx
 ============
 
-Extensions to Boost.uBLAS library
+Extensions to Boost.uBLAS library.
+
+The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those found in numerical packages and DSL for algebraic operations.
+
+The list of currently available operations, together with a comparison with MATLAB functions, is available [here](libs/numeric/ublasx/doc/MATLAB).
 
 
 Building
@@ -16,6 +20,7 @@ Building
 * [Boost Numeric Bindings](https://github.com/uBLAS/numeric_bindings)
     * One may also choose using older SVN version of [Boost Numeric Bindings](https://svn.boost.org/svn/boost/sandbox/numeric_bindings)
 * [LAPACK](http://www.netlib.org/lapack/) Linear Algebra PACKage (v3.5 or newer)
+    * LAPACK is needed only by the followin operations: `balance`, `eigen`, `expm`, `lsq`, `ql`, `qr`, `qz`, `rcond`, `svd`.
     * Tested for LAPACK 3.9.0, 3.5.0
 
 ### Compilation 
