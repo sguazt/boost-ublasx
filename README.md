@@ -1,9 +1,9 @@
 Boost.uBLASx
 ============
 
-Extensions to Boost.uBLAS library.
+Extensions to [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library.
 
-The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those found in numerical packages and DSL for algebraic operations.
+The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those found in numerical packages (e.g., MATLAB) and DSLs for algebraic operations.
 
 The list of currently available operations, together with a comparison with MATLAB functions, is available [here](libs/numeric/ublasx/doc/MATLAB).
 
@@ -35,7 +35,7 @@ Documentation
 -------------
 
 The source code is annotated with [Doxygen](https://www.doxygen.nl/) tags.
-To generate the HTML documentation, install Doxygen, run `make apidoc`, and the open the file `libs/numeric/ublasx/doc/apidoc/html/index.html`.
+To generate the documentation in HTML, install Doxygen, run `make apidoc`, and the open the file `libs/numeric/ublasx/doc/apidoc/html/index.html`.
 
 
 Credits
