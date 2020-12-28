@@ -42,8 +42,10 @@ ublasx:	msg \
 		$(test_path)/hold \
 		$(test_path)/inv \
 		$(test_path)/isinf \
+		$(test_path)/isfinite \
 		$(test_path)/layout_type \
 		$(test_path)/linspace \
+		$(test_path)/eps \
 		$(test_path)/exp \
 		$(test_path)/tanh \
 		$(test_path)/log \
@@ -83,8 +85,7 @@ ublasx:	msg \
 		$(test_path)/transform \
 		$(test_path)/tril \
 		$(test_path)/triu \
-		$(test_path)/which \
-		$(test_path)/eps
+		$(test_path)/which
 
 msg:
 	@echo "=== Building binary targets ==="
