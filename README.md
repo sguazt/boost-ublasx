@@ -22,3 +22,11 @@ This is a header-only library and thus it does not need to be compiled.
 
 To compile test files, create `user-config.mk` on the base of
 `user-config.mk.template` file. Then `make` the project.
+
+
+Credits
+-------
+
+I really thank you the following users for their valuable contribution given to this library:
+
+- [Alexey Nesterenko](https://github.com/comcon1)
