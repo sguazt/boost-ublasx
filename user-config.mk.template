@@ -1,2 +1,12 @@
-USER_CXXFLAGS=-I/path/to/boost -I$(HOME)/path/to/boost-numeric_bindings
-USER_LDFLAGS=-llapack
+# USER_CXXFLAGS - Additional flags to pass to the compiler
+# Example:
+#  USER_CXXFLAGS = -I/path/to/boost -I$(HOME)/path/to/boost-numeric_bindings
+USER_CXXFLAGS = 
+# USER_LDFLAGS - Additional flags to pass to the linker
+# Example:
+#  USER_LDFLAGS = -L/path/to/lapack/library
+USER_LDFLAGS = 
+# USER_LDLIBS - Additional libraries to link
+# Example:
+#  USER_LDLIBS = -llapack -lblas
+USER_LDLIBS = 
