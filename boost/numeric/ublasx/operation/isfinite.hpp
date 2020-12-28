@@ -39,7 +39,7 @@ struct vector_isfinite_functor_traits
 	typedef int signature_result_type;
 	typedef vector_unary_functor_traits<
 				input_expression_type,
-				signature_result_type (signature_argument_type const&)
+				signature_result_type (signature_argument_type)
 			> unary_functor_expression_type;
 	typedef typename unary_functor_expression_type::result_type result_type;
 	typedef typename unary_functor_expression_type::expression_type expression_type;
@@ -54,7 +54,7 @@ struct matrix_isfinite_functor_traits
 	typedef int signature_result_type;
 	typedef matrix_unary_functor_traits<
 				input_expression_type,
-				signature_result_type (signature_argument_type const&)
+				signature_result_type (signature_argument_type)
 			> unary_functor_expression_type;
 	typedef typename unary_functor_expression_type::result_type result_type;
 	typedef typename unary_functor_expression_type::expression_type expression_type;
@@ -83,10 +83,7 @@ typename ::boost::enable_if<
 			int
 >::type isfinite_impl(T x)
 {
-	// Use the complex infinity definition found at Wolfram Mathworld
-	// (http://mathworld.wolfram.com/ComplexInfinity.html)
-
-	return ::std::isfinite(x.real()) && ::std::isnan(x.imag());
+	return ::std::isfinite(x.real()) && ::std::isfinite(x.imag());
 }
 
 } // Namespace <unnamed>
@@ -112,7 +109,7 @@ typename detail::vector_isfinite_functor_traits<VectorExprT>::result_type isfini
 	typedef typename detail::vector_isfinite_functor_traits<VectorExprT>::expression_type expression_type;
 	typedef typename detail::vector_isfinite_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
 
-	return expression_type(ve(), detail::isfinite_impl<signature_argument_type const&>);
+	return expression_type(ve(), detail::isfinite_impl<signature_argument_type>);
 }
 
 
