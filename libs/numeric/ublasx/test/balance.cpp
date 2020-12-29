@@ -47,7 +47,7 @@ BOOST_UBLASX_TEST_DEF( col_major_double_both )
 	matrix_type res(n,n);
 	matrix_type expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -86,7 +86,7 @@ BOOST_UBLASX_TEST_DEF( row_major_double_both )
 	matrix_type res(n,n);
 	matrix_type expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -166,7 +166,7 @@ BOOST_UBLASX_TEST_DEF( row_major_complex_double_both )
 	matrix_type res(n,n);
 	matrix_type expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -207,7 +207,7 @@ BOOST_UBLASX_TEST_DEF( col_major_double_both_balmat )
 	matrix_type balanced_expect(n,n);
 	matrix_type balancing_expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -257,7 +257,7 @@ BOOST_UBLASX_TEST_DEF( row_major_double_both_balmat )
 	matrix_type balanced_expect(n,n);
 	matrix_type balancing_expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -311,7 +311,7 @@ BOOST_UBLASX_TEST_DEF( col_major_double_both_balpermvec )
 	vector_type balancing_expect(n);
 	size_vector_type permuting_expect(n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -373,7 +373,7 @@ BOOST_UBLASX_TEST_DEF( row_major_double_both_balpermvec )
 	vector_type balancing_expect(n);
 	size_vector_type permuting_expect(n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -468,7 +468,7 @@ BOOST_UBLASX_TEST_DEF( row_major_double_noperm )
 	matrix_type res(n,n);
 	matrix_type expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -508,7 +508,7 @@ BOOST_UBLASX_TEST_DEF( col_major_complex_double_noperm )
 	matrix_type res(n,n);
 	matrix_type expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -548,7 +548,7 @@ BOOST_UBLASX_TEST_DEF( row_major_complex_double_noperm )
 	matrix_type res(n,n);
 	matrix_type expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -589,7 +589,7 @@ BOOST_UBLASX_TEST_DEF( col_major_double_noperm_balmat )
 	matrix_type balanced_expect(n,n);
 	matrix_type balancing_expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -639,7 +639,7 @@ BOOST_UBLASX_TEST_DEF( row_major_double_noperm_balmat )
 	matrix_type balanced_expect(n,n);
 	matrix_type balancing_expect(n,n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -693,7 +693,7 @@ BOOST_UBLASX_TEST_DEF( col_major_double_noperm_balpermvec )
 	vector_type balancing_expect(n);
 	size_vector_type permuting_expect(n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
@@ -756,7 +756,7 @@ BOOST_UBLASX_TEST_DEF( row_major_double_noperm_balpermvec )
 	vector_type balancing_expect(n);
 	size_vector_type permuting_expect(n);
 
-	// Result obtained with:
+	// Results obtained with:
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
