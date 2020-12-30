@@ -3,9 +3,9 @@ Boost.uBLASx
 
 Extensions to [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library.
 
-The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those found in numerical packages (e.g., MATLAB) and DSLs for algebraic operations.
+The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those found in numerical packages (e.g., [MATLAB](https://www.mathworks.com/products/matlab.html) and [Octave](https://www.gnu.org/software/octave/index), and libraries for scientific computing (e.g., [Armadillo](http://arma.sourceforge.net/) and [Eigen](http://eigen.tuxfamily.org/)).
 
-The list of currently available operations, together with a comparison with MATLAB functions, is available [here](libs/numeric/ublasx/doc/MATLAB).
+The list of currently available operations, together with a comparison with similar MATLAB/Octave functions, is available [here](libs/numeric/ublasx/doc/MATLAB).
 
 
 Building
@@ -27,15 +27,65 @@ Building
 
 This is a header-only library and thus it does not need to be compiled. 
 
-To compile test files, create `user-config.mk` on the base of
-`user-config.mk.template` file. Then `make` the project.
+To compile test and example files, create `user-config.mk` on the base of `user-config.mk.template` file.
+Then `make` the project.
+
+You can also build test files and example files separately:
+- Build test files: `make clean tests`
+- Build example files: `make clean examples`
+
+
+Getting Started
+---------------
+
+Here below is a simple C++ program showing some feature of Boost.uBLASx.
+You can find more examples in the [examples](libs/numeric/ublasx/examples) and [test](libs/numeric/ublasx/test) directories.
+
+```c++
+#include <iostream>
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/io.hpp>
+#include <boost/numeric/ublasx/operations.hpp>
+
+namespace ublas = ::boost::numeric::ublas;
+namespace ublasx = ::boost::numeric::ublasx;
+
+int main()
+{
+    ublas::vector<double> a = ublasx::linspace(0.0, 2.0, 2); // a = [0 2]
+    ublas::vector<double> b = ublasx::linspace(1.0, 2.0, 2); // b = [1 2]
+    ublas::vector<double> c = 2*a + 3*b; // c = [3 10]
+    std::cout << "a = " << a << "\n";
+    std::cout << "b = " << b << "\n";
+    std::cout << "c = 2*a + 3*b = " << c << "\n";
+
+    ublas::matrix<double> A = ublasx::rot90(2*ublas::identity_matrix<double>(2)); // A = [0 2; 2 0]
+    ublas::matrix<double> B = ublasx::inv(A); // B = [0 0.5; 0.5 0]
+    std::cout << "A = " << A << "\n";
+    std::cout << "rank of A = " << ublasx::rank(A) << "\n";
+    std::cout << "inverse of A = " << B << "\n";
+
+    ublas::matrix<double> C = ublasx::reshape(ublasx::linspace(1.0, 9.0, 9), 3, 3); // C = [1 2 3; 4 5 6; 7 8 9]
+    ublas::matrix<double> D = ublasx::pow2(C); // [2 4 8; 16 32 64; 128 256 512]
+    ublas::matrix<double> E = ublasx::cat<2>(C, D); // [1 2 3 2 4 8; 4 5 6 16 32 64; 7 8 9 128 256 512]
+    std::cout << "C = " << C << "\n";
+    std::cout << "D = 2.^C = " << D << "\n";
+    std::cout << "E = [C D] = " << E << "\n";
+}
+```
 
 
 Documentation
 -------------
 
 The source code is annotated with [Doxygen](https://www.doxygen.nl/) tags.
-To generate the documentation in HTML, install Doxygen, run `make apidoc`, and the open the file `libs/numeric/ublasx/doc/apidoc/html/index.html`.
+To generate the documentation in HTML, install Doxygen, run `make apidoc`, and the open the file `libs/numeric/ublasx/doc/api/html/index.html`.
+
+
+Authors
+-------
+
+- [Marco Guazzone](http://people.unipmn.it/sguazt)
 
 
 Credits
