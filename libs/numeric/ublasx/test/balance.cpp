@@ -51,8 +51,10 @@ BOOST_UBLASX_TEST_DEF( col_major_double_both )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// balance(A)
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) = -0.40000; expect(0,1) = 1.60000; expect(0,2) =  3.80000; expect(0,3) = -0.75000;
@@ -90,8 +92,10 @@ BOOST_UBLASX_TEST_DEF( row_major_double_both )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35,0 0.66]
-	//   >> balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35,0 0.66]
+	// balance(A)
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) = -0.40000; expect(0,1) = 1.60000; expect(0,2) = 3.80000; expect(0,3) = -0.75000;
@@ -130,8 +134,10 @@ BOOST_UBLASX_TEST_DEF( col_major_complex_double_both )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
-	//   >> balance(A)
+	// ```octave
+	// A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
+	// balance(A)
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) = value_type(-1.25000, 0.75000); expect(0,1) = value_type( 1.39000, 3.97000); expect(0,2) = value_type(-4.82000,-5.67000); expect(0,3) = value_type(-2.09000, 7.56000);
@@ -170,8 +176,10 @@ BOOST_UBLASX_TEST_DEF( row_major_complex_double_both )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
-	//   >> balance(A)
+	// ```octave
+	// A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
+	// balance(A)
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) = value_type(-1.25000, 0.75000); expect(0,1) = value_type( 1.39000, 3.97000); expect(0,2) = value_type(-4.82000,-5.67000); expect(0,3) = value_type(-2.09000, 7.56000);
@@ -211,8 +219,10 @@ BOOST_UBLASX_TEST_DEF( col_major_double_both_balmat )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [DD, AA] = balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [DD, AA] = balance(A)
+	// ```
 	// where DD -> balancing_expect and AA -> balanced_expect
 
 	// Expected balanced matrix
@@ -261,8 +271,10 @@ BOOST_UBLASX_TEST_DEF( row_major_double_both_balmat )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [DD, AA] = balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [DD, AA] = balance(A)
+	// ```
 	// where DD -> balancing_expect and AA -> balanced_expect
 
 	// Expected balanced matrix
@@ -315,8 +327,10 @@ BOOST_UBLASX_TEST_DEF( col_major_double_both_balpermvec )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [D, P, AA] = balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [D, P, AA] = balance(A)
+	// ```
 	// where D -> balancing_expect, (P-1) -> permuting_expect, and AA -> balanced_exect.
 
 	// Expected balanced matrix
@@ -377,8 +391,10 @@ BOOST_UBLASX_TEST_DEF( row_major_double_both_balpermvec )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [D, P, AA] = balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [D, P, AA] = balance(A)
+	// ```
 	// where D -> balancing_expect, (P-1) -> permuting_expect, and AA -> balanced_exect.
 
 	// Expected balanced matrix
@@ -433,8 +449,10 @@ BOOST_UBLASX_TEST_DEF( col_major_double_noperm )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> balance(A, 'noperm')
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// balance(A, 'noperm')
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) =  5.14000; expect(0,1) = 0.91000; expect(0,2) =  0.00000; expect(0,3) = -4.10000;
@@ -472,8 +490,10 @@ BOOST_UBLASX_TEST_DEF( row_major_double_noperm )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> balance(A, 'noperm')
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// balance(A, 'noperm')
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) =  5.14000; expect(0,1) = 0.91000; expect(0,2) =  0.00000; expect(0,3) = -4.10000;
@@ -512,8 +532,10 @@ BOOST_UBLASX_TEST_DEF( col_major_complex_double_noperm )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
-	//   >> balance(A, 'noperm')
+	// ```octave
+	// A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
+	// balance(A, 'noperm')
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) = value_type( 1.500000,-2.750000); expect(0,1) = value_type( 0.000000, 0.000000); expect(0,2) = value_type( 0.000000, 0.000000); expect(0,3) = value_type( 0.000000, 0.000000);
@@ -552,8 +574,10 @@ BOOST_UBLASX_TEST_DEF( row_major_complex_double_noperm )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
-	//   >> balance(A, 'noperm')
+	// ```octave
+	// A=[1.5-2.75i 0+0i 0+0i 0+0i; -8.06-1.24i -2.5-0.5i 0+0i -0.75+0.5i; -2.09+7.56i 1.39+3.97i -1.25+0.75i -4.82-5.67i; 6.18+9.79i -0.92-0.62i 0+0i -2.5-0.5i]
+	// balance(A, 'noperm')
+	// ```
 
 	// Expected balanced matrix
 	expect(0,0) = value_type( 1.500000,-2.750000); expect(0,1) = value_type( 0.000000, 0.000000); expect(0,2) = value_type( 0.000000, 0.000000); expect(0,3) = value_type( 0.000000, 0.000000);
@@ -593,8 +617,10 @@ BOOST_UBLASX_TEST_DEF( col_major_double_noperm_balmat )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [DD, AA] = balance(A, 'noperm')
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [DD, AA] = balance(A, 'noperm')
+	// ```
 	// where DD -> balancing_expect and AA -> balanced_expect
 
 	// Expected balanced matrix
@@ -643,8 +669,10 @@ BOOST_UBLASX_TEST_DEF( row_major_double_noperm_balmat )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [DD, AA] = balance(A, 'noperm')
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [DD, AA] = balance(A, 'noperm')
+	// ```
 	// where DD -> balancing_expect and AA -> balanced_expect
 
 	// Expected balanced matrix
@@ -697,9 +725,11 @@ BOOST_UBLASX_TEST_DEF( col_major_double_noperm_balpermvec )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [DD, AA] = balance(A, 'noperm')
-    //   >> [D, P, AA] = balance(A)
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [DD, AA] = balance(A, 'noperm')
+    // [D, P, AA] = balance(A)
+    // ```
     // where D -> balancing_expect, (P-1) -> permuting_expect, and AA -> balanced_exect.
 
 	// Expected balanced matrix
@@ -760,8 +790,10 @@ BOOST_UBLASX_TEST_DEF( row_major_double_noperm_balpermvec )
 	// - MATLAB 2017a
 	// - Octave 5.2.0
 	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
-	//   >> A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
-	//   >> [D, P, AA] = balance(A, 'noperm')
+	// ```octave
+	// A=[5.14 0.91 0 -32.8; 0.91 0.2 0 34.5; 1.9 0.8 -0.4 -3; -0.33 0.35 0 0.66]
+	// [D, P, AA] = balance(A, 'noperm')
+	// ```
 	// where D -> balancing_expect, (P-1) -> permuting_expect, and AA -> balanced_exect.
 
 	// Expected balanced matrix
