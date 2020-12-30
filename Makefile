@@ -1,6 +1,7 @@
 src_path=.
 apidoc_path=libs/numeric/ublasx/doc/api
 test_path=libs/numeric/ublasx/test
+examples_path=libs/numeric/ublasx/examples
 apidoc_path=libs/numeric/ublasx/doc/api
 
 USER_CXXFLAGS=
@@ -89,20 +90,22 @@ test_cases =	abs \
 				triu \
 				which
 
-targets = $(addprefix $(test_path)/, $(test_cases))
-objects = $(addsuffix .o, $(targets))
+tests_targets = $(addprefix $(test_path)/, $(test_cases))
+tests_objects = $(addsuffix .o, $(tests_targets))
+examples_targets = $(patsubst %.cpp, %, $(wildcard $(examples_path)/*.cpp))
 
 
-.PHONY: all apidoc clean msg ublasx
+.PHONY: all apidoc clean examples examples_msg tests tests_msg
 
 
-all: ublasx
+all: tests examples
 
 
-ublasx:	msg $(targets)
+tests:	tests_msg $(tests_targets)
 
-msg:
-	@echo "=== Building binary targets ==="
+
+tests_msg:
+	@echo "=== Building tests binary targets ==="
 
 
 apidoc:
@@ -111,16 +114,23 @@ apidoc:
 	@$(DOXYGEN) Doxyfile
 
 
+examples: examples_msg $(examples_targets)
+
+
+examples_msg:
+	@echo "=== Building examples binary targets ==="
+
 
 clean: apidoc-clean build-clean
 
 
 apidoc-clean:
 	@echo "=== Cleaning doc files ==="
-	@$(RM) $(apidoc_path)
+	@$(RM) -r $(apidoc_path)
 
 
 build-clean:
 	@echo "=== Cleaning build files ==="
-	@$(RM) $(targets)
-	@$(RM) $(objects)
+	@$(RM) $(tests_targets)
+	@$(RM) $(tests_objects)
+	@$(RM) $(examples_targets)
