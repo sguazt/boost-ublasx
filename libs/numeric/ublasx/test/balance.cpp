@@ -3,13 +3,15 @@
  *
  * \brief Test case for matrix balance operation.
  *
+ * \author Marco Guazzone, &lt;marco.guazzone@gmail&gt;
+ *
+ * <hr/>
+ *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, &lt;marco.guazzone@gmail&gt;
  */
 
 #include <boost/numeric/ublas/io.hpp>
