@@ -17,13 +17,13 @@
  */
 
 #include <iostream>
-#include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/io.hpp>
+#include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublasx/operations.hpp>
 
 
-namespace ublas = ::boost::numeric::ublas;
-namespace ublasx = ::boost::numeric::ublasx;
+namespace ublas = boost::numeric::ublas;
+namespace ublasx = boost::numeric::ublasx;
 
 
 int main()

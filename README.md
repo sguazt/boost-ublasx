@@ -43,12 +43,12 @@ You can find more examples in the [examples](libs/numeric/ublasx/examples) and [
 
 ```c++
 #include <iostream>
-#include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/io.hpp>
+#include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublasx/operations.hpp>
 
-namespace ublas = ::boost::numeric::ublas;
-namespace ublasx = ::boost::numeric::ublasx;
+namespace ublas = boost::numeric::ublas;
+namespace ublasx = boost::numeric::ublasx;
 
 int main()
 {
@@ -79,7 +79,7 @@ Documentation
 -------------
 
 The source code is annotated with [Doxygen](https://www.doxygen.nl/) tags.
-To generate the documentation in HTML, install Doxygen, run `make apidoc`, and the open the file `libs/numeric/ublasx/doc/api/html/index.html`.
+To generate the documentation in HTML, install Doxygen, run `make apidoc`, and then open the file `libs/numeric/ublasx/doc/api/html/index.html`.
 
 
 Authors
