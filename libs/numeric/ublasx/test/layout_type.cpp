@@ -26,17 +26,16 @@ namespace ublas = boost::numeric::ublas;
 namespace ublasx = boost::numeric::ublasx;
 
 
-int main()
+BOOST_UBLASX_TEST_DEF( dense_matrix_column_major )
 {
-	BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'layout_type' type traits");
+	BOOST_UBLASX_DEBUG_TRACE( "Test Case: Dense Matrix - Column Major." );
 
-	typedef double value_type;
+	// NOTE: value types don't care. Just use different types to make sure that they are not considered
+	typedef double value_type1;
+	typedef std::complex<double> value_type2;
 
-	typedef ublas::matrix<value_type, ublas::column_major> matrix_type1;
-
-	typedef ublas::matrix<std::complex<double>, ublasx::layout_type<matrix_type1>::type> matrix_type2;
-//	typedef ublas::matrix<std::complex<double>, ublas::row_major> matrix_type2;
-//	typedef ublas::matrix<std::complex<double>, ublas::column_major> matrix_type2;
+	typedef ublas::matrix<value_type1, ublas::column_major> matrix_type1;
+	typedef ublas::matrix<value_type2, ublasx::layout_type<matrix_type1>::type> matrix_type2;
 
 	// To check at compile time, uncomment this
 	BOOST_MPL_ASSERT((
@@ -51,8 +50,21 @@ int main()
 				  ublas::matrix_traits<matrix_type1>::orientation_category,
 				  ublas::matrix_traits<matrix_type2>::orientation_category
 				>::value;
-	if (!flag)
-	{
-		std::cerr << "Different layout storage." << std::endl;
-	}
+	BOOST_UBLASX_TEST_CHECK( flag );
+	//if (!flag)
+	//{
+	//	BOOST_UBLASX_DEBUG_TACE( "Different layout storage." );
+	//}
+}
+
+
+int main()
+{
+	BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'layout_type' type traits");
+
+	BOOST_UBLASX_TEST_BEGIN();
+
+	BOOST_UBLASX_TEST_DO( dense_matrix_column_major );
+
+	BOOST_UBLASX_TEST_END();
 }
