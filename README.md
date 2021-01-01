@@ -31,7 +31,7 @@ To compile test and example files, create `user-config.mk` on the base of `user-
 Then `make` the project.
 
 You can also build test files and example files separately:
-- Build test files: `make clean tests`
+- Build test files: `make clean test`
 - Build example files: `make clean examples`
 
 
