@@ -274,7 +274,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
 													{ \
 														if (!(BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__]==BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__])) \
 														{ \
-															BOOST_UBLASX_TEST_ERROR( "Failed assertion: (" << BOOST_UBLASX_TEST_STRINGIFY_(x[i__]) << "==" << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << ")" << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x[i__]) << " == " << BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << " == " << BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(i__) << " == " << i__ << " and " << BOOST_UBLASX_TEST_STRINGIFY_(n) << " == " << n__ << "]" ); \
+															BOOST_UBLASX_TEST_ERROR( "Failed assertion: (" << BOOST_UBLASX_TEST_STRINGIFY_(x) << "[i] == " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i])" << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x) << "[i] == " << BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i] == " << BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__] << ", i == " << (n__-i__) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(n) << " == " << n__ << "]" ); \
 															++test_fails__; \
 														} \
 													} \
@@ -291,7 +291,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
 															{ \
 																if (!::boost::numeric::ublas::test::detail::close_to(BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__], BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__], BOOST_UBLASX_TEST_EXPANDP_(e))) \
 																{ \
-																	BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs((" << BOOST_UBLASX_TEST_STRINGIFY_(x[i__]) << "-" << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << ") <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x[i__]) << " == " << BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << " == " << BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(i__) << " == " << i__ << ", " << BOOST_UBLASX_TEST_STRINGIFY_(e) << " == " << BOOST_UBLASX_TEST_EXPANDP_(e) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(n) << " == " << n__ << "]" ); \
+																	BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs((" << BOOST_UBLASX_TEST_STRINGIFY_(x) << "[i]-" << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i]) <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x) << "[i] == " << BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i] == " << BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__] << ", i == " << (n__-i__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(e) << " == " << BOOST_UBLASX_TEST_EXPANDP_(e) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(n) << " == " << n__ << "]" ); \
 																	++test_fails__; \
 																} \
 															} \
@@ -308,7 +308,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
 															{ \
 																if (!::boost::numeric::ublas::test::detail::rel_close_to(BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__], BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__], BOOST_UBLASX_TEST_EXPANDP_(e))) \
 																{ \
-																	BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs((" << BOOST_UBLASX_TEST_STRINGIFY_(x[i__]) << "-" << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << ")/" << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << ") <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x[i__]) << " == " << BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y[i__]) << " == " << BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(i__) << " == " << i__ << ", " << BOOST_UBLASX_TEST_STRINGIFY_(e) << " == " << BOOST_UBLASX_TEST_EXPANDP_(e) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(n) << " == " << n__ << "]" ); \
+																	BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs((" << BOOST_UBLASX_TEST_STRINGIFY_(x) << "[i]-" << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i])/" << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i]) <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x) << "[i] == " << BOOST_UBLASX_TEST_EXPANDP_(x)[n__-i__] << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "[i] == " << BOOST_UBLASX_TEST_EXPANDP_(y)[n__-i__] << ", i == " << (n__-i__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(e) << " == " << BOOST_UBLASX_TEST_EXPANDP_(e) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(n) << " == " << n__ << "]" ); \
 																	++test_fails__; \
 																} \
 															} \
@@ -324,7 +324,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
 														{ \
 															if (!(BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__)==BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__))) \
 															{ \
-																BOOST_UBLASX_TEST_ERROR( "Failed assertion: (" << BOOST_UBLASX_TEST_STRINGIFY_(x(i__,j__)) << " == " << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << ") [with " << BOOST_UBLASX_TEST_STRINGIFY_(x(i__,j__)) << " == " << BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << " == " << BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(i__) << " == " << i__ << ", " << BOOST_UBLASX_TEST_STRINGIFY_(j__) << " == " << BOOST_UBLASX_TEST_EXPANDP_(j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(nr) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nr) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(nc) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nc) << "]" ); \
+																BOOST_UBLASX_TEST_ERROR( "Failed assertion: (" << BOOST_UBLASX_TEST_STRINGIFY_(x) << "(i,j) == " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j)) [with " << BOOST_UBLASX_TEST_STRINGIFY_(x) << "(i,j) == " << BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j) == " << BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__) << ", i == " << i__ << ", j == " << BOOST_UBLASX_TEST_EXPANDP_(j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(nr) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nr) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(nc) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nc) << "]" ); \
 																++test_fails__; \
 															} \
 														} \
@@ -340,7 +340,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
 																{ \
 																	if (!::boost::numeric::ublas::test::detail::close_to(BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__), BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__), BOOST_UBLASX_TEST_EXPANDP_(e))) \
 																	{ \
-																		BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs(" << BOOST_UBLASX_TEST_STRINGIFY_(x(i__,j__)) << "-" << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << ") <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x(i__,j__)) << " == " << BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << " == " << BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(i__) << " == " << i__ << ", " << BOOST_UBLASX_TEST_STRINGIFY_(j__) << " == " << BOOST_UBLASX_TEST_EXPANDP_(j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(e) << " == " << BOOST_UBLASX_TEST_EXPANDP_(e) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(nr) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nr) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(nc) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nc) << "]" ); \
+																		BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs(" << BOOST_UBLASX_TEST_STRINGIFY_(x) << "(i,j)-" << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j)) <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x) << "(i,j) == " << BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j) == " << BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__) << ", i == " << i__ << ", j == " << BOOST_UBLASX_TEST_EXPANDP_(j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(e) << " == " << BOOST_UBLASX_TEST_EXPANDP_(e) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(nr) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nr) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(nc) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nc) << "]" ); \
 																		++test_fails__; \
 																	} \
 																} \
@@ -356,7 +356,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
 																	{ \
 																		if (!::boost::numeric::ublas::test::detail::rel_close_to(BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__), BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__), BOOST_UBLASX_TEST_EXPANDP_(e))) \
 																		{ \
-																			BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs((" << BOOST_UBLASX_TEST_STRINGIFY_(x(i__,j__)) << "-" << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << ")/" << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << ") <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x(i__,j__)) << " == " << BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y(i__,j__)) << " == " << BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(i__) << " == " << i__ << ", " << BOOST_UBLASX_TEST_STRINGIFY_(j__) << " == " << BOOST_UBLASX_TEST_EXPANDP_(j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(nr) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nr) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(nc) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nc) << "]" ); \
+																			BOOST_UBLASX_TEST_ERROR( "Failed assertion: abs((" << BOOST_UBLASX_TEST_STRINGIFY_(x) << "(i,j)-" << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j))/" << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j)) <= " << BOOST_UBLASX_TEST_STRINGIFY_(e)  << " [with " << BOOST_UBLASX_TEST_STRINGIFY_(x) << "(i,j) == " << BOOST_UBLASX_TEST_EXPANDP_(x)(i__,j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(y) << "(i,j) == " << BOOST_UBLASX_TEST_EXPANDP_(y)(i__,j__) << ", i == " << i__ << ", j == " << BOOST_UBLASX_TEST_EXPANDP_(j__) << ", " << BOOST_UBLASX_TEST_STRINGIFY_(nr) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nr) << " and " << BOOST_UBLASX_TEST_STRINGIFY_(nc) << " == " << BOOST_UBLASX_TEST_EXPANDP_(nc) << "]" ); \
 																			++test_fails__; \
 																		} \
 																	} \
