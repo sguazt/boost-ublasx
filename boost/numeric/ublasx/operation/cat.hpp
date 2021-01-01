@@ -3,15 +3,17 @@
  *
  * \brief Concatenate arrays along specified dimension.
  *
+ * \todo cat<tag::major>, ...
+ *
+ * \author Marco Guazzone, marco.guazzone@gmail.com
+ *
+ * <hr/>
+ *
  * Copyright (c) 2010, Marco Guazzone
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompwhiching file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \todo cat<1>, cat<2>, cat<tag::major>, ...
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLAS_OPERATION_EX_CAT_HPP
@@ -56,8 +58,123 @@ struct matrix_cat_traits
 };
 
 
+namespace detail {
+
+/// Auxiliary class for the implementation of the by-dim \c cat operation.
+template <std::size_t Dim>
+struct cat_by_dim_impl;
+
+template <>
+struct cat_by_dim_impl<1>
+{
+    /**
+     * \brief Cat the given matrices along the first dimension.
+     * \tparam Expr1T A matrix expression type.
+     * \tparam Expr2T A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     * \param A The first matrix expression.
+     * \param B The second matrix expression.
+     */
+    template <typename Expr1T,
+			  typename Expr2T>
+    BOOST_UBLAS_INLINE
+	static typename matrix_cat_traits<Expr1T,Expr2T>::result_type apply(matrix_expression<Expr1T> const& A, matrix_expression<Expr2T> const& B)
+    {
+		typedef typename matrix_cat_traits<Expr1T,Expr2T>::result_type out_matrix_type;
+		typedef typename matrix_traits<out_matrix_type>::value_type value_type;
+		typedef typename matrix_traits<out_matrix_type>::size_type size_type;
+
+	//	// precondition: num_columns(A) == num_columns(B)
+	//	BOOST_UBLAS_CHECK(
+	//		num_columns(A) == num_columns(B),
+	//		bad_argument()
+	//	);
+
+		size_type A_nr = num_rows(A);
+		size_type A_nc = num_columns(A);
+		size_type B_nr = num_rows(B);
+		size_type B_nc = num_columns(B);
+		size_type nc = ::std::max(A_nc, B_nc);
+
+		out_matrix_type X(A_nr+B_nr, nc, value_type());
+
+		for (size_type c = 0; c < nc; ++c)
+		{
+			if (c < A_nc)
+			{
+				for (size_type r = 0; r < A_nr; ++r)
+				{
+					X(r,c) = A()(r,c);
+				}
+			}
+			if (c < B_nc)
+			{
+				for (size_type r = 0; r < B_nr; ++r)
+				{
+					X(r+A_nr,c) = B()(r,c);
+				}
+			}
+		}
+
+		return X;
+	}
+};
+
+template <>
+struct cat_by_dim_impl<2>
+{
+    /**
+     * \brief Cat the given matrices along the second dimension.
+     * \tparam Expr1T A matrix expression type.
+     * \tparam Expr2T A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     * \param A The first matrix expression.
+     * \param B The second matrix expression.
+     */
+    template <typename Expr1T,
+			  typename Expr2T>
+    BOOST_UBLAS_INLINE
+	static typename matrix_cat_traits<Expr1T,Expr2T>::result_type apply(matrix_expression<Expr1T> const& A, matrix_expression<Expr2T> const& B)
+    {
+		typedef typename matrix_cat_traits<Expr1T,Expr2T>::result_type out_matrix_type;
+		typedef typename matrix_traits<out_matrix_type>::value_type value_type;
+		typedef typename matrix_traits<out_matrix_type>::size_type size_type;
+
+		size_type A_nr = num_rows(A);
+		size_type A_nc = num_columns(A);
+		size_type B_nr = num_rows(B);
+		size_type B_nc = num_columns(B);
+		size_type nr = ::std::max(A_nr, B_nr);
+
+		out_matrix_type X(nr, A_nc+B_nc, value_type());
+
+		for (size_type r = 0; r < nr; ++r)
+		{
+			if (r < A_nr)
+			{
+				for (size_type c = 0; c < A_nc; ++c)
+				{
+					X(r,c) = A()(r,c);
+				}
+			}
+			if (r < B_nr)
+			{
+				for (size_type c = 0; c < B_nc; ++c)
+				{
+					X(r,c+A_nc) = B()(r,c);
+				}
+			}
+		}
+
+		return X;
+    }
+};
+
+} // Namespace detail
+
+
 /**
- * \brief Concatenate arrays along columns.
+ * \brief Concatenate arrays by columns (i.e., along rows).
  *
  * \tparam InMatrixExpr1T The type of the first input matrix expression.
  * \tparam InMatrixExpr2T The type of the second input matrix expression.
@@ -69,12 +186,27 @@ struct matrix_cat_traits
  *
  * For two input matrices A and B, append each column of B to its respective
  * column of A. 
- * If \a A and \a B have a different number of columns, the number of colums of
+ * If \a A and \a B have a different number of columns, the number of columns of
  * the resulting matrix will be the maximum between the number of columns of the
  * two input matrices and the elements of the matrix with the smaller number of
  * columns will be replaced with a zero value.
  *
  * Examples:
+ * - Concatenate two matrices with the same number of columns:
+ * <pre>
+ * A = [1 2;
+ *      3 4;
+ *      5 6]
+ * B = [10 11;
+ *      12 13]
+ * C = cat_columns(A,B);
+ * C == [ 1  2;
+ *        3  4;
+ *        5  6;
+ *       10 11;
+ *       12 13]
+ * </pre>
+ * - Concatenate two matrices with different number of columns:
  * <pre>
  * A = [1 2 3;
  *      4 5 6;
@@ -97,48 +229,12 @@ template <
 >
 typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_columns(matrix_expression<InMatrixExpr1T> const& A, matrix_expression<InMatrixExpr2T> const& B)
 {
-	typedef typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type out_matrix_type;
-	typedef typename matrix_traits<out_matrix_type>::value_type value_type;
-	typedef typename matrix_traits<out_matrix_type>::size_type size_type;
-
-//	// precondition: num_columns(A) == num_columns(B)
-//	BOOST_UBLAS_CHECK(
-//		num_columns(A) == num_columns(B),
-//		bad_argument()
-//	);
-
-	size_type A_nr = num_rows(A);
-	size_type A_nc = num_columns(A);
-	size_type B_nr = num_rows(B);
-	size_type B_nc = num_columns(B);
-	size_type nc = ::std::max(A_nc, B_nc);
-
-	out_matrix_type X(A_nr+B_nr, nc, value_type());
-
-	for (size_type c = 0; c < nc; ++c)
-	{
-		if (c < A_nc)
-		{
-			for (size_type r = 0; r < A_nr; ++r)
-			{
-				X(r,c) = A()(r,c);
-			}
-		}
-		if (c < B_nc)
-		{
-			for (size_type r = 0; r < B_nr; ++r)
-			{
-				X(r+A_nr,c) = B()(r,c);
-			}
-		}
-	}
-
-	return X;
+    return detail::cat_by_dim_impl<1>::template apply(A, B);
 }
 
 
 /**
- * \brief Concatenate arrays along rows.
+ * \brief Concatenate arrays by rows (i.e., along columns).
  *
  * \tparam InMatrixExpr1T The type of the first input matrix expression.
  * \tparam InMatrixExpr2T The type of the second input matrix expression.
@@ -156,6 +252,17 @@ typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_colum
  * columns will be replaced with a zero value.
  *
  * Examples:
+ * - Concatenate two matrices with the same number of rows:
+ * <pre>
+ * A = [1 2 3;
+ *      4 5 6]
+ * B = [10 11;
+ *      12 13]
+ * C = cat_rows(A,B);
+ * C == [1 2 3 10 11;
+ *       4 5 6 12 13]
+ * </pre>
+ * - Concatenate two matrices with different number of row:
  * <pre>
  * A = [1 2 3;
  *      4 5 6;
@@ -176,37 +283,18 @@ template <
 >
 typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_rows(matrix_expression<InMatrixExpr1T> const& A, matrix_expression<InMatrixExpr2T> const& B)
 {
-	typedef typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type out_matrix_type;
-	typedef typename matrix_traits<out_matrix_type>::value_type value_type;
-	typedef typename matrix_traits<out_matrix_type>::size_type size_type;
+    return detail::cat_by_dim_impl<2>::template apply(A, B);
+}
 
-	size_type A_nr = num_rows(A);
-	size_type A_nc = num_columns(A);
-	size_type B_nr = num_rows(B);
-	size_type B_nc = num_columns(B);
-	size_type nr = ::std::max(A_nr, B_nr);
-
-	out_matrix_type X(nr, A_nc+B_nc, value_type());
-
-	for (size_type r = 0; r < nr; ++r)
-	{
-		if (r < A_nr)
-		{
-			for (size_type c = 0; c < A_nc; ++c)
-			{
-				X(r,c) = A()(r,c);
-			}
-		}
-		if (r < B_nr)
-		{
-			for (size_type c = 0; c < B_nc; ++c)
-			{
-				X(r,c+A_nc) = B()(r,c);
-			}
-		}
-	}
-
-	return X;
+template <
+	std::size_t Dim,
+	typename InMatrixExpr1T,
+	typename InMatrixExpr2T
+>
+BOOST_UBLAS_INLINE
+typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat(matrix_expression<InMatrixExpr1T> const& A, matrix_expression<InMatrixExpr2T> const& B)
+{
+    return detail::cat_by_dim_impl<Dim>::template apply(A, B);
 }
 
 }}} // Namespace boost::numeric::ublasx
