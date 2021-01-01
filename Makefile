@@ -95,16 +95,16 @@ tests_objects = $(addsuffix .o, $(tests_targets))
 examples_targets = $(patsubst %.cpp, %, $(wildcard $(examples_path)/*.cpp))
 
 
-.PHONY: all apidoc clean examples examples_msg tests tests_msg
+.PHONY: all apidoc clean examples examples_msg test test_msg
 
 
-all: tests examples
+all: test examples
 
 
-tests:	tests_msg $(tests_targets)
+test:	test_msg $(tests_targets)
 
 
-tests_msg:
+test_msg:
 	@echo "=== Building tests binary targets ==="
 
 
