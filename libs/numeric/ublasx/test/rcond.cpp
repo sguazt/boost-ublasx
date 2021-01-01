@@ -3,17 +3,16 @@
  *
  * \brief Test suite for the \c rcond operation.
  *
+ * \author Marco Guazzone, marco.guazzone@gmail.com
+ *
+ * <hr/>
+ *
  * Copyright (c) 2010, Marco Guazzone
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
-
-//ATTENTION: test fails
-//TODO: fix it
 
 #include <boost/numeric/ublas/banded.hpp>
 #include <boost/numeric/ublas/fwd.hpp>
@@ -28,6 +27,9 @@
 
 namespace ublas = boost::numeric::ublas;
 namespace ublasx = boost::numeric::ublasx;
+
+
+static const double tol = 1.0e-5;
 
 
 BOOST_UBLASX_TEST_DEF( norm_1_real_square_dense_matrix_column_major )
@@ -53,8 +55,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_square_dense_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 1.5420e-18; // Computed with matlab R2008a, octave 3.2.4 and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-18 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1 2 3; 4 5 6; 7 8 9]
+	// rcond(A)
+	// ```
+
+	expect_res = 1.541976423090495e-18;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -81,8 +92,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_square_dense_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 1.5420e-18; // Computed with matlab R2008a, octave 3.2.4 and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-18 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1 2 3; 4 5 6; 7 8 9]
+	// rcond(A)
+	// ```
+
+	expect_res = 1.541976423090495e-18;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -109,8 +129,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_upper_triangular_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.07142857; // Computed with matlab R2008a, octave 3.2.4 and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1 2 3; 0 4 5; 0 0 6]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.071428571428571;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -137,8 +166,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_upper_triangular_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.07142857; // Computed with matlab R2008a, octave 3.2.4 and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1 2 3; 0 4 5; 0 0 6]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.071428571428571;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -165,8 +203,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_lower_triangular_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.0703125; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1 0 0; 2 3 0; 4 5 6]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.0703125;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -193,8 +240,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_lower_triangular_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.0703125; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1 0 0; 2 3 0; 4 5 6]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.0703125;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -223,8 +279,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_banded_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.017728; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[-0.23 2.54 -3.66 0; -6.98 2.46 -2.73 -2.13; 0 2.56 2.46 4.07; 0 0 -4.78 -3.82]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.017727735801114;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -252,7 +317,16 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_banded_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.017728; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[-0.23 2.54 -3.66 0; -6.98 2.46 -2.73 -2.13; 0 2.56 2.46 4.07; 0 0 -4.78 -3.82]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.017727735801114;
 	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
 }
 
@@ -282,8 +356,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_lower_symmetric_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.01321232; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[2.07 3.87 4.20, -1.15; 3.87 -0.21 1.87 0.63; 4.20 1.87 1.15 2.06; -1.15 0.63 2.06 -1.81]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.013212321296670;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -312,8 +395,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_lower_symmetric_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.01321232; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[2.07 3.87 4.20, -1.15; 3.87 -0.21 1.87 0.63; 4.20 1.87 1.15 2.06; -1.15 0.63 2.06 -1.81]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.013212321296670;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -342,8 +434,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_upper_symmetric_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.01321232; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[2.07 3.87 4.20, -1.15; 3.87 -0.21 1.87 0.63; 4.20 1.87 1.15 2.06; -1.15 0.63 2.06 -1.81]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.013212321296670;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -372,8 +473,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_upper_symmetric_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.01321232; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[2.07 3.87 4.20, -1.15; 3.87 -0.21 1.87 0.63; 4.20 1.87 1.15 2.06; -1.15 0.63 2.06 -1.81]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.013212321296670;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -402,8 +512,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_lower_hermitian_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.028470197472865; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[-1.36+0i 1.58+0.9i 2.21-0.21i 3.91+1.5i; 1.58-0.9i -8.87+0i -1.84-0.03i -1.78+1.18i; 2.21+0.21i -1.84+0.03i -4.63+0i 0.11+0.11i; 3.91-1.5i -1.78-1.18i 0.11-0.11i -1.84+0i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.149720039067262;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -432,8 +551,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_real_lower_hermitian_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.028470197472865; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[-1.36+0i 1.58+0.9i 2.21-0.21i 3.91+1.5i; 1.58-0.9i -8.87+0i -1.84-0.03i -1.78+1.18i; 2.21+0.21i -1.84+0.03i -4.63+0i 0.11+0.11i; 3.91-1.5i -1.78-1.18i 0.11-0.11i -1.84+0i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.149720039067262;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -460,9 +588,25 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_square_dense_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	//expect_res = 4.3758e-18; // Computed with matlab R2008a and octave 3.2.4 and R 2.11.1
-	expect_res = 1.136408e-18; // Computed with R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-18 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1+2i 3+4i 5+6i; 7+8i 9+10i 11+12i; 13+14i 15+16i 17+18i]
+	// rcond(A)
+	// ```
+
+    // NOTE: the result obtained with MATLAB (1.347314580577711e-17) may differ
+    // from the one obtained with Octave (1.285698858022688e-17), which in turn
+    // may differ from the one obtained with the `cond_1` function (1.13641e-18).
+    // Since all these results are very large numbers, probably the best
+    // expected result to use is +inf.
+	//expect_res = 1.347314580577711e-17; // MATLAB
+	//expect_res = 1.285698858022688e-17; // Octave (also R 4.0.3)
+    expect_res = std::numeric_limits<result_type>::infinity();
+
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -489,9 +633,25 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_square_dense_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	//expect_res = 4.375805911678970e-18; // Computed with matlab R2008a and octave 3.2.4
-	expect_res = 1.136408e-18; // Computed with R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-18 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1+2i 3+4i 5+6i; 7+8i 9+10i 11+12i; 13+14i 15+16i 17+18i]
+	// rcond(A)
+	// ```
+
+    // NOTE: the result obtained with MATLAB (1.347314580577711e-17) may differ
+    // from the one obtained with Octave (1.285698858022688e-17), which in turn
+    // may differ from the one obtained with the `cond_1` function (1.13641e-18).
+    // Since all these results are very large numbers, probably the best
+    // expected result to use is +inf.
+	//expect_res = 1.347314580577711e-17; // MATLAB
+	//expect_res = 1.285698858022688e-17; // Octave (also R 4.0.3)
+    expect_res = std::numeric_limits<result_type>::infinity();
+
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -518,8 +678,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_upper_triangular_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.059560668674847; // Computed with matlab R2008a, octave 3.2.4
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1+2i 3+4i 5+6i; 0 7+8i 9+10i; 0 0 11+12i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.059560668674847;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -546,8 +715,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_upper_triangular_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.059560668674847; // Computed with matlab R2008a and octave 3.2.4
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1+2i 3+4i 5+6i; 0 7+8i 9+10i; 0 0 11+12i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.059560668674847;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -574,8 +752,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_lower_triangular_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.059544953702088; // Computed with matlab R2008a, octave 3.2.4
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1+2i 0 0; 3+4i 5+6i 0; 7+8i 9+10i 11+12i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.059544953702088;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -602,7 +789,16 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_lower_triangular_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.059544953702088; // Computed with matlab R2008a and octave 3.2.4
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[1+2i 0 0; 3+4i 5+6i 0; 7+8i 9+10i 11+12i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.059544953702088;
 	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-7 );
 }
 
@@ -631,8 +827,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_banded_matrix_column_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.009594414793018; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[-1.65+2.26i -2.05-0.85i 0.97-2.84i 0; 0+6.30i -1.48-1.75i -3.99+4.01i 0.59-0.48i; 0 -0.77+2.83i -1.06+1.94i 3.33-1.04i; 0 0 4.48-1.09i -0.46-1.72i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.009594414793018;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 
@@ -660,8 +865,17 @@ BOOST_UBLASX_TEST_DEF( norm_1_complex_banded_matrix_row_major )
 	BOOST_UBLASX_DEBUG_TRACE("A = " << A);
 	BOOST_UBLASX_DEBUG_TRACE("res = " << res);
 
-	expect_res = 0.009594414793018; // Computed with matlab R2008a, octave 3.2.4, and R 2.11.1
-	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, 1.0e-6 );
+	// Results obtained with:
+	// - MATLAB 2017a
+	// - Octave 5.2.0
+	// on Fedora 33 x86_64, kernel 5.9.16-200, gcc 10.2.1, glibc 2.32, LAPACK 3.9.0
+	// ```octave
+	// A=[-1.65+2.26i -2.05-0.85i 0.97-2.84i 0; 0+6.30i -1.48-1.75i -3.99+4.01i 0.59-0.48i; 0 -0.77+2.83i -1.06+1.94i 3.33-1.04i; 0 0 4.48-1.09i -0.46-1.72i]
+	// rcond(A)
+	// ```
+
+	expect_res = 0.009594414793018;
+	BOOST_UBLASX_TEST_CHECK_CLOSE( res, expect_res, tol );
 }
 
 

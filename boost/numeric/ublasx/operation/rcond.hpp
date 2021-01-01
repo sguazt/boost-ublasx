@@ -426,11 +426,7 @@ template <
 typename type_traits<ValueT>::real_type rcond_impl(banded_matrix<ValueT,row_major,StorageT> const& A, matrix_norm_category norm_category, row_major_tag)
 {
 	typedef banded_matrix<ValueT,row_major,StorageT> matrix_type;
-    typedef typename matrix_traits<matrix_type>::value_type value_type;
 	typedef typename matrix_traits<matrix_type>::size_type size_type;
-	typedef typename type_traits<value_type>::real_type result_type;
-	typedef banded_matrix<ValueT,row_major,StorageT> work_matrix_type;
-	typedef vector< ::fortran_int_t > vector_type;
 
 	size_type nr = num_rows(A);
 	size_type nc = num_columns(A);
@@ -448,6 +444,21 @@ typename type_traits<ValueT>::real_type rcond_impl(banded_matrix<ValueT,row_majo
 			return rcond_impl(qr_decompose(A).R(), norm_category, column_major_tag());
 		}
 	}
+
+    typedef typename matrix_traits<matrix_type>::value_type value_type;
+
+//[FIXME] (2020-12-30)
+//  The function 'boost::numeric::bindings::lapack::gbtrf(AB, ipiv)' does not
+//  work as I expected.
+//  For such reason, the following has been temporarily commented in favor of
+//  the one below where the banded matrix is first converted to a dense matrix,
+//  which is then passed as parameter to the function that computer the rcond
+//  on dense matrices.
+//
+#if 0
+	typedef typename type_traits<value_type>::real_type result_type;
+	typedef banded_matrix<ValueT,row_major,StorageT> work_matrix_type;
+	typedef vector< ::fortran_int_t > vector_type;
 
 	char what_norm;
 	result_type norm;
@@ -517,6 +528,12 @@ typename type_traits<ValueT>::real_type rcond_impl(banded_matrix<ValueT,row_majo
 	);
 
 	return res;
+#else
+	ublas::matrix<value_type> tmp_A(A);
+
+	return rcond_impl(ublas::matrix<value_type>(A), matrix_norm_1, row_major_tag());
+#endif
+//[/FIXME]
 }
 
 
