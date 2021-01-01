@@ -65,12 +65,10 @@ namespace detail { namespace /*<unnamed>*/ {
 
 /**
  * \brief The implementation of the \em reshape operation.
- * \tparam MatrixExprT The type of the input matrix expression.
- * \param A The input matrix expression.
+ * \tparam VectorExprT The type of the input vector expression.
+ * \param ve The input vector expression.
  * \param nr The number of rows of the reshaped matrix.
- * \param nr The number of columns of the reshaped matrix.
- * \param colw Tells of elements are taken from the input matrix either in a
- *  column-wise way (\c true value) or in a row-wise way (\c false value).
+ * \param nc The number of columns of the reshaped matrix.
  * \return The reshaped matrix.
  */
 template <typename VectorExprT>
@@ -78,6 +76,8 @@ typename reshape_traits<VectorExprT>::result_type reshape_impl(vector_expression
 															   ::std::size_t nr,
 															   ::std::size_t nc)
 {
+	//FIXME: this function behaves differently from the MATLAB/Octave countepart as it works row-wise instead of column-wise
+
 	typedef typename reshape_traits<VectorExprT>::result_type result_matrix_type;
 	typedef typename vector_traits<VectorExprT>::size_type size_type;
 
