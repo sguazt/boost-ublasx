@@ -1,15 +1,15 @@
 Boost.uBLASx
 ============
 
-Extensions to [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library.
+Extensions to the C++ [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library.
 
 
 Overview
 --------
 
-The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those available in numerical packages (e.g., [MATLAB](https://www.mathworks.com/products/matlab.html) and [Octave](https://www.gnu.org/software/octave/index), and libraries for scientific computing (e.g., [Armadillo](http://arma.sourceforge.net/) and [Eigen](http://eigen.tuxfamily.org/)).
+The aim of the __Boost.uBLASx__ project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those available in numerical packages (e.g., [MATLAB](https://www.mathworks.com/products/matlab.html) and [Octave](https://www.gnu.org/software/octave/index), and libraries for scientific computing (e.g., [Armadillo](http://arma.sourceforge.net/) and [Eigen](http://eigen.tuxfamily.org/)).
 
-In a nutshell, Boost.uBLASx provides the following features:
+In a nutshell, Boost.uBLASx is a C++ library that provides the following features:
 * A set of vector/matrix operations (e.g., the `reshape` operation, for changing the shape of an array).
 The list of currently available operations, together with a comparison with similar MATLAB/Octave functions, is available [here](libs/numeric/ublasx/doc/MATLAB).
 * New container classes and adaptors (e.g., the `generalized_diagonal_matrix` class, for representing generalized diagonal matrices).
@@ -100,6 +100,7 @@ Any help is always appreciated.
 For instance, you can contributed by adding new features (e.g., new operations), or by fixing errors, or even by improving the documentation and adding more examples.
 
 If you want to contribute, please, follow these guidelines:
+* Stick to the C++ standard requirements of Boost.uBLASx.
 * Use 4 spaces instead of tabs as indentation characters.
 * Write _readable_ code to ease maintainability in the future.
 * Comment your code with Doxygen.
@@ -119,3 +120,8 @@ Credits
 I really thank you the following users for their valuable contribution given to this library:
 
 - [Alexey Nesterenko](https://github.com/comcon1)
+
+Also, I am grateful to the following users for having shared their code that I used as
+- Dung-Bang Tsai (for matrix exponential
+- Gunter Winkler (for Cholesky decomposition)
+- Konstanti Kutzkow (for Cholesky decomposition)
