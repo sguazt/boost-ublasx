@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file libs/numeric/ublasx/test/isinf.cpp
  *
@@ -50,171 +52,171 @@ static int isinf_impl(::std::complex<T> const& x)
 
 BOOST_UBLASX_TEST_DEF( test_real_vector )
 {
-	BOOST_UBLASX_DEBUG_TRACE( "Test Case: Real - Vector" );
+    BOOST_UBLASX_DEBUG_TRACE( "Test Case: Real - Vector" );
 
-	typedef double in_value_type;
-	typedef int out_value_type;
-	typedef std::size_t size_type;
-	typedef ublas::vector<in_value_type> in_vector_type;
-	typedef ublas::vector<out_value_type> out_vector_type;
+    typedef double in_value_type;
+    typedef int out_value_type;
+    typedef std::size_t size_type;
+    typedef ublas::vector<in_value_type> in_vector_type;
+    typedef ublas::vector<out_value_type> out_vector_type;
 
-	const size_type n(4);
+    const size_type n(4);
 
-	in_vector_type v(n);
+    in_vector_type v(n);
 
-	v(0) =  1;
-	v(1) =  std::numeric_limits<in_value_type>::quiet_NaN();
-	v(2) =  std::numeric_limits<in_value_type>::infinity();
-	v(3) = -std::numeric_limits<in_value_type>::infinity();
+    v(0) =  1;
+    v(1) =  std::numeric_limits<in_value_type>::quiet_NaN();
+    v(2) =  std::numeric_limits<in_value_type>::infinity();
+    v(3) = -std::numeric_limits<in_value_type>::infinity();
 
-	out_vector_type res;
-	out_vector_type expect_res(n);
+    out_vector_type res;
+    out_vector_type expect_res(n);
 
-	res = ublasx::isinf(v);
+    res = ublasx::isinf(v);
 
-	BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
-	BOOST_UBLASX_DEBUG_TRACE( "isinf(v) = " << res );
+    BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
+    BOOST_UBLASX_DEBUG_TRACE( "isinf(v) = " << res );
 
-	for (size_type i = 0; i < n; ++i)
-	{
-		expect_res(i) = detail::isinf_impl(v(i));
-	}
+    for (size_type i = 0; i < n; ++i)
+    {
+        expect_res(i) = detail::isinf_impl(v(i));
+    }
 
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
+    BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
 }
 
 
 BOOST_UBLASX_TEST_DEF( test_complex_vector )
 {
-	BOOST_UBLASX_DEBUG_TRACE( "Test Case: Complex - Vector" );
+    BOOST_UBLASX_DEBUG_TRACE( "Test Case: Complex - Vector" );
 
-	typedef double real_type;
-	typedef std::complex<real_type> in_value_type;
-	typedef int out_value_type;
-	typedef std::size_t size_type;
-	typedef ublas::vector<in_value_type> in_vector_type;
-	typedef ublas::vector<out_value_type> out_vector_type;
+    typedef double real_type;
+    typedef std::complex<real_type> in_value_type;
+    typedef int out_value_type;
+    typedef std::size_t size_type;
+    typedef ublas::vector<in_value_type> in_vector_type;
+    typedef ublas::vector<out_value_type> out_vector_type;
 
-	const size_type n(9);
+    const size_type n(9);
 
-	in_vector_type v(n);
+    in_vector_type v(n);
 
-	v(0) = in_value_type(1,2);
-	v(1) = in_value_type(1,std::numeric_limits<real_type>::quiet_NaN());
-	v(2) = in_value_type(std::numeric_limits<real_type>::quiet_NaN(),1);
-	v(3) = in_value_type(1,std::numeric_limits<real_type>::infinity());
-	v(4) = in_value_type(std::numeric_limits<real_type>::infinity(),1);
-	v(5) = in_value_type(1,-std::numeric_limits<real_type>::infinity());
-	v(6) = in_value_type(-std::numeric_limits<real_type>::infinity(),1);
-	v(7) = in_value_type(std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN());
-	v(8) = in_value_type(-std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN());
+    v(0) = in_value_type(1,2);
+    v(1) = in_value_type(1,std::numeric_limits<real_type>::quiet_NaN());
+    v(2) = in_value_type(std::numeric_limits<real_type>::quiet_NaN(),1);
+    v(3) = in_value_type(1,std::numeric_limits<real_type>::infinity());
+    v(4) = in_value_type(std::numeric_limits<real_type>::infinity(),1);
+    v(5) = in_value_type(1,-std::numeric_limits<real_type>::infinity());
+    v(6) = in_value_type(-std::numeric_limits<real_type>::infinity(),1);
+    v(7) = in_value_type(std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN());
+    v(8) = in_value_type(-std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN());
 
-	out_vector_type res;
-	out_vector_type expect_res(n);
+    out_vector_type res;
+    out_vector_type expect_res(n);
 
-	res = ublasx::isinf(v);
+    res = ublasx::isinf(v);
 
-	BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
-	BOOST_UBLASX_DEBUG_TRACE( "isinf(v) = " << res );
+    BOOST_UBLASX_DEBUG_TRACE( "v = " << v );
+    BOOST_UBLASX_DEBUG_TRACE( "isinf(v) = " << res );
 
-	for (size_type i = 0; i < n; ++i)
-	{
-		expect_res(i) = detail::isinf_impl(v(i));
-	}
+    for (size_type i = 0; i < n; ++i)
+    {
+        expect_res(i) = detail::isinf_impl(v(i));
+    }
 
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
+    BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( res, expect_res, n, tol );
 }
 
 
 BOOST_UBLASX_TEST_DEF( test_real_matrix )
 {
-	BOOST_UBLASX_DEBUG_TRACE( "Test Case: Real - Matrix" );
+    BOOST_UBLASX_DEBUG_TRACE( "Test Case: Real - Matrix" );
 
-	typedef double in_value_type;
-	typedef int out_value_type;
-	typedef std::size_t size_type;
-	typedef ublas::matrix<in_value_type> in_matrix_type;
-	typedef ublas::matrix<out_value_type> out_matrix_type;
+    typedef double in_value_type;
+    typedef int out_value_type;
+    typedef std::size_t size_type;
+    typedef ublas::matrix<in_value_type> in_matrix_type;
+    typedef ublas::matrix<out_value_type> out_matrix_type;
 
-	const size_type nr(2);
-	const size_type nc(3);
+    const size_type nr(2);
+    const size_type nc(3);
 
-	in_matrix_type A(nr,nc);
+    in_matrix_type A(nr,nc);
 
-	A(0,0) = 1; A(0,1) = std::numeric_limits<in_value_type>::quiet_NaN(); A(0,2) = 3;
-	A(1,0) = std::numeric_limits<in_value_type>::infinity(); A(1,1) = 5; A(1,2) = -std::numeric_limits<in_value_type>::infinity();
+    A(0,0) = 1; A(0,1) = std::numeric_limits<in_value_type>::quiet_NaN(); A(0,2) = 3;
+    A(1,0) = std::numeric_limits<in_value_type>::infinity(); A(1,1) = 5; A(1,2) = -std::numeric_limits<in_value_type>::infinity();
 
-	out_matrix_type R;
-	out_matrix_type expect_R(nr,nc);
+    out_matrix_type R;
+    out_matrix_type expect_R(nr,nc);
 
-	R = ublasx::isinf(A);
+    R = ublasx::isinf(A);
 
-	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-	BOOST_UBLASX_DEBUG_TRACE( "isinf(A) = " << R );
+    BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
+    BOOST_UBLASX_DEBUG_TRACE( "isinf(A) = " << R );
 
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			expect_R(r,c) = detail::isinf_impl(A(r,c));
-		}
-	}
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            expect_R(r,c) = detail::isinf_impl(A(r,c));
+        }
+    }
 
-	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, nr, nc, tol );
+    BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, nr, nc, tol );
 }
 
 
 BOOST_UBLASX_TEST_DEF( test_complex_matrix )
 {
-	BOOST_UBLASX_DEBUG_TRACE( "Test Case: Complex - Matrix" );
+    BOOST_UBLASX_DEBUG_TRACE( "Test Case: Complex - Matrix" );
 
-	typedef double real_type;
-	typedef std::complex<real_type> in_value_type;
-	typedef int out_value_type;
-	typedef std::size_t size_type;
-	typedef ublas::matrix<in_value_type> in_matrix_type;
-	typedef ublas::matrix<out_value_type> out_matrix_type;
+    typedef double real_type;
+    typedef std::complex<real_type> in_value_type;
+    typedef int out_value_type;
+    typedef std::size_t size_type;
+    typedef ublas::matrix<in_value_type> in_matrix_type;
+    typedef ublas::matrix<out_value_type> out_matrix_type;
 
-	const size_type nr(3);
-	const size_type nc(3);
+    const size_type nr(3);
+    const size_type nc(3);
 
-	in_matrix_type A(nr,nc);
+    in_matrix_type A(nr,nc);
 
-	A(0,0) = in_value_type(1,2); A(0,1) = in_value_type(1,std::numeric_limits<real_type>::quiet_NaN()); A(0,2) = in_value_type(std::numeric_limits<real_type>::quiet_NaN(),1);
-	A(1,0) = in_value_type(1,std::numeric_limits<real_type>::infinity()); A(1,1) = in_value_type(std::numeric_limits<real_type>::infinity(),1); A(1,2) = in_value_type(1,-std::numeric_limits<real_type>::infinity());
-	A(2,0) = in_value_type(-std::numeric_limits<real_type>::infinity(),1); A(2,1) = in_value_type(std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN()); A(2,2) = in_value_type(-std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN());
+    A(0,0) = in_value_type(1,2); A(0,1) = in_value_type(1,std::numeric_limits<real_type>::quiet_NaN()); A(0,2) = in_value_type(std::numeric_limits<real_type>::quiet_NaN(),1);
+    A(1,0) = in_value_type(1,std::numeric_limits<real_type>::infinity()); A(1,1) = in_value_type(std::numeric_limits<real_type>::infinity(),1); A(1,2) = in_value_type(1,-std::numeric_limits<real_type>::infinity());
+    A(2,0) = in_value_type(-std::numeric_limits<real_type>::infinity(),1); A(2,1) = in_value_type(std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN()); A(2,2) = in_value_type(-std::numeric_limits<real_type>::infinity(),std::numeric_limits<real_type>::quiet_NaN());
 
-	out_matrix_type R;
-	out_matrix_type expect_R(nr,nc);
+    out_matrix_type R;
+    out_matrix_type expect_R(nr,nc);
 
-	R = ublasx::isinf(A);
+    R = ublasx::isinf(A);
 
-	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-	BOOST_UBLASX_DEBUG_TRACE( "isinf(A) = " << R );
+    BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
+    BOOST_UBLASX_DEBUG_TRACE( "isinf(A) = " << R );
 
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			expect_R(r,c) = detail::isinf_impl(A(r,c));
-		}
-	}
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            expect_R(r,c) = detail::isinf_impl(A(r,c));
+        }
+    }
 
-	BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, nr, nc, tol );
+    BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, nr, nc, tol );
 }
 
 
 int main()
 {
 
-	BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'isinf' operation");
+    BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'isinf' operation");
 
-	BOOST_UBLASX_TEST_BEGIN();
+    BOOST_UBLASX_TEST_BEGIN();
 
-	BOOST_UBLASX_TEST_DO( test_real_vector );
-	BOOST_UBLASX_TEST_DO( test_complex_vector );
-	BOOST_UBLASX_TEST_DO( test_real_matrix );
-	BOOST_UBLASX_TEST_DO( test_complex_matrix );
+    BOOST_UBLASX_TEST_DO( test_real_vector );
+    BOOST_UBLASX_TEST_DO( test_complex_vector );
+    BOOST_UBLASX_TEST_DO( test_real_matrix );
+    BOOST_UBLASX_TEST_DO( test_complex_matrix );
 
-	BOOST_UBLASX_TEST_END();
+    BOOST_UBLASX_TEST_END();
 }

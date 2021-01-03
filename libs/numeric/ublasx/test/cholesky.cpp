@@ -1,4 +1,6 @@
-/** -*- c++ -*- \file cholesky_test.cpp \brief test cholesky decomposition */
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
+/** -*- c++ -*- \file cholesky_test.cpp \brief test Cholesky decomposition */
 /*
  -   begin                : 2005-08-24
  -   copyright            : (C) 2005 by Gunter Winkler, Konstantin Kutzkow

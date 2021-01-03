@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file libs/numeric/ublasx/test/mldivide.cpp
  *
@@ -34,14 +36,14 @@ BOOST_UBLASX_TEST_DEF( mldivide_square_column_major )
 {
     BOOST_UBLASX_DEBUG_TRACE( "Test Case: mldivide - Square Matrix - Column Major" );
 
-	BOOST_UBLASX_DEBUG_STREAM_SETFLAGS( std::ios::boolalpha );
+    BOOST_UBLASX_DEBUG_STREAM_SETFLAGS( std::ios::boolalpha );
 
     typedef double value_type;
     typedef ublas::matrix<value_type, ublas::column_major> matrix_type;
     typedef ublas::vector<value_type> vector_type;
-	typedef ublas::matrix_traits<matrix_type>::size_type size_type;
+    typedef ublas::matrix_traits<matrix_type>::size_type size_type;
 
-	const size_type n(4);
+    const size_type n(4);
 
     matrix_type A(n,n);
 
@@ -50,33 +52,33 @@ BOOST_UBLASX_TEST_DEF( mldivide_square_column_major )
     A(2,0) = 0.948014; A(2,1) = 0.973234; A(2,2) = 0.216504; A(2,3) = 0.883152;
     A(3,0) = 0.023787; A(3,1) = 0.675382; A(3,2) = 0.231751; A(3,3) = 0.450332;
 
-	vector_type b(n);
+    vector_type b(n);
 
-	b(0) = 2.0;
-	b(1) = 3.0;
-	b(2) = 1.0;
-	b(3) = 0.5;
+    b(0) = 2.0;
+    b(1) = 3.0;
+    b(2) = 1.0;
+    b(3) = 0.5;
 
-	vector_type expect(n);
+    vector_type expect(n);
 
-	expect(0) =  1.339863;
-	expect(1) =  0.198970;
-	expect(2) =  4.699314;
-	expect(3) = -1.677257;
+    expect(0) =  1.339863;
+    expect(1) =  0.198970;
+    expect(2) =  4.699314;
+    expect(3) = -1.677257;
 
 
-	vector_type x(n);
+    vector_type x(n);
 
-	size_type res;
-	res = ublasx::mldivide(A, b, x);
+    size_type res;
+    res = ublasx::mldivide(A, b, x);
 
-	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-	BOOST_UBLASX_DEBUG_TRACE( "b = " << b );
-	BOOST_UBLASX_DEBUG_TRACE( "mldivide succeded?  " << static_cast<bool>(res == 0) );
-	BOOST_UBLASX_DEBUG_TRACE( "Ax = b ==> x = " << x );
+    BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
+    BOOST_UBLASX_DEBUG_TRACE( "b = " << b );
+    BOOST_UBLASX_DEBUG_TRACE( "mldivide succeded?  " << static_cast<bool>(res == 0) );
+    BOOST_UBLASX_DEBUG_TRACE( "Ax = b ==> x = " << x );
 
-	BOOST_UBLASX_TEST_CHECK( res == 0 );
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( x, expect, n, TOL );
+    BOOST_UBLASX_TEST_CHECK( res == 0 );
+    BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( x, expect, n, TOL );
 }
 
 
@@ -84,14 +86,14 @@ BOOST_UBLASX_TEST_DEF( mldivide_square_row_major )
 {
     BOOST_UBLASX_DEBUG_TRACE( "Test Case: mldivide - Square Matrix - Row Major" );
 
-	BOOST_UBLASX_DEBUG_STREAM_SETFLAGS( std::ios::boolalpha );
+    BOOST_UBLASX_DEBUG_STREAM_SETFLAGS( std::ios::boolalpha );
 
     typedef double value_type;
     typedef ublas::matrix<value_type, ublas::row_major> matrix_type;
     typedef ublas::vector<value_type> vector_type;
-	typedef ublas::matrix_traits<matrix_type>::size_type size_type;
+    typedef ublas::matrix_traits<matrix_type>::size_type size_type;
 
-	const size_type n(4);
+    const size_type n(4);
 
     matrix_type A(n,n);
 
@@ -100,42 +102,42 @@ BOOST_UBLASX_TEST_DEF( mldivide_square_row_major )
     A(2,0) = 0.948014; A(2,1) = 0.973234; A(2,2) = 0.216504; A(2,3) = 0.883152;
     A(3,0) = 0.023787; A(3,1) = 0.675382; A(3,2) = 0.231751; A(3,3) = 0.450332;
 
-	vector_type b(n);
+    vector_type b(n);
 
-	b(0) = 2.0;
-	b(1) = 3.0;
-	b(2) = 1.0;
-	b(3) = 0.5;
+    b(0) = 2.0;
+    b(1) = 3.0;
+    b(2) = 1.0;
+    b(3) = 0.5;
 
-	vector_type expect(n);
+    vector_type expect(n);
 
-	expect(0) =  1.339863;
-	expect(1) =  0.198970;
-	expect(2) =  4.699314;
-	expect(3) = -1.677257;
+    expect(0) =  1.339863;
+    expect(1) =  0.198970;
+    expect(2) =  4.699314;
+    expect(3) = -1.677257;
 
 
-	vector_type x(n);
+    vector_type x(n);
 
-	size_type res;
-	res = ublasx::mldivide(A, b, x);
+    size_type res;
+    res = ublasx::mldivide(A, b, x);
 
-	BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-	BOOST_UBLASX_DEBUG_TRACE( "b = " << b );
-	BOOST_UBLASX_DEBUG_TRACE( "mldivide succeded?  " << static_cast<bool>(res == 0) );
-	BOOST_UBLASX_DEBUG_TRACE( "Ax = b ==> x = " << x );
+    BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
+    BOOST_UBLASX_DEBUG_TRACE( "b = " << b );
+    BOOST_UBLASX_DEBUG_TRACE( "mldivide succeded?  " << static_cast<bool>(res == 0) );
+    BOOST_UBLASX_DEBUG_TRACE( "Ax = b ==> x = " << x );
 
-	BOOST_UBLASX_TEST_CHECK( res == 0 );
-	BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( x, expect, n, TOL );
+    BOOST_UBLASX_TEST_CHECK( res == 0 );
+    BOOST_UBLASX_TEST_CHECK_VECTOR_CLOSE( x, expect, n, TOL );
 }
 
 
 int main()
 {
-	BOOST_UBLASX_TEST_BEGIN();
+    BOOST_UBLASX_TEST_BEGIN();
 
-	BOOST_UBLASX_TEST_DO( mldivide_square_column_major );
-	BOOST_UBLASX_TEST_DO( mldivide_square_row_major );
+    BOOST_UBLASX_TEST_DO( mldivide_square_column_major );
+    BOOST_UBLASX_TEST_DO( mldivide_square_row_major );
 
-	BOOST_UBLASX_TEST_END();
+    BOOST_UBLASX_TEST_END();
 }
