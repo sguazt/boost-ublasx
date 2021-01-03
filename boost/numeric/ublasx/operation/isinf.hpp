@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/isinf.hpp
  *
@@ -34,30 +36,30 @@ namespace detail {
 template <typename VectorExprT>
 struct vector_isinf_functor_traits
 {
-	typedef VectorExprT input_expression_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
-	typedef int signature_result_type;
-	typedef vector_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type const&)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef VectorExprT input_expression_type;
+    typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
+    typedef int signature_result_type;
+    typedef vector_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type const&)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename MatrixExprT>
 struct matrix_isinf_functor_traits
 {
-	typedef MatrixExprT input_expression_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
-	typedef int signature_result_type;
-	typedef matrix_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type const&)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef MatrixExprT input_expression_type;
+    typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
+    typedef int signature_result_type;
+    typedef matrix_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type const&)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
@@ -67,11 +69,11 @@ namespace /*<unnamed>*/ {
 template <typename T>
 BOOST_UBLAS_INLINE
 typename ::boost::disable_if<
-			::boost::is_complex<T>,
-			int
+            ::boost::is_complex<T>,
+            int
 >::type isinf_impl(T x)
 {
-	return ::std::isinf(x);
+    return ::std::isinf(x);
 }
 
 
@@ -79,14 +81,14 @@ typename ::boost::disable_if<
 template <typename T>
 BOOST_UBLAS_INLINE
 typename ::boost::enable_if<
-			::boost::is_complex<T>,
-			int
+            ::boost::is_complex<T>,
+            int
 >::type isinf_impl(T x)
 {
-	// Use the complex infinity definition found at Wolfram Mathworld
-	// (http://mathworld.wolfram.com/ComplexInfinity.html)
+    // Use the complex infinity definition found at Wolfram Mathworld
+    // (http://mathworld.wolfram.com/ComplexInfinity.html)
 
-	return ::std::isinf(x.real()) && ::std::isnan(x.imag());
+    return ::std::isinf(x.real()) && ::std::isnan(x.imag());
 }
 
 } // Namespace <unnamed>
@@ -109,10 +111,10 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename detail::vector_isinf_functor_traits<VectorExprT>::result_type isinf(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename detail::vector_isinf_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_isinf_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
+    typedef typename detail::vector_isinf_functor_traits<VectorExprT>::expression_type expression_type;
+    typedef typename detail::vector_isinf_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
 
-	return expression_type(ve(), detail::isinf_impl<signature_argument_type>);
+    return expression_type(ve(), detail::isinf_impl<signature_argument_type>);
 }
 
 
@@ -131,10 +133,10 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename detail::matrix_isinf_functor_traits<MatrixExprT>::result_type isinf(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename detail::matrix_isinf_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_isinf_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
+    typedef typename detail::matrix_isinf_functor_traits<MatrixExprT>::expression_type expression_type;
+    typedef typename detail::matrix_isinf_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
 
-	return expression_type(me(), detail::isinf_impl<signature_argument_type>);
+    return expression_type(me(), detail::isinf_impl<signature_argument_type>);
 }
 
 }}} // Namespace boost::numeric::ublasx

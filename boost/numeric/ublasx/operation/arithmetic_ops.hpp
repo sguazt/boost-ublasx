@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/arithmetic_ops.hpp
  *
@@ -27,21 +29,21 @@
 template <typename T1, typename E2>
 BOOST_UBLAS_INLINE
 typename ::boost::enable_if<
-	::boost::is_convertible<T1, typename E2::value_type>,
-	typename ::boost::numeric::ublas::vector_binary_scalar1_traits<
-				const T1,
-				E2,
-				::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
-	>::result_type
+    ::boost::is_convertible<T1, typename E2::value_type>,
+    typename ::boost::numeric::ublas::vector_binary_scalar1_traits<
+                const T1,
+                E2,
+                ::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
+    >::result_type
 >::type operator/(T1 const& e1, ::boost::numeric::ublas::vector_expression<E2> const& e2)
 {
-	typedef typename ::boost::numeric::ublas::vector_binary_scalar1_traits<
-				const T1,
-				E2,
-				::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
-		>::expression_type expression_type;
+    typedef typename ::boost::numeric::ublas::vector_binary_scalar1_traits<
+                const T1,
+                E2,
+                ::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
+        >::expression_type expression_type;
 
-	return expression_type(e1, e2());
+    return expression_type(e1, e2());
 }
 
 
@@ -49,21 +51,21 @@ typename ::boost::enable_if<
 template <typename T1, typename E2>
 BOOST_UBLAS_INLINE
 typename ::boost::enable_if<
-	::boost::is_convertible<T1, typename E2::value_type>,
-	typename ::boost::numeric::ublas::matrix_binary_scalar1_traits<
-				const T1,
-				E2,
-				::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
-	>::result_type
+    ::boost::is_convertible<T1, typename E2::value_type>,
+    typename ::boost::numeric::ublas::matrix_binary_scalar1_traits<
+                const T1,
+                E2,
+                ::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
+    >::result_type
 >::type operator/(T1 const& e1, ::boost::numeric::ublas::matrix_expression<E2> const& e2)
 {
-	typedef typename ::boost::numeric::ublas::matrix_binary_scalar1_traits<
-				const T1,
-				E2,
-				::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
-		>::expression_type expression_type;
+    typedef typename ::boost::numeric::ublas::matrix_binary_scalar1_traits<
+                const T1,
+                E2,
+                ::boost::numeric::ublas::scalar_divides<T1, typename E2::value_type>
+        >::expression_type expression_type;
 
-	return expression_type(e1, e2());
+    return expression_type(e1, e2());
 }
 
 

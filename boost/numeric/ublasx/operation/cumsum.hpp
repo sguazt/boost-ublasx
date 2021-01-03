@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/cumsum.hpp
  *
@@ -143,115 +145,115 @@ struct cumsum_by_tag_impl;
 template <>
 struct cumsum_by_dim_impl<1, vector_tag>
 {
-	template <typename VectorExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename vector_traits<VectorExprT>::value_type> apply(vector_expression<VectorExprT> const& ve)
-	{
-		return cumsum(ve);
-	}
+    template <typename VectorExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename vector_traits<VectorExprT>::value_type> apply(vector_expression<VectorExprT> const& ve)
+    {
+        return cumsum(ve);
+    }
 };
 
 
 template <>
 struct cumsum_by_dim_impl<1, matrix_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_rows(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_dim_impl<2, matrix_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_columns(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_tag_impl<tag::major, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_rows(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_tag_impl<tag::minor, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_columns(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_tag_impl<tag::leading, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_columns(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_tag_impl<tag::major, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_columns(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_tag_impl<tag::minor, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_rows(me);
+    }
 };
 
 
 template <>
 struct cumsum_by_tag_impl<tag::leading, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return cumsum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static matrix<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return cumsum_rows(me);
+    }
 };
 
 
 template <typename TagT>
 struct cumsum_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: cumsum_by_tag_impl<TagT, matrix_tag, row_major_tag>
 {
-	// Empty
+    // Empty
 };
 
 //@} Definitions
@@ -265,18 +267,18 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::value_type> cumsum(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
-	typedef vector<typename vector_traits<VectorExprT>::value_type> result_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef vector<typename vector_traits<VectorExprT>::value_type> result_type;
 
-	size_type n = size(ve);
-	result_type s(ve);
+    size_type n = size(ve);
+    result_type s(ve);
 
-	for (size_type i = 1; i < n; ++i)
-	{
-		s(i) += s(i-1);
-	}
+    for (size_type i = 1; i < n; ++i)
+    {
+        s(i) += s(i-1);
+    }
 
-	return s;
+    return s;
 }
 
 
@@ -284,23 +286,23 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 matrix<typename matrix_traits<MatrixExprT>::value_type> cumsum(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	result_type s(me);
+    result_type s(me);
 
-	for (size_type c = 0; c < nc; ++c)
-	{
-		for (size_type r = 1; r < nr; ++r)
-		{
-			s(r,c) += s(r-1,c);
-		}
-	}
+    for (size_type c = 0; c < nc; ++c)
+    {
+        for (size_type r = 1; r < nr; ++r)
+        {
+            s(r,c) += s(r-1,c);
+        }
+    }
 
-	return s;
+    return s;
 }
 
 
@@ -308,7 +310,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 matrix<typename matrix_traits<MatrixExprT>::value_type> cumsum_rows(matrix_expression<MatrixExprT> const& me)
 {
-	return cumsum(me);
+    return cumsum(me);
 }
 
 
@@ -316,23 +318,23 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 matrix<typename matrix_traits<MatrixExprT>::value_type> cumsum_columns(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	result_type s(me);
+    result_type s(me);
 
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 1; c < nc; ++c)
-		{
-			s(r,c) += s(r,c-1);
-		}
-	}
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 1; c < nc; ++c)
+        {
+            s(r,c) += s(r,c-1);
+        }
+    }
 
-	return s;
+    return s;
 }
 
 
@@ -340,7 +342,7 @@ template <size_t Dim, typename VectorExprT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::value_type> cumsum(vector_expression<VectorExprT> const& ve)
 {
-	return detail::cumsum_by_dim_impl<Dim, vector_tag>::template apply(ve);
+    return detail::cumsum_by_dim_impl<Dim, vector_tag>::template apply(ve);
 }
 
 
@@ -348,7 +350,7 @@ template <size_t Dim, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 matrix<typename matrix_traits<MatrixExprT>::value_type> cumsum(matrix_expression<MatrixExprT> const& me)
 {
-	return detail::cumsum_by_dim_impl<Dim, matrix_tag>::template apply(me);
+    return detail::cumsum_by_dim_impl<Dim, matrix_tag>::template apply(me);
 }
 
 
@@ -357,7 +359,7 @@ template <typename TagT, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 matrix<typename matrix_traits<MatrixExprT>::value_type> cumsum_by_tag(matrix_expression<MatrixExprT> const& me)
 {
-	return detail::cumsum_by_tag_impl<TagT, matrix_tag, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
+    return detail::cumsum_by_tag_impl<TagT, matrix_tag, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
 }
 
 //@} Definitions

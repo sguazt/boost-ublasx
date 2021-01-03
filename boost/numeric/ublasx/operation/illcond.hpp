@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/illcond.hpp
  *
@@ -29,10 +31,10 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 bool illcond(matrix_expression<MatrixExprT> const& A)
 {
-	double r = rcond(A);
-	volatile double rp1 = r + 1.0;
+    double r = rcond(A);
+    volatile double rp1 = r + 1.0;
 
-	return (rp1 == 1.0) || ::std::isnan(r);
+    return (rp1 == 1.0) || ::std::isnan(r);
 }
 
 }}} // Namespace boost::numeric::ublasx

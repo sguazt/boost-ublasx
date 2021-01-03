@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/reshape.hpp
  *
@@ -58,8 +60,8 @@ namespace detail { namespace /*<unnamed>*/ {
 //template <typename MatrixT>
 //struct matrix_temp_type
 //{
-//	/// The matrix temporary type.
-//	typedef typename matrix_temporary_traits<MatrixT>::type type;
+//  /// The matrix temporary type.
+//  typedef typename matrix_temporary_traits<MatrixT>::type type;
 //};
  
 
@@ -73,42 +75,42 @@ namespace detail { namespace /*<unnamed>*/ {
  */
 template <typename VectorExprT>
 typename reshape_traits<VectorExprT>::result_type reshape_impl(vector_expression<VectorExprT> const& ve,
-															   ::std::size_t nr,
-															   ::std::size_t nc)
+                                                               ::std::size_t nr,
+                                                               ::std::size_t nc)
 {
-	//FIXME: this function behaves differently from the MATLAB/Octave countepart as it works row-wise instead of column-wise
+    //FIXME: this function behaves differently from the MATLAB/Octave countepart as it works row-wise instead of column-wise
 
-	typedef typename reshape_traits<VectorExprT>::result_type result_matrix_type;
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef typename reshape_traits<VectorExprT>::result_type result_matrix_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
 
-	size_type n(size(ve));
+    size_type n(size(ve));
 
-	// pre: to reshape, the number of elements must not change.
-	// NOTE: assertion used to mimic the MATLAB 'reshape' function.
-	BOOST_UBLAS_CHECK(
-			nr*nc == n,
-			bad_size()
-		);
+    // pre: to reshape, the number of elements must not change.
+    // NOTE: assertion used to mimic the MATLAB 'reshape' function.
+    BOOST_UBLAS_CHECK(
+            nr*nc == n,
+            bad_size()
+        );
 
-	// NOTE: this is needed to avoid this kind of warning when one compiles
-	//       without debug information.
-	BOOST_UBLASX_SUPPRESS_UNUSED_VARIABLE_WARNING( n );
+    // NOTE: this is needed to avoid this kind of warning when one compiles
+    //       without debug information.
+    BOOST_UBLASX_SUPPRESS_UNUSED_VARIABLE_WARNING( n );
 
-	result_matrix_type res(nr, nc);
+    result_matrix_type res(nr, nc);
 
-	size_type k(0);
+    size_type k(0);
 
-	for (size_type i = 0; i < nr; ++i)
-	{
-		for (size_type j = 0; j < nc; ++j)
-		{
-			res(i,j) = ve()(k);
+    for (size_type i = 0; i < nr; ++i)
+    {
+        for (size_type j = 0; j < nc; ++j)
+        {
+            res(i,j) = ve()(k);
 
-			++k;
-		}
-	}
+            ++k;
+        }
+    }
 
-	return res;
+    return res;
 }
 
 
@@ -124,68 +126,68 @@ typename reshape_traits<VectorExprT>::result_type reshape_impl(vector_expression
  */
 template <typename MatrixExprT>
 typename reshape_traits<MatrixExprT>::result_type reshape_impl(matrix_expression<MatrixExprT> const& me,
-															   ::std::size_t nr,
-															   ::std::size_t nc,
-															   bool colw)
+                                                               ::std::size_t nr,
+                                                               ::std::size_t nc,
+                                                               bool colw)
 {
-	// pre: to reshape, the number of elements must not change.
-	// NOTE: assertion used to mimic the MATLAB 'reshape' function.
-	BOOST_UBLAS_CHECK(
-			nr*nc == num_rows(me)*num_columns(me),
-			bad_size()
-		);
+    // pre: to reshape, the number of elements must not change.
+    // NOTE: assertion used to mimic the MATLAB 'reshape' function.
+    BOOST_UBLAS_CHECK(
+            nr*nc == num_rows(me)*num_columns(me),
+            bad_size()
+        );
 
-//	typedef typename matrix_temporary_traits<MatrixExprT>::type result_matrix_type;
-	typedef typename reshape_traits<MatrixExprT>::result_type result_matrix_type;
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+//  typedef typename matrix_temporary_traits<MatrixExprT>::type result_matrix_type;
+    typedef typename reshape_traits<MatrixExprT>::result_type result_matrix_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-	result_matrix_type res(nr, nc);
+    result_matrix_type res(nr, nc);
 
-	size_type r(0);
-	size_type c(0);
+    size_type r(0);
+    size_type c(0);
 
-	if (colw)
-	{
-		// Reshape by taking the elements in a column-wise way.
-		size_type nr_me(num_rows(me));
-		for (size_type j = 0; j < nc; ++j)
-		{
-			for (size_type i = 0; i < nr; ++i)
-			{
-				if (r == nr_me)
-				{
-					r = size_type/*zero*/();
-					++c;
-				}
+    if (colw)
+    {
+        // Reshape by taking the elements in a column-wise way.
+        size_type nr_me(num_rows(me));
+        for (size_type j = 0; j < nc; ++j)
+        {
+            for (size_type i = 0; i < nr; ++i)
+            {
+                if (r == nr_me)
+                {
+                    r = size_type/*zero*/();
+                    ++c;
+                }
 
-				res(i,j) = me()(r,c);
+                res(i,j) = me()(r,c);
 
-				++r;
-			}
-		}
-	}
-	else
-	{
-		// Reshape by taking the elements in a row-wise way.
-		size_type nc_me(num_columns(me));
-		for (size_type j = 0; j < nc; ++j)
-		{
-			for (size_type i = 0; i < nr; ++i)
-			{
-				if (c == nc_me)
-				{
-					c = size_type/*zero*/();
-					++r;
-				}
+                ++r;
+            }
+        }
+    }
+    else
+    {
+        // Reshape by taking the elements in a row-wise way.
+        size_type nc_me(num_columns(me));
+        for (size_type j = 0; j < nc; ++j)
+        {
+            for (size_type i = 0; i < nr; ++i)
+            {
+                if (c == nc_me)
+                {
+                    c = size_type/*zero*/();
+                    ++r;
+                }
 
-				res(i,j) = me()(r,c);
+                res(i,j) = me()(r,c);
 
-				++c;
-			}
-		}
-	}
+                ++c;
+            }
+        }
+    }
 
-	return res;
+    return res;
 }
 
 
@@ -197,10 +199,10 @@ template <>
 struct reshape_by_dim_impl<1>
 {
     /**
-	 * \brief Reshape the given matrix taking its elements in a column-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
+     * \brief Reshape the given matrix taking its elements in a column-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
     template <typename ExprT>
     BOOST_UBLAS_INLINE
     static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
@@ -214,10 +216,10 @@ template <>
 struct reshape_by_dim_impl<2>
 {
     /**
-	 * \brief Reshape the given matrix taking its elements in a row-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
+     * \brief Reshape the given matrix taking its elements in a row-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
     template <typename ExprT>
     BOOST_UBLAS_INLINE
     static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
@@ -234,99 +236,99 @@ struct reshape_by_tag_impl;
 template <>
 struct reshape_by_tag_impl<tag::major, row_major_tag>
 {
-	/**
-	 * \brief Reshape the given matrix taken its elements in a column-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
-	template <typename ExprT>
-	BOOST_UBLAS_INLINE
-	static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
-	{
-		return reshape_impl(me, nr, nc, true);
-	}
+    /**
+     * \brief Reshape the given matrix taken its elements in a column-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
+    template <typename ExprT>
+    BOOST_UBLAS_INLINE
+    static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
+    {
+        return reshape_impl(me, nr, nc, true);
+    }
 };
 
 template <>
 struct reshape_by_tag_impl<tag::major, column_major_tag>
 {
-	/**
-	 * \brief Reshape the given matrix taken its elements in a row-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
-	template <typename ExprT>
-	BOOST_UBLAS_INLINE
-	static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
-	{
-		return reshape_impl(me, nr, nc, false);
-	}
+    /**
+     * \brief Reshape the given matrix taken its elements in a row-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
+    template <typename ExprT>
+    BOOST_UBLAS_INLINE
+    static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
+    {
+        return reshape_impl(me, nr, nc, false);
+    }
 };
 
 template <>
 struct reshape_by_tag_impl<tag::minor, row_major_tag>
 {
-	/**
-	 * \brief Reshape the given matrix taken its elements in a row-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
-	template <typename ExprT>
-	BOOST_UBLAS_INLINE
-	static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
-	{
-		return reshape_impl(me, nr, nc, false);
-	}
+    /**
+     * \brief Reshape the given matrix taken its elements in a row-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
+    template <typename ExprT>
+    BOOST_UBLAS_INLINE
+    static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
+    {
+        return reshape_impl(me, nr, nc, false);
+    }
 };
 
 template <>
 struct reshape_by_tag_impl<tag::minor, column_major_tag>
 {
-	/**
-	 * \brief Reshape the given matrix taken its elements in a column-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
-	template <typename ExprT>
-	BOOST_UBLAS_INLINE
-	static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
-	{
-		return reshape_impl(me, nr, nc, true);
-	}
+    /**
+     * \brief Reshape the given matrix taken its elements in a column-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
+    template <typename ExprT>
+    BOOST_UBLAS_INLINE
+    static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
+    {
+        return reshape_impl(me, nr, nc, true);
+    }
 };
 
 
 template <>
 struct reshape_by_tag_impl<tag::leading, row_major_tag>
 {
-	/**
-	 * \brief Reshape the given matrix taken its elements in a row-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
-	template <typename ExprT>
-	BOOST_UBLAS_INLINE
-	static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
-	{
-		return reshape_impl(me, nr, nc, false);
-	}
+    /**
+     * \brief Reshape the given matrix taken its elements in a row-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
+    template <typename ExprT>
+    BOOST_UBLAS_INLINE
+    static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
+    {
+        return reshape_impl(me, nr, nc, false);
+    }
 };
 
 
 template <>
 struct reshape_by_tag_impl<tag::leading, column_major_tag>
 {
-	/**
-	 * \brief Reshape the given matrix taken its elements in a column-wise way.
-	 * \tparam ExprT A matrix expression type.
-	 * \pre ExprT must be a model of MatrixExpression.
-	 */
-	template <typename ExprT>
-	BOOST_UBLAS_INLINE
-	static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
-	{
-		return reshape_impl(me, nr, nc, true);
-	}
+    /**
+     * \brief Reshape the given matrix taken its elements in a column-wise way.
+     * \tparam ExprT A matrix expression type.
+     * \pre ExprT must be a model of MatrixExpression.
+     */
+    template <typename ExprT>
+    BOOST_UBLAS_INLINE
+    static typename reshape_traits<ExprT>::result_type apply(matrix_expression<ExprT> const& me, ::std::size_t nr, ::std::size_t nc)
+    {
+        return reshape_impl(me, nr, nc, true);
+    }
 };
 
 }} // Namespace detail::<unnamed>
@@ -335,30 +337,30 @@ struct reshape_by_tag_impl<tag::leading, column_major_tag>
 template <typename T>
 struct reshape_traits
 {
-	typedef matrix<typename T::value_type> result_type;
+    typedef matrix<typename T::value_type> result_type;
 };
 
 template <typename VectorExprT>
 struct reshape_traits< vector_expression<VectorExprT> >
 {
-	typedef matrix<typename vector_traits<VectorExprT>::value_type> result_type;
+    typedef matrix<typename vector_traits<VectorExprT>::value_type> result_type;
 };
 
 template <typename MatrixExprT>
 struct reshape_traits< matrix_expression<MatrixExprT> >
 {
-//	typedef typename matrix_temporary_traits<MatrixExprT>::type result_type;
-	typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_type;
+//  typedef typename matrix_temporary_traits<MatrixExprT>::type result_type;
+    typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_type;
 };
 
 
 template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename reshape_traits<VectorExprT>::result_type reshape(vector_expression<VectorExprT> const& ve,
-														  ::std::size_t nr,
-														  ::std::size_t nc)
+                                                          ::std::size_t nr,
+                                                          ::std::size_t nc)
 {
-	return detail::reshape_impl(ve, nr, nc);
+    return detail::reshape_impl(ve, nr, nc);
 }
 
 
@@ -376,13 +378,13 @@ typename reshape_traits<MatrixExprT>::result_type reshape(matrix_expression<Matr
 template <typename TagT, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename ::boost::lazy_enable_if_c<
-	detail::has_matrix_temp_type<MatrixExprT>::value,
-	detail::matrix_temp_type<MatrixExprT>
+    detail::has_matrix_temp_type<MatrixExprT>::value,
+    detail::matrix_temp_type<MatrixExprT>
 >::type reshape(matrix_expression<MatrixExprT> const& me,
-				::std::size_t nr,
-				::std::size_t nc)
+                ::std::size_t nr,
+                ::std::size_t nc)
 {
-	return detail::reshape_by_tag_impl<TagT, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
+    return detail::reshape_by_tag_impl<TagT, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
 }
  *
  * [END] Does Not Work!
@@ -392,10 +394,10 @@ typename ::boost::lazy_enable_if_c<
 template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename reshape_traits<MatrixExprT>::result_type reshape(matrix_expression<MatrixExprT> const& me,
-															::std::size_t nr,
-															::std::size_t nc)
+                                                            ::std::size_t nr,
+                                                            ::std::size_t nc)
 {
-	return detail::reshape_by_dim_impl<1>::template apply(me, nr, nc);
+    return detail::reshape_by_dim_impl<1>::template apply(me, nr, nc);
 }
 
 
@@ -403,12 +405,12 @@ template <std::size_t Dim, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 void reshape_inplace(matrix_container<MatrixExprT>& mc, ::std::size_t nr, ::std::size_t nc)
 {
-	typedef typename reshape_traits<MatrixExprT>::result_type work_matrix_type;
+    typedef typename reshape_traits<MatrixExprT>::result_type work_matrix_type;
 
-	work_matrix_type res;
-	res = reshape<Dim>(mc, nr, nc);
-	mc().resize(nr, nc, false);
-	mc() = res;
+    work_matrix_type res;
+    res = reshape<Dim>(mc, nr, nc);
+    mc().resize(nr, nc, false);
+    mc() = res;
 }
 
 
@@ -418,15 +420,15 @@ void reshape_inplace(matrix_container<MatrixExprT>& mc, ::std::size_t nr, ::std:
 template <typename TagT, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 void reshape_inplace(matrix_container<MatrixExprT>& mc,
-					 ::std::size_t nr,
-					 ::std::size_t nc)
+                     ::std::size_t nr,
+                     ::std::size_t nc)
 {
-	typedef typename reshape_traits<MatrixExprT>::result_type work_matrix_type;
+    typedef typename reshape_traits<MatrixExprT>::result_type work_matrix_type;
 
-	work_matrix_type res;
-	res = reshape<TagT>(mc, nr, nc);
-	mc().resize(nr, nc, false);
-	mc() = res;
+    work_matrix_type res;
+    res = reshape<TagT>(mc, nr, nc);
+    mc().resize(nr, nc, false);
+    mc() = res;
 }
  *
  * [END] Does Not Work!
@@ -436,15 +438,15 @@ void reshape_inplace(matrix_container<MatrixExprT>& mc,
 template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 void reshape_inplace(matrix_container<MatrixExprT>& mc,
-					 ::std::size_t nr,
-					 ::std::size_t nc)
+                     ::std::size_t nr,
+                     ::std::size_t nc)
 {
-	typedef typename reshape_traits<MatrixExprT>::result_type work_matrix_type;
+    typedef typename reshape_traits<MatrixExprT>::result_type work_matrix_type;
 
-	work_matrix_type res;
-	res = reshape(mc, nr, nc);
-	mc().resize(nr, nc, false);
-	mc() = res;
+    work_matrix_type res;
+    res = reshape(mc, nr, nc);
+    mc().resize(nr, nc, false);
+    mc() = res;
 }
 
 }}} // Namespace boost::numeric::ublasx

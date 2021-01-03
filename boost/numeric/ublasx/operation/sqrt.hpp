@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/sqrt.hpp
  *
@@ -32,30 +34,30 @@ namespace detail {
 template <typename VectorExprT>
 struct vector_sqrt_functor_traits
 {
-	typedef VectorExprT input_expression_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef vector_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef VectorExprT input_expression_type;
+    typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
+    typedef signature_argument_type signature_result_type;
+    typedef vector_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename MatrixExprT>
 struct matrix_sqrt_functor_traits
 {
-	typedef MatrixExprT input_expression_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef matrix_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef MatrixExprT input_expression_type;
+    typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
+    typedef signature_argument_type signature_result_type;
+    typedef matrix_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 namespace /*<unnamed>*/ {
@@ -68,7 +70,7 @@ template <typename T>
 BOOST_UBLAS_INLINE
 T sqrt_impl(T const& x)
 {
-	return ::std::sqrt(x);
+    return ::std::sqrt(x);
 }
 
 } // Namespace <unnamed>
@@ -91,16 +93,16 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename detail::vector_sqrt_functor_traits<VectorExprT>::result_type sqrt(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
+    typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::expression_type expression_type;
+    typedef typename detail::vector_sqrt_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
 
-	return expression_type(ve(), detail::sqrt_impl<signature_argument_type>);
-//	return expression_type(ve(), ::std::sqrt<signature_argument_type>);
-//	return expression_type(ve(), ::std::sqrt<signature_result_type>);
-//	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-//	fun_ptr_type ptr_sqrt_fun(&::std::sqrt);
-//	return expression_type(ve(), ptr_sqrt_fun);
-//	return expression_type(ve(), (signature_result_type (*)(signature_argument_type))&::std::sqrt);
+    return expression_type(ve(), detail::sqrt_impl<signature_argument_type>);
+//  return expression_type(ve(), ::std::sqrt<signature_argument_type>);
+//  return expression_type(ve(), ::std::sqrt<signature_result_type>);
+//  typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
+//  fun_ptr_type ptr_sqrt_fun(&::std::sqrt);
+//  return expression_type(ve(), ptr_sqrt_fun);
+//  return expression_type(ve(), (signature_result_type (*)(signature_argument_type))&::std::sqrt);
 }
 
 
@@ -119,16 +121,16 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename detail::matrix_sqrt_functor_traits<MatrixExprT>::result_type sqrt(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
+    typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::expression_type expression_type;
+    typedef typename detail::matrix_sqrt_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
 
-	return expression_type(me(), detail::sqrt_impl<signature_argument_type>);
-//	return expression_type(me(), ::std::sqrt<signature_argument_type>);
-//	return expression_type(me(), ::std::sqrt<signature_result_type>);
-//	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-//	fun_ptr_type ptr_sqrt_fun(&::std::sqrt);
-//	return expression_type(me(), ptr_sqrt_fun);
-//	return expression_type(me(), (signature_result_type (*)(signature_argument_type))&::std::sqrt);
+    return expression_type(me(), detail::sqrt_impl<signature_argument_type>);
+//  return expression_type(me(), ::std::sqrt<signature_argument_type>);
+//  return expression_type(me(), ::std::sqrt<signature_result_type>);
+//  typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
+//  fun_ptr_type ptr_sqrt_fun(&::std::sqrt);
+//  return expression_type(me(), ptr_sqrt_fun);
+//  return expression_type(me(), (signature_result_type (*)(signature_argument_type))&::std::sqrt);
 }
 
 }}} // Namespace boost::numeric::ublasx

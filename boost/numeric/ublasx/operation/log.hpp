@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/log.hpp
  *
@@ -32,30 +34,30 @@ namespace detail {
 template <typename VectorExprT>
 struct vector_log_functor_traits
 {
-	typedef VectorExprT input_expression_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef vector_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef VectorExprT input_expression_type;
+    typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
+    typedef signature_argument_type signature_result_type;
+    typedef vector_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename MatrixExprT>
 struct matrix_log_functor_traits
 {
-	typedef MatrixExprT input_expression_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef matrix_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef MatrixExprT input_expression_type;
+    typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
+    typedef signature_argument_type signature_result_type;
+    typedef matrix_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
@@ -66,7 +68,7 @@ template <typename T>
 BOOST_UBLAS_INLINE
 T log(T x)
 {
-	return ::std::log(x);
+    return ::std::log(x);
 }
 
 } // Namespace <unnamed>
@@ -90,10 +92,10 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename detail::vector_log_functor_traits<VectorExprT>::result_type log(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename detail::vector_log_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_log_functor_traits<VectorExprT>::signature_result_type signature_result_type;
+    typedef typename detail::vector_log_functor_traits<VectorExprT>::expression_type expression_type;
+    typedef typename detail::vector_log_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 
-	return expression_type(ve(), detail::log<signature_result_type>);
+    return expression_type(ve(), detail::log<signature_result_type>);
 }
 
 
@@ -113,10 +115,10 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename detail::matrix_log_functor_traits<MatrixExprT>::result_type log(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename detail::matrix_log_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_log_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
+    typedef typename detail::matrix_log_functor_traits<MatrixExprT>::expression_type expression_type;
+    typedef typename detail::matrix_log_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 
-	return expression_type(me(), detail::log<signature_result_type>);
+    return expression_type(me(), detail::log<signature_result_type>);
 }
 
 }}} // Namespace boost::numeric::ublasx

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/num_columns.hpp
  *
@@ -47,7 +49,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::size_type num_columns(matrix_expression<MatrixExprT> const& me)
 {
-	return me().size2();
+    return me().size2();
 }
 
 

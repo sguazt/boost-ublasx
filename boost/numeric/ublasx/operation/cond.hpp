@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/cond.hpp
  *
@@ -24,9 +26,9 @@
  * given matrix p-norm, is defined as:
  * \f{equation}
  *  \kappa(A) = \begin{cases}
- *  			 \|A\|_p \|A^{-1}\|_p & A \text{ is not singular},\\
- *  			 +\infty, & A \text{ is singular}
- *  			\end{cases}
+ *               \|A\|_p \|A^{-1}\|_p & A \text{ is not singular},\\
+ *               +\infty, & A \text{ is singular}
+ *              \end{cases}
  * \f}
  *
  * <hr/>
@@ -69,76 +71,76 @@ namespace detail { namespace /*<unnamed>*/ {
 
 enum norm_categories
 {
-	norm_inf_category = -1,
-	norm_frobenius_category = 0,
-	norm_1_category = 1,
-	norm_2_category = 2
+    norm_inf_category = -1,
+    norm_frobenius_category = 0,
+    norm_1_category = 1,
+    norm_2_category = 2
 };
 
 
 template <int Norm, typename MatrixExprT>
 typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type cond_impl(matrix_expression<MatrixExprT> const& A)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename type_traits<value_type>::real_type real_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename type_traits<value_type>::real_type real_type;
 
-	// pre: A is square OR (A is rectangular AND norm is 2)
-	if (num_rows(A) != num_columns(A) && Norm != norm_2_category)
-	{
-		throw ::std::invalid_argument("[boost::numeric::ublasx::detail::cond_impl] For rectangular matrices use the 2 norm.");
-	}
+    // pre: A is square OR (A is rectangular AND norm is 2)
+    if (num_rows(A) != num_columns(A) && Norm != norm_2_category)
+    {
+        throw ::std::invalid_argument("[boost::numeric::ublasx::detail::cond_impl] For rectangular matrices use the 2 norm.");
+    }
 
-	real_type c;
+    real_type c;
 
-	switch (Norm)
-	{
-		case norm_frobenius_category: // Frobenius norm
-			try
-			{
-				c = norm_frobenius(A)*norm_frobenius(inv(A));
-			}
-			catch (...)
-			{
-				c = ::std::numeric_limits<real_type>::infinity();
-			}
-			break;
-		case norm_inf_category: // Infinity norm
-			try
-			{
-				c = norm_inf(A)*norm_inf(inv(A));
-			}
-			catch (...)
-			{
-				c = ::std::numeric_limits<real_type>::infinity();
-			}
-			break;
-		case norm_1_category: // 1-norm
-			try
-			{
-				c = norm_1(A)*norm_1(inv(A));
-			}
-			catch (...)
-			{
-				c = ::std::numeric_limits<real_type>::infinity();
-			}
-			break;
-		case norm_2_category: // 2-norm
-			{
-				vector<real_type> s = svd_values(A);
-				if (any(s, ::std::bind2nd(::std::equal_to<real_type>(), 0)))
-				{
-					// Singular matrix
-					c = ::std::numeric_limits<real_type>::infinity();
-				}
-				else
-				{
-					c = max(s)/min(s);
-				}
-			}
-			break;
-	}
+    switch (Norm)
+    {
+        case norm_frobenius_category: // Frobenius norm
+            try
+            {
+                c = norm_frobenius(A)*norm_frobenius(inv(A));
+            }
+            catch (...)
+            {
+                c = ::std::numeric_limits<real_type>::infinity();
+            }
+            break;
+        case norm_inf_category: // Infinity norm
+            try
+            {
+                c = norm_inf(A)*norm_inf(inv(A));
+            }
+            catch (...)
+            {
+                c = ::std::numeric_limits<real_type>::infinity();
+            }
+            break;
+        case norm_1_category: // 1-norm
+            try
+            {
+                c = norm_1(A)*norm_1(inv(A));
+            }
+            catch (...)
+            {
+                c = ::std::numeric_limits<real_type>::infinity();
+            }
+            break;
+        case norm_2_category: // 2-norm
+            {
+                vector<real_type> s = svd_values(A);
+                if (any(s, ::std::bind2nd(::std::equal_to<real_type>(), 0)))
+                {
+                    // Singular matrix
+                    c = ::std::numeric_limits<real_type>::infinity();
+                }
+                else
+                {
+                    c = max(s)/min(s);
+                }
+            }
+            break;
+    }
 
-	return c;
+    return c;
 }
 
 }} // Namespace detail::<unnamed>
@@ -158,7 +160,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type cond_1(matrix_expression<MatrixExprT> const& A)
 {
-	return detail::cond_impl<detail::norm_1_category>(A);
+    return detail::cond_impl<detail::norm_1_category>(A);
 }
 
 
@@ -176,7 +178,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type cond_2(matrix_expression<MatrixExprT> const& A)
 {
-	return detail::cond_impl<detail::norm_2_category>(A);
+    return detail::cond_impl<detail::norm_2_category>(A);
 }
 
 
@@ -194,7 +196,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type cond_inf(matrix_expression<MatrixExprT> const& A)
 {
-	return detail::cond_impl<detail::norm_inf_category>(A);
+    return detail::cond_impl<detail::norm_inf_category>(A);
 }
 
 
@@ -212,7 +214,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type cond_frobenius(matrix_expression<MatrixExprT> const& A)
 {
-	return detail::cond_impl<detail::norm_frobenius_category>(A);
+    return detail::cond_impl<detail::norm_frobenius_category>(A);
 }
 
 
@@ -230,7 +232,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type cond(matrix_expression<MatrixExprT> const& A)
 {
-	return detail::cond_impl<detail::norm_2_category>(A);
+    return detail::cond_impl<detail::norm_2_category>(A);
 }
 
 }}} // Namespace boost::numeric::ublasx

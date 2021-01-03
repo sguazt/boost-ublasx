@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file path/to/include/file.hpp
  *
@@ -42,16 +44,16 @@ template <typename MatrixT>
 struct rot90_matrix_traits
 {
 //Not all matrix types have this type (e.g., scalar_matrix<>)
-//	typedef typename detail::matrix_temporary_traits<MatrixT>::type result_type;
-	typedef matrix<typename matrix_traits<MatrixT>::value_type> result_type;
+//  typedef typename detail::matrix_temporary_traits<MatrixT>::type result_type;
+    typedef matrix<typename matrix_traits<MatrixT>::value_type> result_type;
 };
 
 template <typename VectorT>
 struct rot90_vector_traits
 {
 //Not all vector types have this type (e.g., scalar_vector<>)
-//	typedef typename detail::vector_temporary_traits<VectorT>::type result_type;
-	typedef vector<typename vector_traits<VectorT>::value_type> result_type;
+//  typedef typename detail::vector_temporary_traits<VectorT>::type result_type;
+    typedef vector<typename vector_traits<VectorT>::value_type> result_type;
 };
 
 } // Namespace detail
@@ -61,39 +63,39 @@ struct rot90_vector_traits
 template <typename VectorT>
 typename detail::rot90_vector_traits<VectorT>::result_type rot90(vector_expression<VectorT> const& v, int k=1)
 {
-	typedef typename detail::rot90_vector_traits<VectorT>::result_type result_type;
-	typedef typename vector_traits<VectorT>::size_type size_type;
+    typedef typename detail::rot90_vector_traits<VectorT>::result_type result_type;
+    typedef typename vector_traits<VectorT>::size_type size_type;
 
-	size_type n(ublasx::size(v));
+    size_type n(ublasx::size(v));
 
-	result_type x;
+    result_type x;
 
-	// Make sure k \in {0, 1, 2, 3}
-	k %= 4;
-	if (k < 0)
-	{
-		k += 4;
-	}
+    // Make sure k \in {0, 1, 2, 3}
+    k %= 4;
+    if (k < 0)
+    {
+        k += 4;
+    }
 
-	// NOTE: uBLAS makes no distinction between row and column vector.
-	//       So rotations for k=0 and k=1 are considered identical.
-	//       The same applies for rotations for k=2 and k=3.
+    // NOTE: uBLAS makes no distinction between row and column vector.
+    //       So rotations for k=0 and k=1 are considered identical.
+    //       The same applies for rotations for k=2 and k=3.
 
-	if (k == 2 || k == 3)
-	{
-		x.resize(n, false);
+    if (k == 2 || k == 3)
+    {
+        x.resize(n, false);
 
-		for (size_type i = 0; i < n; ++i)
-		{
-			x(n-i-1) = v()(i);
-		}
-	}
-	else
-	{
-		x = v;
-	}
+        for (size_type i = 0; i < n; ++i)
+        {
+            x(n-i-1) = v()(i);
+        }
+    }
+    else
+    {
+        x = v;
+    }
 
-	return x;
+    return x;
 }
 
 
@@ -102,7 +104,7 @@ template <typename VectorT>
 BOOST_UBLAS_INLINE
 void rot90_inplace(vector_container<VectorT>& v, int k=1)
 {
-	v() = rot90(v, k);
+    v() = rot90(v, k);
 }
 
 
@@ -110,57 +112,57 @@ void rot90_inplace(vector_container<VectorT>& v, int k=1)
 template <typename MatrixT>
 typename detail::rot90_matrix_traits<MatrixT>::result_type rot90(matrix_expression<MatrixT> const& A, int k=1)
 {
-	typedef typename detail::rot90_matrix_traits<MatrixT>::result_type result_type;
-	typedef typename matrix_traits<MatrixT>::size_type size_type;
+    typedef typename detail::rot90_matrix_traits<MatrixT>::result_type result_type;
+    typedef typename matrix_traits<MatrixT>::size_type size_type;
 
-	size_type nr(ublasx::num_rows(A));
-	size_type nc(ublasx::num_columns(A));
+    size_type nr(ublasx::num_rows(A));
+    size_type nc(ublasx::num_columns(A));
 
-	result_type X;
+    result_type X;
 
-	// Make sure k \in {0, 1, 2, 3}
-	k %= 4;
-	if (k < 0)
-	{
-		k += 4;
-	}
+    // Make sure k \in {0, 1, 2, 3}
+    k %= 4;
+    if (k < 0)
+    {
+        k += 4;
+    }
 
-	if (k == 1)
-	{
-		X.resize(nc, nr, false);
+    if (k == 1)
+    {
+        X.resize(nc, nr, false);
 
-		for (size_type c = 0; c < nc; ++c)
-		{
-			row(X, nc-c-1) = column(A(), c);
-		}
-	}
-	else if (k == 2)
-	{
-		X.resize(nr, nc, false);
+        for (size_type c = 0; c < nc; ++c)
+        {
+            row(X, nc-c-1) = column(A(), c);
+        }
+    }
+    else if (k == 2)
+    {
+        X.resize(nr, nc, false);
 
-		for (size_type r = 0; r < nr; ++r)
-		{
-			for (size_type c = 0; c < nc; ++c)
-			{
-				X(nr-r-1,nc-c-1) = A()(r,c);
-			}
-		}
-	}
-	else if (k == 3)
-	{
-		X.resize(nc, nr, false);
+        for (size_type r = 0; r < nr; ++r)
+        {
+            for (size_type c = 0; c < nc; ++c)
+            {
+                X(nr-r-1,nc-c-1) = A()(r,c);
+            }
+        }
+    }
+    else if (k == 3)
+    {
+        X.resize(nc, nr, false);
 
-		for (size_type r = 0; r < nr; ++r)
-		{
-			column(X, nr-r-1) = row(A(), r);
-		}
-	}
-	else
-	{
-		X = A;
-	}
+        for (size_type r = 0; r < nr; ++r)
+        {
+            column(X, nr-r-1) = row(A(), r);
+        }
+    }
+    else
+    {
+        X = A;
+    }
 
-	return X;
+    return X;
 }
 
 /// Rotate the given matrix counterclockwise by (a multiple of) 90 degrees
@@ -168,7 +170,7 @@ template <typename MatrixT>
 BOOST_UBLAS_INLINE
 void rot90_inplace(matrix_container<MatrixT>& A, int k=1)
 {
-	A() = rot90(A, k);
+    A() = rot90(A, k);
 }
 
 

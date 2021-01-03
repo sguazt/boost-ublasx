@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/trace.hpp
  *
@@ -12,8 +14,8 @@
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
-#ifndef BOOST_NUMERIC_UBLASX_OPERATION_HPP
-#define BOOST_NUMERIC_UBLASX_OPERATION_HPP
+#ifndef BOOST_NUMERIC_UBLASX_OPERATION_TRACE_HPP
+#define BOOST_NUMERIC_UBLASX_OPERATION_TRACE_HPP
 
 
 #include <algorithm>
@@ -46,21 +48,21 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename ublas::matrix_traits<MatrixExprT>::value_type trace(ublas::matrix_expression<MatrixExprT> const& A)
 {
-	typedef typename ublas::matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename ublas::matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename ublas::matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename ublas::matrix_traits<MatrixExprT>::size_type size_type;
 
-	size_type n = ::std::min(num_rows(A), num_columns(A));
-	value_type res = 0;
+    size_type n = ::std::min(num_rows(A), num_columns(A));
+    value_type res = 0;
 
-	for (size_type i = 0; i < n; ++i)
-	{
-		res += A()(i,i);
-	}
+    for (size_type i = 0; i < n; ++i)
+    {
+        res += A()(i,i);
+    }
 
-	return res;
+    return res;
 }
 
 }}} // Namespace boost::numeric::ublasx
 
 
-#endif // BOOST_NUMERIC_UBLASX_OPERATION_HPP
+#endif // BOOST_NUMERIC_UBLASX_OPERATION_TRACE_HPP

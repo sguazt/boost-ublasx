@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/mldivide.hpp
  *
@@ -31,43 +33,43 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 template<typename AMatrixT,
-		 typename BVectorT>
+         typename BVectorT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixT>::size_type mldivide_inplace(matrix_expression<AMatrixT> const& A,
-															 vector_container<BVectorT>& b)
+                                                             vector_container<BVectorT>& b)
 {
-	return lu_solve_inplace(A, b);
+    return lu_solve_inplace(A, b);
 }
 
 template<typename AMatrixT,
-		 typename BVectorT,
-		 typename XVectorT>
+         typename BVectorT,
+         typename XVectorT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixT>::size_type mldivide(matrix_expression<AMatrixT> const& A,
-													 vector_expression<BVectorT> const& b,
-													 vector_container<XVectorT>& x)
+                                                     vector_expression<BVectorT> const& b,
+                                                     vector_container<XVectorT>& x)
 {
-	return lu_solve(A, b, x());
+    return lu_solve(A, b, x());
 }
 
 template<typename AMatrixT,
-		 typename BMatrixT>
+         typename BMatrixT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixT>::size_type mldivide_inplace(matrix_expression<AMatrixT> const& A,
-															 matrix_container<BMatrixT>& B)
+                                                             matrix_container<BMatrixT>& B)
 {
-	return lu_solve_inplace(A, B);
+    return lu_solve_inplace(A, B);
 }
 
 template<typename AMatrixT,
-		 typename BMatrixT,
-		 typename XMatrixT>
+         typename BMatrixT,
+         typename XMatrixT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixT>::size_type mldivide(matrix_expression<AMatrixT> const& A,
-													 matrix_expression<BMatrixT> const& B,
-													 matrix_container<XMatrixT>& X)
+                                                     matrix_expression<BMatrixT> const& B,
+                                                     matrix_container<XMatrixT>& X)
 {
-	return lu_solve(A, B, X());
+    return lu_solve(A, B, X());
 }
 
 }}} // Namespace boost::numeric::ublasx

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/eps.hpp
  *
@@ -49,10 +51,10 @@ template <typename RealT>
 BOOST_UBLAS_INLINE
 typename type_traits<RealT>::real_type eps()
 {
-	// NOTE: type_traits<>::real_type is used in case of RealT is a non real
-	//       type (e.g., std::complex).
+    // NOTE: type_traits<>::real_type is used in case of RealT is a non real
+    //       type (e.g., std::complex).
 
-	return ::std::numeric_limits<typename type_traits<RealT>::real_type>::epsilon();
+    return ::std::numeric_limits<typename type_traits<RealT>::real_type>::epsilon();
 }
 
 
@@ -69,29 +71,29 @@ template <typename RealT>
 BOOST_UBLAS_INLINE
 typename type_traits<RealT>::real_type eps(RealT x)
 {
-	// NOTE: type_traits<>::real_type is used in case of RealT is a non real
-	//       type (e.g., std::complex).
+    // NOTE: type_traits<>::real_type is used in case of RealT is a non real
+    //       type (e.g., std::complex).
 
-	typedef typename type_traits<RealT>::real_type real_type;
-	real_type y = ::std::abs(x);
+    typedef typename type_traits<RealT>::real_type real_type;
+    real_type y = ::std::abs(x);
 
-	if (y == ::std::numeric_limits<real_type>::infinity()
-		||
-		::std::isnan(y))
-	{
-		return ::std::numeric_limits<real_type>::quiet_NaN();
-	}
-	else if (y <= ::std::numeric_limits<real_type>::min())
-	{
-		return ::std::numeric_limits<real_type>::denorm_min();
-	}
-	else
-	{
-		int e;
-		::std::frexp(y, &e);
+    if (y == ::std::numeric_limits<real_type>::infinity()
+        ||
+        ::std::isnan(y))
+    {
+        return ::std::numeric_limits<real_type>::quiet_NaN();
+    }
+    else if (y <= ::std::numeric_limits<real_type>::min())
+    {
+        return ::std::numeric_limits<real_type>::denorm_min();
+    }
+    else
+    {
+        int e;
+        ::std::frexp(y, &e);
 
-		return ::std::ldexp(1, e - ::std::numeric_limits<real_type>::digits);
-	}
+        return ::std::ldexp(1, e - ::std::numeric_limits<real_type>::digits);
+    }
 }
 
 }}} // Namespace boost::numeric::ublasx

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/detail/compiler.hpp
  *
@@ -26,7 +28,7 @@ inline void suppress_unused_variable_warning(T const&) {}
 
 /// Suppress warnings issued by the compiler for not using variable \a x.
 #define BOOST_UBLASX_SUPPRESS_UNUSED_VARIABLE_WARNING(x) \
-	::boost::numeric::ublasx::detail::suppress_unused_variable_warning(x)
+    ::boost::numeric::ublasx::detail::suppress_unused_variable_warning(x)
 
 
 #endif // BOOST_NUMERIC_UBLASX_DETAIL_COMPILER_HPP

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/triu.hpp
  *
@@ -41,75 +43,75 @@ using namespace ::boost::numeric::ublas;
 template <typename MatrixT>
 struct triu_traits
 {
-//	typedef generalized_triangular_adaptor<MatrixT,upper> triangular_matrix_type;
-	typedef matrix<typename matrix_traits<MatrixT>::value_type,
-				   typename layout_type<MatrixT>::type> triangular_matrix_type;
+//  typedef generalized_triangular_adaptor<MatrixT,upper> triangular_matrix_type;
+    typedef matrix<typename matrix_traits<MatrixT>::value_type,
+                   typename layout_type<MatrixT>::type> triangular_matrix_type;
 };
 
 
 template <typename MatrixExprT>
 typename triu_traits<MatrixExprT>::triangular_matrix_type triu(matrix_expression<MatrixExprT> const& A,
-															   typename matrix_traits<MatrixExprT>::difference_type k=0)
+                                                               typename matrix_traits<MatrixExprT>::difference_type k=0)
 {
-	typedef typename triu_traits<MatrixExprT>::triangular_matrix_type triangular_matrix_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::difference_type difference_type;
+    typedef typename triu_traits<MatrixExprT>::triangular_matrix_type triangular_matrix_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::difference_type difference_type;
 
-//	return triangular_matrix_type(A());
+//  return triangular_matrix_type(A());
 
-	const difference_type zero(0);
-	size_type nr(num_rows(A));
-	size_type nc(num_columns(A));
+    const difference_type zero(0);
+    size_type nr(num_rows(A));
+    size_type nc(num_columns(A));
 
-	triangular_matrix_type X(nr, nc, value_type/*zero*/());
+    triangular_matrix_type X(nr, nc, value_type/*zero*/());
 
-	size_type row_start(zero);
-	size_type row_stop;
+    size_type row_start(zero);
+    size_type row_stop;
 
-	if (k > zero)
-	{
-		row_stop = ::std::min(nr,nc-k);
-	}
-	else if (k < zero)
-	{
-		//row_stop = ::std::min(nr,nc);
-		row_stop = nr;
-	}
-	else
-	{
-		row_stop = ::std::min(nr,nc);
-	}
+    if (k > zero)
+    {
+        row_stop = ::std::min(nr,nc-k);
+    }
+    else if (k < zero)
+    {
+        //row_stop = ::std::min(nr,nc);
+        row_stop = nr;
+    }
+    else
+    {
+        row_stop = ::std::min(nr,nc);
+    }
 
-	for (size_type r = row_start; r < row_stop; ++r)
-	{
-		size_type col_start(zero);
-		size_type col_stop(nc);
+    for (size_type r = row_start; r < row_stop; ++r)
+    {
+        size_type col_start(zero);
+        size_type col_stop(nc);
 
-		if (k > zero)
-		{
-			col_start = r+::std::max(zero,k);
-			//col_start = ::std::max(static_cast<difference_type>(r-k-1), zero);
-			col_stop = nc;
-		}
-		else if (k < zero)
-		{
-			col_start = ::std::max(static_cast<difference_type>(r+k), zero);
-			col_stop = nc;
-		}
-		else
-		{
-			col_start = r+k;
-			col_stop = nc;
-		}
+        if (k > zero)
+        {
+            col_start = r+::std::max(zero,k);
+            //col_start = ::std::max(static_cast<difference_type>(r-k-1), zero);
+            col_stop = nc;
+        }
+        else if (k < zero)
+        {
+            col_start = ::std::max(static_cast<difference_type>(r+k), zero);
+            col_stop = nc;
+        }
+        else
+        {
+            col_start = r+k;
+            col_stop = nc;
+        }
 
-		for (size_type c = col_start; c < col_stop; ++c)
-		{
-			X(r,c) = A()(r,c);
-		}
-	}
+        for (size_type c = col_start; c < col_stop; ++c)
+        {
+            X(r,c) = A()(r,c);
+        }
+    }
 
-	return X;
+    return X;
 }
 
 }}} // Namespace boost::numeric::ublasx

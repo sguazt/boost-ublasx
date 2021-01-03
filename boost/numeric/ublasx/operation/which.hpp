@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/which.hpp
  *
@@ -85,21 +87,21 @@ template <typename VectorExprT, typename UnaryPredicateT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::size_type> which(vector_expression<VectorExprT> const& ve, UnaryPredicateT p)
 {
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
 
-	vector<size_type> res;
-	size_type n = size(ve);
-	size_type j = 0;
-	for (size_type i = 0; i < n; ++i)
-	{
-		if (p(ve()(i)))
-		{
-			res.resize(res.size()+1);
-			res(j++) = i;
-		}
-	}
+    vector<size_type> res;
+    size_type n = size(ve);
+    size_type j = 0;
+    for (size_type i = 0; i < n; ++i)
+    {
+        if (p(ve()(i)))
+        {
+            res.resize(res.size()+1);
+            res(j++) = i;
+        }
+    }
 
-	return res;
+    return res;
 }
 
 
@@ -107,7 +109,7 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::size_type> which(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename vector_traits<VectorExprT>::value_type value_type;
+    typedef typename vector_traits<VectorExprT>::value_type value_type;
 
     return which(ve, ::std::bind2nd(::std::not_equal_to<value_type>(), 0));
 }

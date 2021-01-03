@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/any.hpp
  *
@@ -115,35 +117,35 @@ template <typename VectorExprT, typename UnaryPredicateT>
 BOOST_UBLAS_INLINE
 bool any(vector_expression<VectorExprT> const& ve, UnaryPredicateT p)
 {
-	// Implementation Note:
-	//  Currently (06-2010) there are only iterators that skip zero-valued
-	//  elements.
-	//  So the iteration is done through plain indices instead of iterators.
+    // Implementation Note:
+    //  Currently (06-2010) there are only iterators that skip zero-valued
+    //  elements.
+    //  So the iteration is done through plain indices instead of iterators.
 
-//	typedef typename vector_traits<VectorExprT>::const_iterator iterator_type;
+//  typedef typename vector_traits<VectorExprT>::const_iterator iterator_type;
 //
-//	iterator_type it_end = end(ve);
-//	for (iterator_type it = begin(ve); it != it_end; ++it)
-//	{
-//		if (p(*it))
-//		{
-//			return true;
-//		}
-//	}
+//  iterator_type it_end = end(ve);
+//  for (iterator_type it = begin(ve); it != it_end; ++it)
+//  {
+//      if (p(*it))
+//      {
+//          return true;
+//      }
+//  }
 //
 
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
 
-	size_type n = size(ve);
-	for (size_type i = 0; i < n; ++i)
-	{
-		if (p(ve()(i)))
-		{
-			return true;
-		}
-	}
+    size_type n = size(ve);
+    for (size_type i = 0; i < n; ++i)
+    {
+        if (p(ve()(i)))
+        {
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 
@@ -151,9 +153,9 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 bool any(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename vector_traits<VectorExprT>::value_type value_type;
+    typedef typename vector_traits<VectorExprT>::value_type value_type;
 
-	return any(ve, ::std::bind2nd(::std::not_equal_to<value_type>(), 0));
+    return any(ve, ::std::bind2nd(::std::not_equal_to<value_type>(), 0));
 }
 
 
@@ -161,43 +163,43 @@ template <typename MatrixExprT, typename UnaryPredicateT>
 BOOST_UBLAS_INLINE
 bool any(matrix_expression<MatrixExprT> const& me, UnaryPredicateT p)
 {
-	// Implementation Note:
-	//  Currently (06-2010) there are only iterators that skip zero-valued
-	//  elements.
-	//  So the iteration is done through plain indices instead of iterators.
+    // Implementation Note:
+    //  Currently (06-2010) there are only iterators that skip zero-valued
+    //  elements.
+    //  So the iteration is done through plain indices instead of iterators.
 
-//	typedef typename const_iterator_type<MatrixExprT,tag::major>::type maj_iterator_type;
-//	typedef typename const_iterator_type<MatrixExprT,tag::minor>::type min_iterator_type;
+//  typedef typename const_iterator_type<MatrixExprT,tag::major>::type maj_iterator_type;
+//  typedef typename const_iterator_type<MatrixExprT,tag::minor>::type min_iterator_type;
 //
-//	maj_iterator_type maj_it_end = end<tag::major>(me);
-//	for (maj_iterator_type maj_it = begin<tag::major>(me); maj_it != maj_it_end; ++maj_it)
-//	{
-//		min_iterator_type min_it_end = end(maj_it);
-//		for (min_iterator_type min_it = begin(maj_it); min_it != min_it_end; ++min_it)
-//		{
-//			if (p(*min_it))
-//			{
-//				return true;
-//			}
-//		}
-//	}
+//  maj_iterator_type maj_it_end = end<tag::major>(me);
+//  for (maj_iterator_type maj_it = begin<tag::major>(me); maj_it != maj_it_end; ++maj_it)
+//  {
+//      min_iterator_type min_it_end = end(maj_it);
+//      for (min_iterator_type min_it = begin(maj_it); min_it != min_it_end; ++min_it)
+//      {
+//          if (p(*min_it))
+//          {
+//              return true;
+//          }
+//      }
+//  }
 
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			if (p(me()(r,c)))
-			{
-				return true;
-			}
-		}
-	}
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            if (p(me()(r,c)))
+            {
+                return true;
+            }
+        }
+    }
 
-	return false;
+    return false;
 }
 
 
@@ -205,9 +207,9 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 bool any(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	return any(me, ::std::bind2nd(::std::not_equal_to<value_type>(), value_type(0)));
+    return any(me, ::std::bind2nd(::std::not_equal_to<value_type>(), value_type(0)));
 }
 
 //@} Definitions

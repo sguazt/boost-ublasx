@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/transform.hpp
  *
@@ -36,25 +38,25 @@ using namespace ::boost::numeric::ublas;
 //template <typename T, typename F>
 //struct scalar_unary_generic: public scalar_unary_functor<T>
 //{
-//	typedef typename scalar_unary_functor<T>::value_type value_type;
-//	typedef typename scalar_unary_functor<T>::argument_type argument_type;
-//	typedef typename scalar_unary_functor<T>::result_type result_type;
-//	//typedef typename F::result_type result_type;
+//  typedef typename scalar_unary_functor<T>::value_type value_type;
+//  typedef typename scalar_unary_functor<T>::argument_type argument_type;
+//  typedef typename scalar_unary_functor<T>::result_type result_type;
+//  //typedef typename F::result_type result_type;
 //
-//	explicit scalar_unary_generic(F const& f)
-//	: f_(f)
-//	{
-//	}
+//  explicit scalar_unary_generic(F const& f)
+//  : f_(f)
+//  {
+//  }
 //
 //
-//	BOOST_UBLAS_INLINE
-//	result_type operator()(argument_type t)
-//	{
+//  BOOST_UBLAS_INLINE
+//  result_type operator()(argument_type t)
+//  {
 //std::cerr << "In scalar_unary_generic: " << t << std::endl;
-//		return f_(t);
-//	}
+//      return f_(t);
+//  }
 //
-//	boost::function<result_type (argument_type)> f_;
+//  boost::function<result_type (argument_type)> f_;
 //};
 //
 //} // Namespace detail
@@ -76,16 +78,16 @@ using namespace ::boost::numeric::ublas;
 template <typename VectorExprT, typename UnaryFunctorT>
 BOOST_UBLAS_INLINE
 typename vector_unary_functor_traits<
-	VectorExprT,
-	typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
+    VectorExprT,
+    typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
 >::result_type transform(vector_expression<VectorExprT> const& ve, UnaryFunctorT const& f)
 {
-	typedef typename vector_unary_functor_traits<
-				VectorExprT,
-				typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
-			>::expression_type expression_type;
+    typedef typename vector_unary_functor_traits<
+                VectorExprT,
+                typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
+            >::expression_type expression_type;
 
-	return expression_type(ve(), f);
+    return expression_type(ve(), f);
 }
 
 
@@ -105,28 +107,28 @@ typename vector_unary_functor_traits<
 template <typename MatrixExprT, typename UnaryFunctorT>
 BOOST_UBLAS_INLINE
 typename matrix_unary_functor_traits<
-	MatrixExprT,
-//	UnaryFunctorT
-	typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
-//	detail::scalar_unary_generic<
-//		typename matrix_traits<MatrixExprT>::value_type,
-//		UnaryFunctorT
-//	>
+    MatrixExprT,
+//  UnaryFunctorT
+    typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
+//  detail::scalar_unary_generic<
+//      typename matrix_traits<MatrixExprT>::value_type,
+//      UnaryFunctorT
+//  >
 >::result_type transform(matrix_expression<MatrixExprT> const& me, UnaryFunctorT const& f)
 {
-//	typedef detail::scalar_unary_generic<
-//			typename matrix_traits<MatrixExprT>::value_type,
-//			UnaryFunctorT
-//		> wrapper_functor_type;
+//  typedef detail::scalar_unary_generic<
+//          typename matrix_traits<MatrixExprT>::value_type,
+//          UnaryFunctorT
+//      > wrapper_functor_type;
 
-	typedef typename matrix_unary_functor_traits<
-			MatrixExprT,
-//			wrapper_functor_type
-			typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
-		>::expression_type expression_type;
+    typedef typename matrix_unary_functor_traits<
+            MatrixExprT,
+//          wrapper_functor_type
+            typename UnaryFunctorT::result_type (typename UnaryFunctorT::argument_type)
+        >::expression_type expression_type;
 
-	//return expression_type(me(), wrapper_functor_type(f));
-	return expression_type(me(), f);
+    //return expression_type(me(), wrapper_functor_type(f));
+    return expression_type(me(), f);
 }
 
 }}} // Namespace boost::numeric::ublasx

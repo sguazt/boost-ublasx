@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/max.hpp
  *
@@ -191,7 +193,7 @@ template <typename T>
 BOOST_UBLAS_INLINE
 bool greater_than_impl(T a, T b)
 {
-	return a > b;
+    return a > b;
 }
 
 
@@ -199,23 +201,23 @@ template <typename T>
 BOOST_UBLAS_INLINE
 bool greater_than_impl(::std::complex<T> const& a, ::std::complex<T> const& b)
 {
-	// For complex numbers compare modulus and phase angle
-	// Use the same logic used by MATLAB for the 'max' function:
+    // For complex numbers compare modulus and phase angle
+    // Use the same logic used by MATLAB for the 'max' function:
     // "For complex input A, max returns the complex number with the largest
     //  complex modulus (magnitude), computed with max(abs(A)). Then
     //  computes the largest phase angle with max(angle(x)), if necessary"
 
-	const T ax(::std::abs(a));
-	const T bx(::std::abs(b));
-	return ax > bx 
-		   || (ax == bx && ::std::arg(a) > ::std::arg(b));
+    const T ax(::std::abs(a));
+    const T bx(::std::abs(b));
+    return ax > bx 
+           || (ax == bx && ::std::arg(a) > ::std::arg(b));
 }
 
 
 template <typename T>
 struct minus_infinity
 {
-	static const T value;
+    static const T value;
 };
 template <typename T>
 const T minus_infinity<T>::value = ::std::numeric_limits<T>::has_infinity ? -::std::numeric_limits<T>::infinity() : ::std::numeric_limits<T>::min();
@@ -224,7 +226,7 @@ const T minus_infinity<T>::value = ::std::numeric_limits<T>::has_infinity ? -::s
 template <typename T>
 struct minus_infinity< ::std::complex<T> >
 {
-	static const ::std::complex<T> value;
+    static const ::std::complex<T> value;
 };
 template <typename T>
 //const ::std::complex<T> minus_infinity< ::std::complex<T> >::value = ::std::complex<T>(minus_infinity<T>::value,::std::numeric_limits<T>::quiet_NaN());
@@ -234,121 +236,121 @@ const ::std::complex<T> minus_infinity< ::std::complex<T> >::value = ::std::comp
 template <>
 struct max_by_dim_impl<1, vector_tag>
 {
-	template <typename VectorExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename vector_traits<VectorExprT>::value_type> apply(vector_expression<VectorExprT> const& ve)
-	{
-		typedef typename vector_traits<VectorExprT>::value_type value_type;
+    template <typename VectorExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename vector_traits<VectorExprT>::value_type> apply(vector_expression<VectorExprT> const& ve)
+    {
+        typedef typename vector_traits<VectorExprT>::value_type value_type;
 
-		vector<value_type> res(1);
+        vector<value_type> res(1);
 
-		res(0) = max(ve);
+        res(0) = max(ve);
 
-		return res;
-	}
+        return res;
+    }
 };
 
 
 template <>
 struct max_by_dim_impl<1, matrix_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_rows(me);
+    }
 };
 
 
 template <>
 struct max_by_dim_impl<2, matrix_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_columns(me);
+    }
 };
 
 
 template <>
 struct max_by_tag_impl<tag::major, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_rows(me);
+    }
 };
 
 
 template <>
 struct max_by_tag_impl<tag::minor, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_columns(me);
+    }
 };
 
 
 template <>
 struct max_by_tag_impl<tag::leading, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_columns(me);
+    }
 };
 
 
 template <>
 struct max_by_tag_impl<tag::major, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_columns(me);
+    }
 };
 
 
 template <>
 struct max_by_tag_impl<tag::minor, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_rows(me);
+    }
 };
 
 
 template <>
 struct max_by_tag_impl<tag::leading, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return max_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return max_rows(me);
+    }
 };
 
 
 template <typename TagT>
 struct max_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: max_by_tag_impl<TagT, matrix_tag, row_major_tag>
 {
-	// Empty
+    // Empty
 };
 
 //@} Definitions
@@ -362,25 +364,25 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename vector_traits<VectorExprT>::value_type max(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
-	typedef typename vector_traits<VectorExprT>::value_type value_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef typename vector_traits<VectorExprT>::value_type value_type;
 
-	size_type n = size(ve);
-//	value_type m = ::std::numeric_limits<value_type>::has_infinity
-//				   ? - ::std::numeric_limits<value_type>::infinity()
-//				   : ::std::numeric_limits<value_type>::min();
-	value_type m = detail::minus_infinity<value_type>::value;
+    size_type n = size(ve);
+//  value_type m = ::std::numeric_limits<value_type>::has_infinity
+//                 ? - ::std::numeric_limits<value_type>::infinity()
+//                 : ::std::numeric_limits<value_type>::min();
+    value_type m = detail::minus_infinity<value_type>::value;
 
-	for (size_type i = 0; i < n; ++i)
-	{
-//		if (ve()(i) > m)
-		if (detail::greater_than_impl(ve()(i), m))
-		{
-			m = ve()(i);
-		}
-	}
+    for (size_type i = 0; i < n; ++i)
+    {
+//      if (ve()(i) > m)
+        if (detail::greater_than_impl(ve()(i), m))
+        {
+            m = ve()(i);
+        }
+    }
 
-	return m;
+    return m;
 }
 
 
@@ -388,29 +390,29 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::value_type max(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
-//	value_type m = ::std::numeric_limits<value_type>::has_infinity
-//				   ? - ::std::numeric_limits<value_type>::infinity()
-//				   : ::std::numeric_limits<value_type>::min();
-	value_type m = detail::minus_infinity<value_type>::value;
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
+//  value_type m = ::std::numeric_limits<value_type>::has_infinity
+//                 ? - ::std::numeric_limits<value_type>::infinity()
+//                 : ::std::numeric_limits<value_type>::min();
+    value_type m = detail::minus_infinity<value_type>::value;
 
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-//			if (me()(r,c) > m)
-			if (detail::greater_than_impl(me()(r,c), m))
-			{
-				m = me()(r,c);
-			}
-		}
-	}
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+//          if (me()(r,c) > m)
+            if (detail::greater_than_impl(me()(r,c), m))
+            {
+                m = me()(r,c);
+            }
+        }
+    }
 
-	return m;
+    return m;
 }
 
 
@@ -418,34 +420,34 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> max_rows(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	vector<value_type> res(nr);
-	size_type j = 0;
-	for (size_type r = 0; r < nr; ++r)
-	{
-//		value_type m = ::std::numeric_limits<value_type>::has_infinity
-//					   ? - ::std::numeric_limits<value_type>::infinity()
-//					   : ::std::numeric_limits<value_type>::min();
-		value_type m = detail::minus_infinity<value_type>::value;
+    vector<value_type> res(nr);
+    size_type j = 0;
+    for (size_type r = 0; r < nr; ++r)
+    {
+//      value_type m = ::std::numeric_limits<value_type>::has_infinity
+//                     ? - ::std::numeric_limits<value_type>::infinity()
+//                     : ::std::numeric_limits<value_type>::min();
+        value_type m = detail::minus_infinity<value_type>::value;
 
-		for (size_type c = 0; c < nc; ++c)
-		{
-//			if (me()(r,c) > m)
-			if (detail::greater_than_impl(me()(r,c), m))
-			{
-				m = me()(r,c);
-			}
-		}
+        for (size_type c = 0; c < nc; ++c)
+        {
+//          if (me()(r,c) > m)
+            if (detail::greater_than_impl(me()(r,c), m))
+            {
+                m = me()(r,c);
+            }
+        }
 
-		res(j++) = m;
-	}
+        res(j++) = m;
+    }
 
-	return res;
+    return res;
 }
 
 
@@ -453,34 +455,34 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> max_columns(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	vector<value_type> res(nc);
-	size_type j = 0;
-	for (size_type c = 0; c < nc; ++c)
-	{
-//		value_type m = ::std::numeric_limits<value_type>::has_infinity
-//					   ? - ::std::numeric_limits<value_type>::infinity()
-//					   : ::std::numeric_limits<value_type>::min();
-		value_type m = detail::minus_infinity<value_type>::value;
+    vector<value_type> res(nc);
+    size_type j = 0;
+    for (size_type c = 0; c < nc; ++c)
+    {
+//      value_type m = ::std::numeric_limits<value_type>::has_infinity
+//                     ? - ::std::numeric_limits<value_type>::infinity()
+//                     : ::std::numeric_limits<value_type>::min();
+        value_type m = detail::minus_infinity<value_type>::value;
 
-		for (size_type r = 0; r < nr; ++r)
-		{
-//			if (me()(r,c) > m)
-			if (detail::greater_than_impl(me()(r,c), m))
-			{
-				m = me()(r,c);
-			}
-		}
+        for (size_type r = 0; r < nr; ++r)
+        {
+//          if (me()(r,c) > m)
+            if (detail::greater_than_impl(me()(r,c), m))
+            {
+                m = me()(r,c);
+            }
+        }
 
-		res(j++) = m;
-	}
+        res(j++) = m;
+    }
 
-	return res;
+    return res;
 }
 
 
@@ -488,7 +490,7 @@ template <size_t Dim, typename VectorExprT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::value_type> max(vector_expression<VectorExprT> const& ve)
 {
-	return detail::max_by_dim_impl<Dim, vector_tag>::template apply(ve);
+    return detail::max_by_dim_impl<Dim, vector_tag>::template apply(ve);
 }
 
 
@@ -496,7 +498,7 @@ template <size_t Dim, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> max(matrix_expression<MatrixExprT> const& me)
 {
-	return detail::max_by_dim_impl<Dim, matrix_tag>::template apply(me);
+    return detail::max_by_dim_impl<Dim, matrix_tag>::template apply(me);
 }
 
 
@@ -505,7 +507,7 @@ template <typename TagT, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> max_by_tag(matrix_expression<MatrixExprT> const& me)
 {
-	return detail::max_by_tag_impl<TagT, matrix_tag, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
+    return detail::max_by_tag_impl<TagT, matrix_tag, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
 }
 
 //@} Definitions

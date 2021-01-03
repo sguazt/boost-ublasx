@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/pow.hpp
  *
@@ -33,7 +35,7 @@ namespace detail {
 template <typename MatrixExprT>
 struct matrix_pow_traits
 {
-	typedef typename MatrixExprT::matrix_temporary_type result_type;
+    typedef typename MatrixExprT::matrix_temporary_type result_type;
 };
 
 } // Namespace detail
@@ -61,40 +63,40 @@ template <typename MatrixExprT, typename T>
 BOOST_UBLAS_INLINE
 typename detail::matrix_pow_traits<MatrixExprT>::result_type pow(matrix_expression<MatrixExprT> const& me, T p)
 {
-	typedef typename detail::matrix_pow_traits<MatrixExprT>::result_type result_type;
+    typedef typename detail::matrix_pow_traits<MatrixExprT>::result_type result_type;
 
-	result_type res;
+    result_type res;
 
-	if (p > 0)
-	{
-		res = me;
+    if (p > 0)
+    {
+        res = me;
 
-		--p;
-		while (p >= 1)
-		{
-			res = prod(res, me);
-			--p;
-		}
-	}
-	else if (p < 0)
-	{
-		result_type inv_me = inv(me);
-		res = inv_me;
-		p = -p;
+        --p;
+        while (p >= 1)
+        {
+            res = prod(res, me);
+            --p;
+        }
+    }
+    else if (p < 0)
+    {
+        result_type inv_me = inv(me);
+        res = inv_me;
+        p = -p;
 
-		--p;
-		while (p >= 1)
-		{
-			res = prod(res, inv_me);
-			--p;
-		}
-	}
-	else // p == 0
-	{
-		res = identity_matrix<typename matrix_traits<MatrixExprT>::value_type>(num_rows(me));
-	}
+        --p;
+        while (p >= 1)
+        {
+            res = prod(res, inv_me);
+            --p;
+        }
+    }
+    else // p == 0
+    {
+        res = identity_matrix<typename matrix_traits<MatrixExprT>::value_type>(num_rows(me));
+    }
 
-	return res;
+    return res;
 }
 
 }}} // Namespace boost::numeric::ublasx

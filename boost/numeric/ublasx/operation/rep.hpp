@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/rep.hpp
  *
@@ -36,62 +38,62 @@ using namespace ::boost::numeric::ublas;
 template <typename MatrixExprT>
 matrix<typename matrix_traits<MatrixExprT>::value_type> rep(matrix_expression<MatrixExprT> const& me, ::std::size_t nr, ::std::size_t nc)
 {
-	typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_matrix_type;
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef matrix<typename matrix_traits<MatrixExprT>::value_type> result_matrix_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-	size_type nr_me(num_rows(me));
-	size_type nc_me(num_columns(me));
+    size_type nr_me(num_rows(me));
+    size_type nc_me(num_columns(me));
 
-	result_matrix_type res(nr_me*nr, nc_me*nc);
+    result_matrix_type res(nr_me*nr, nc_me*nc);
 
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			subrange(res, r*nr_me, (r+1)*nr_me, c*nc_me, (c+1)*nc_me) = me;
-		}
-	}
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            subrange(res, r*nr_me, (r+1)*nr_me, c*nc_me, (c+1)*nc_me) = me;
+        }
+    }
 
-	return res;
+    return res;
 }
 
 
 template <typename VectorExprT>
 matrix<typename vector_traits<VectorExprT>::value_type> rep(vector_expression<VectorExprT> const& ve, ::std::size_t nr, ::std::size_t nc)
 {
-	typedef matrix<typename vector_traits<VectorExprT>::value_type> result_matrix_type;
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef matrix<typename vector_traits<VectorExprT>::value_type> result_matrix_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
 
-	size_type n_ve(size(ve));
+    size_type n_ve(size(ve));
 
-	result_matrix_type res(n_ve*nr, nc);
+    result_matrix_type res(n_ve*nr, nc);
 
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			for (size_type i = 0; i < n_ve; ++i)
-			{
-				res(r*n_ve+i, c) = ve()(i);
-			}
-		}
-	}
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            for (size_type i = 0; i < n_ve; ++i)
+            {
+                res(r*n_ve+i, c) = ve()(i);
+            }
+        }
+    }
 
-	return res;
+    return res;
 }
 
 
 template <typename MatrixExprT>
 matrix<typename matrix_traits<MatrixExprT>::value_type> rep(matrix_expression<MatrixExprT> const& me, ::std::size_t n)
 {
-	return rep(me, n, n);
+    return rep(me, n, n);
 }
 
 
 template <typename MatrixExprT>
 matrix<typename matrix_traits<MatrixExprT>::value_type> rep(vector_expression<MatrixExprT> const& ve, ::std::size_t n)
 {
-	return rep(ve, n, n);
+    return rep(ve, n, n);
 }
 
 }}} // Namespace boost::numeric::ublasx

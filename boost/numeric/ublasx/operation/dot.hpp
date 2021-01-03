@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/dot.hpp
  *
@@ -30,40 +32,40 @@ using namespace ::boost::numeric::ublas;
 template <typename VecExpr1T, typename VecExpr2T>
 struct vdot_traits_type
 {
-	typedef typename vector_scalar_binary_traits<
-					VecExpr1T,
-					VecExpr2T,
-					vector_inner_prod<
-						VecExpr1T,
-						VecExpr2T,
-						typename promote_traits<
-							typename vector_traits<VecExpr1T>::value_type,
-							typename vector_traits<VecExpr2T>::value_type
-						>::promote_type
-					>
-			>::result_type result_type;
+    typedef typename vector_scalar_binary_traits<
+                    VecExpr1T,
+                    VecExpr2T,
+                    vector_inner_prod<
+                        VecExpr1T,
+                        VecExpr2T,
+                        typename promote_traits<
+                            typename vector_traits<VecExpr1T>::value_type,
+                            typename vector_traits<VecExpr2T>::value_type
+                        >::promote_type
+                    >
+            >::result_type result_type;
 };
 
 
 template <typename MatExpr1T, typename MatExpr2T>
 struct mdot_traits_type
 {
-	typedef vector<
-				typename promote_traits<
-					typename matrix_traits<MatExpr1T>::value_type,
-					typename matrix_traits<MatExpr2T>::value_type
-				>::promote_type
-//				typename vector_traits<
-//					typename matrix_binary_traits<
-//							MatExpr1T,
-//							MatExpr2T,
-//							scalar_multiplies<
-//									typename MatExpr1T::value_type,
-//									typename MatExpr2T::value_type
-//							>
-//					>::result_type
-//				>::value_type
-			> result_type;
+    typedef vector<
+                typename promote_traits<
+                    typename matrix_traits<MatExpr1T>::value_type,
+                    typename matrix_traits<MatExpr2T>::value_type
+                >::promote_type
+//              typename vector_traits<
+//                  typename matrix_binary_traits<
+//                          MatExpr1T,
+//                          MatExpr2T,
+//                          scalar_multiplies<
+//                                  typename MatExpr1T::value_type,
+//                                  typename MatExpr2T::value_type
+//                          >
+//                  >::result_type
+//              >::value_type
+            > result_type;
 };
 
 
@@ -84,9 +86,9 @@ struct mdot_traits_type
 template <typename VecExpr1T, typename VecExpr2T>
 BOOST_UBLAS_INLINE
 typename vdot_traits_type<VecExpr1T,VecExpr2T>::result_type dot(vector_expression<VecExpr1T> const& v1,
-																vector_expression<VecExpr2T> const& v2)
+                                                                vector_expression<VecExpr2T> const& v2)
 {
-	return inner_prod(v1, v2);
+    return inner_prod(v1, v2);
 }
 
 
@@ -115,9 +117,9 @@ typename vdot_traits_type<VecExpr1T,VecExpr2T>::result_type dot(vector_expressio
  */
 template <std::size_t Dim, typename MatExpr1T, typename MatExpr2T>
 typename mdot_traits_type<MatExpr1T,MatExpr2T>::result_type dot(matrix_expression<MatExpr1T> const& M1,
-																matrix_expression<MatExpr2T> const& M2)
+                                                                matrix_expression<MatExpr2T> const& M2)
 {
-	return sum<Dim>(element_prod(M1, M2));
+    return sum<Dim>(element_prod(M1, M2));
 }
 
 }}} // Namespace boost::numeric::ublas

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/logspace.hpp
  *
@@ -58,14 +60,14 @@ template <typename ValueT>
 BOOST_UBLAS_INLINE
 vector<ValueT> logspace(ValueT a, ValueT b, std::size_t n = 100, ValueT base = 10)
 {
-	// pre: n > 0
-	BOOST_UBLAS_CHECK( n > 0,
-					   bad_argument() );
-	// pre: base > 0
-	BOOST_UBLAS_CHECK( base > 0,
-					   bad_argument() );
+    // pre: n > 0
+    BOOST_UBLAS_CHECK( n > 0,
+                       bad_argument() );
+    // pre: base > 0
+    BOOST_UBLAS_CHECK( base > 0,
+                       bad_argument() );
 
-	return element_pow(base, linspace(a, b, n));
+    return element_pow(base, linspace(a, b, n));
 }
 
 }}} // Namespace boost::numeric::ublasx

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/element_pow.hpp
  *
@@ -33,84 +35,84 @@ namespace detail {
 template <typename VectorExprT, typename Arg2T>
 struct vector_element_pow_functor1_traits
 {
-	typedef VectorExprT input_expression_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument1_type;
-	typedef Arg2T signature_argument2_type;
-	//typedef signature_argument_type signature_result_type;
-	typedef typename promote_traits<
-				signature_argument1_type,
-				signature_argument2_type
-			>::promote_type signature_result_type;
-	typedef vector_binary_functor1_traits<
-				input_expression_type,
-				Arg2T,
-				signature_result_type (signature_argument1_type, signature_argument2_type)
-			> binary_functor_expression_type;
-	typedef typename binary_functor_expression_type::result_type result_type;
-	typedef typename binary_functor_expression_type::expression_type expression_type;
+    typedef VectorExprT input_expression_type;
+    typedef typename vector_traits<input_expression_type>::value_type signature_argument1_type;
+    typedef Arg2T signature_argument2_type;
+    //typedef signature_argument_type signature_result_type;
+    typedef typename promote_traits<
+                signature_argument1_type,
+                signature_argument2_type
+            >::promote_type signature_result_type;
+    typedef vector_binary_functor1_traits<
+                input_expression_type,
+                Arg2T,
+                signature_result_type (signature_argument1_type, signature_argument2_type)
+            > binary_functor_expression_type;
+    typedef typename binary_functor_expression_type::result_type result_type;
+    typedef typename binary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename Arg1T, typename VectorExprT>
 struct vector_element_pow_functor2_traits
 {
-	typedef VectorExprT input_expression_type;
-	typedef Arg1T signature_argument1_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument2_type;
-	//typedef signature_argument_type signature_result_type;
-	typedef typename promote_traits<
-				signature_argument1_type,
-				signature_argument2_type
-			>::promote_type signature_result_type;
-	typedef vector_binary_functor2_traits<
-				Arg1T,
-				input_expression_type,
-				signature_result_type (signature_argument1_type, signature_argument2_type)
-			> binary_functor_expression_type;
-	typedef typename binary_functor_expression_type::result_type result_type;
-	typedef typename binary_functor_expression_type::expression_type expression_type;
+    typedef VectorExprT input_expression_type;
+    typedef Arg1T signature_argument1_type;
+    typedef typename vector_traits<input_expression_type>::value_type signature_argument2_type;
+    //typedef signature_argument_type signature_result_type;
+    typedef typename promote_traits<
+                signature_argument1_type,
+                signature_argument2_type
+            >::promote_type signature_result_type;
+    typedef vector_binary_functor2_traits<
+                Arg1T,
+                input_expression_type,
+                signature_result_type (signature_argument1_type, signature_argument2_type)
+            > binary_functor_expression_type;
+    typedef typename binary_functor_expression_type::result_type result_type;
+    typedef typename binary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename MatrixExprT, typename Arg2T>
 struct matrix_element_pow_functor1_traits
 {
-	typedef MatrixExprT input_expression_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument1_type;
-	typedef Arg2T signature_argument2_type;
-	//typedef signature_argument_type signature_result_type;
-	typedef typename promote_traits<
-				signature_argument1_type,
-				signature_argument2_type
-			>::promote_type signature_result_type;
-	typedef matrix_binary_functor1_traits<
-				input_expression_type,
-				Arg2T,
-				signature_result_type (signature_argument1_type, signature_argument2_type)
-			> binary_functor_expression_type;
-	typedef typename binary_functor_expression_type::result_type result_type;
-	typedef typename binary_functor_expression_type::expression_type expression_type;
+    typedef MatrixExprT input_expression_type;
+    typedef typename matrix_traits<input_expression_type>::value_type signature_argument1_type;
+    typedef Arg2T signature_argument2_type;
+    //typedef signature_argument_type signature_result_type;
+    typedef typename promote_traits<
+                signature_argument1_type,
+                signature_argument2_type
+            >::promote_type signature_result_type;
+    typedef matrix_binary_functor1_traits<
+                input_expression_type,
+                Arg2T,
+                signature_result_type (signature_argument1_type, signature_argument2_type)
+            > binary_functor_expression_type;
+    typedef typename binary_functor_expression_type::result_type result_type;
+    typedef typename binary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename Arg1T, typename MatrixExprT>
 struct matrix_element_pow_functor2_traits
 {
-	typedef MatrixExprT input_expression_type;
-	typedef Arg1T signature_argument1_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument2_type;
-	//typedef signature_argument_type signature_result_type;
-	typedef typename promote_traits<
-				signature_argument1_type,
-				signature_argument2_type
-			>::promote_type signature_result_type;
-	typedef matrix_binary_functor2_traits<
-				Arg1T,
-				input_expression_type,
-				signature_result_type (signature_argument1_type, signature_argument2_type)
-			> binary_functor_expression_type;
-	typedef typename binary_functor_expression_type::result_type result_type;
-	typedef typename binary_functor_expression_type::expression_type expression_type;
+    typedef MatrixExprT input_expression_type;
+    typedef Arg1T signature_argument1_type;
+    typedef typename matrix_traits<input_expression_type>::value_type signature_argument2_type;
+    //typedef signature_argument_type signature_result_type;
+    typedef typename promote_traits<
+                signature_argument1_type,
+                signature_argument2_type
+            >::promote_type signature_result_type;
+    typedef matrix_binary_functor2_traits<
+                Arg1T,
+                input_expression_type,
+                signature_result_type (signature_argument1_type, signature_argument2_type)
+            > binary_functor_expression_type;
+    typedef typename binary_functor_expression_type::result_type result_type;
+    typedef typename binary_functor_expression_type::expression_type expression_type;
 };
 
 
@@ -134,7 +136,7 @@ template <typename T1, typename T2>
 BOOST_UBLAS_INLINE
 std::complex<T1> element_pow(T1 x, std::complex<T2> const& y)
 {
-	// Remember: if z=(a + ib) is a complex number and c is a scalar => c^z = e^{ln(c)*z}
+    // Remember: if z=(a + ib) is a complex number and c is a scalar => c^z = e^{ln(c)*z}
     return ::std::exp(::std::log(x)*y);
 }
 
@@ -159,16 +161,16 @@ template <typename VectorExprT, typename T>
 BOOST_UBLAS_INLINE
 typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::result_type element_pow(vector_expression<VectorExprT> const& ve, T p)
 {
-	typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::expression_type expression_type;
-	typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::signature_argument1_type signature_argument1_type;
-	typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::signature_argument2_type signature_argument2_type;
-	typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::signature_result_type signature_result_type;
+    typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::expression_type expression_type;
+    typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::signature_argument1_type signature_argument1_type;
+    typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::signature_argument2_type signature_argument2_type;
+    typedef typename detail::vector_element_pow_functor1_traits<VectorExprT,T>::signature_result_type signature_result_type;
 
-//	return expression_type(ve(), detail::element_pow<signature_result_type>);
-//	signature_result_type (*)(ptr_element_pow_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_POW_NS_::element_pow); 
-	typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
-	fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
-	return expression_type(ve(), p, ptr_element_pow_fun);
+//  return expression_type(ve(), detail::element_pow<signature_result_type>);
+//  signature_result_type (*)(ptr_element_pow_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_POW_NS_::element_pow); 
+    typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
+    fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
+    return expression_type(ve(), p, ptr_element_pow_fun);
 }
 
 
@@ -190,16 +192,16 @@ template <typename T, typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::result_type element_pow(T b, vector_expression<VectorExprT> const& ve)
 {
-	typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::signature_argument1_type signature_argument1_type;
-	typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::signature_argument2_type signature_argument2_type;
-	typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::signature_result_type signature_result_type;
+    typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::expression_type expression_type;
+    typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::signature_argument1_type signature_argument1_type;
+    typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::signature_argument2_type signature_argument2_type;
+    typedef typename detail::vector_element_pow_functor2_traits<T,VectorExprT>::signature_result_type signature_result_type;
 
-//	return expression_type(ve(), detail::element_pow<signature_result_type>);
-//	signature_result_type (*)(ptr_element_pow_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_POW_NS_::element_pow); 
-	typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
-	fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
-	return expression_type(b, ve(), ptr_element_pow_fun);
+//  return expression_type(ve(), detail::element_pow<signature_result_type>);
+//  signature_result_type (*)(ptr_element_pow_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_POW_NS_::element_pow); 
+    typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
+    fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
+    return expression_type(b, ve(), ptr_element_pow_fun);
 }
 
 
@@ -221,15 +223,15 @@ template <typename MatrixExprT, typename T>
 BOOST_UBLAS_INLINE
 typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::result_type element_pow(matrix_expression<MatrixExprT> const& me, T p)
 {
-	typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::expression_type expression_type;
-	typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::signature_argument1_type signature_argument1_type;
-	typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::signature_argument2_type signature_argument2_type;
-	typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::signature_result_type signature_result_type;
+    typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::expression_type expression_type;
+    typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::signature_argument1_type signature_argument1_type;
+    typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::signature_argument2_type signature_argument2_type;
+    typedef typename detail::matrix_element_pow_functor1_traits<MatrixExprT,T>::signature_result_type signature_result_type;
 
-//	return expression_type(me(), detail::element_pow<signature_result_type>(signature_argument_type));
-	typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
-	fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
-	return expression_type(me(), p, ptr_element_pow_fun);
+//  return expression_type(me(), detail::element_pow<signature_result_type>(signature_argument_type));
+    typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
+    fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
+    return expression_type(me(), p, ptr_element_pow_fun);
 }
 
 /**
@@ -250,15 +252,15 @@ template <typename T, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::result_type element_pow(T b, matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::signature_argument1_type signature_argument1_type;
-	typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::signature_argument2_type signature_argument2_type;
-	typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::signature_result_type signature_result_type;
+    typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::expression_type expression_type;
+    typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::signature_argument1_type signature_argument1_type;
+    typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::signature_argument2_type signature_argument2_type;
+    typedef typename detail::matrix_element_pow_functor2_traits<T,MatrixExprT>::signature_result_type signature_result_type;
 
-//	return expression_type(me(), detail::element_pow<signature_result_type>(signature_argument_type));
-	typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
-	fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
-	return expression_type(b, me(), ptr_element_pow_fun);
+//  return expression_type(me(), detail::element_pow<signature_result_type>(signature_argument_type));
+    typedef signature_result_type(*fun_ptr_type)(signature_argument1_type, signature_argument2_type);
+    fun_ptr_type ptr_element_pow_fun(&detail::element_pow); 
+    return expression_type(b, me(), ptr_element_pow_fun);
 }
 
 }}} // Namespace boost::numeric::ublasx

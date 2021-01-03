@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/rank.hpp
  *
@@ -56,11 +58,11 @@ template <typename MatrixExprT, typename RealT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::size_type rank(matrix_expression<MatrixExprT> const& A, RealT tol)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename type_traits<value_type>::real_type real_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename type_traits<value_type>::real_type real_type;
 
-	vector<real_type> s = svd_values(A);
-	return size(which(s, ::std::bind2nd(::std::greater<real_type>(), tol)));
+    vector<real_type> s = svd_values(A);
+    return size(which(s, ::std::bind2nd(::std::greater<real_type>(), tol)));
 }
 
 
@@ -73,7 +75,7 @@ typename matrix_traits<MatrixExprT>::size_type rank(matrix_expression<MatrixExpr
  *
  * The default tolerance is
  * \f[
- * 	 \max(n,m) \|A\|_2 {\epsilon}_m
+ *   \max(n,m) \|A\|_2 {\epsilon}_m
  * \f]
  * where \f$n\f$ is the number of rows of \f$A\f$, \f$m\f$ is the number of
  * columns of \f$A\f$, and \f${\epsilon}_m\f$ is the floating-point machine
@@ -83,12 +85,12 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::size_type rank(matrix_expression<MatrixExprT> const& A)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename type_traits<value_type>::real_type real_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename type_traits<value_type>::real_type real_type;
 
-	vector<real_type> s = svd_values(A);
-	real_type tol = ::std::max(num_rows(A), num_columns(A))*eps(max(s)); // note: max(s) == norm_2(A)
-	return size(which(s, ::std::bind2nd(::std::greater<real_type>(), tol)));
+    vector<real_type> s = svd_values(A);
+    real_type tol = ::std::max(num_rows(A), num_columns(A))*eps(max(s)); // note: max(s) == norm_2(A)
+    return size(which(s, ::std::bind2nd(::std::greater<real_type>(), tol)));
 }
 
 }}} // Namespace boost::numeric::ublasx

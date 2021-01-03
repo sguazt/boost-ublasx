@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/inv.hpp
  *
@@ -40,48 +42,48 @@ using namespace boost::numeric::ublas;
 template <typename MatrixT>
 bool inv_inplace(MatrixT& A)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef typename matrix_traits<MatrixT>::size_type size_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef typename matrix_traits<MatrixT>::size_type size_type;
 
-	//pre: A is square
-	BOOST_UBLAS_CHECK(
-		num_rows(A) == num_columns(A),
-		bad_size()
-	);
+    //pre: A is square
+    BOOST_UBLAS_CHECK(
+        num_rows(A) == num_columns(A),
+        bad_size()
+    );
 
-	// Compute the inverse X=A^{-1} as the solution of the linear system
-	//  AX = I
+    // Compute the inverse X=A^{-1} as the solution of the linear system
+    //  AX = I
 
-	MatrixT X(identity_matrix<value_type>(num_rows(A)));
+    MatrixT X(identity_matrix<value_type>(num_rows(A)));
 
-	size_type sing;
-	sing = lu_solve_inplace(A, X);
+    size_type sing;
+    sing = lu_solve_inplace(A, X);
 
-	// Check if matrix is singular
-	if (sing)
-	{
-		BOOST_UBLASX_DEBUG_TRACE("Warning: Matrix is (nearly) singular: cannot compute its inverse.");
+    // Check if matrix is singular
+    if (sing)
+    {
+        BOOST_UBLASX_DEBUG_TRACE("Warning: Matrix is (nearly) singular: cannot compute its inverse.");
 
-		// Fill the matrix with Inf (like MATLAB does)
-		A = scalar_matrix<value_type>(
-				num_rows(A),
-				num_columns(A),
-				::std::numeric_limits<value_type>::infinity()
-			);
+        // Fill the matrix with Inf (like MATLAB does)
+        A = scalar_matrix<value_type>(
+                num_rows(A),
+                num_columns(A),
+                ::std::numeric_limits<value_type>::infinity()
+            );
 
-		return false;
-	}
+        return false;
+    }
 
-	// Check if matrix is ill-conditioned
-	if (illcond(A))
-	{
-		BOOST_UBLASX_DEBUG_TRACE("Warning: Matrix is close to singular or badly scaled.  Results may be inaccurate.");
-		::std::clog << "[Warning] Matrix is close to singular or badly scaled.  Results may be inaccurate." << ::std::endl;
-	}
+    // Check if matrix is ill-conditioned
+    if (illcond(A))
+    {
+        BOOST_UBLASX_DEBUG_TRACE("Warning: Matrix is close to singular or badly scaled.  Results may be inaccurate.");
+        ::std::clog << "[Warning] Matrix is close to singular or badly scaled.  Results may be inaccurate." << ::std::endl;
+    }
 
-	A = X;
+    A = X;
 
-	return true;
+    return true;
 }
 
 /**
@@ -90,14 +92,14 @@ bool inv_inplace(MatrixT& A)
 template <typename MatrixExprT>
 matrix<typename matrix_traits<MatrixExprT>::value_type> inv(matrix_expression<MatrixExprT> const& A)
 {
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef matrix<value_type> out_matrix_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef matrix<value_type> out_matrix_type;
 
-	out_matrix_type X(A);
+    out_matrix_type X(A);
 
-	inv_inplace(X);
+    inv_inplace(X);
 
-	return X;
+    return X;
 }
 
 }}} // Namespace boost::numeric::ublasx

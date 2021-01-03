@@ -1,7 +1,9 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /** 
  * \file cholesky.hpp
  *
- * \brief cholesky decomposition
+ * \brief Cholesky decomposition
  * -   begin                : 2005-08-24
  * -   copyright            : (C) 2005 by Gunter Winkler, Konstantin Kutzkow
  * -   email                : guwi17@gmx.de

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/lu.hpp
  *
@@ -76,7 +78,7 @@ template <typename MatrixT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixT>::size_type lu_decompose_inplace(matrix_container<MatrixT>& A)
 {
-	return lu_factorize(A());
+    return lu_factorize(A());
 }
 
 
@@ -105,20 +107,20 @@ template <typename MatrixT, typename PermutationMatrixT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixT>::size_type lu_decompose_inplace(matrix_container<MatrixT>& A, PermutationMatrixT& P)
 {
-	typedef typename matrix_traits<MatrixT>::size_type size_type;
+    typedef typename matrix_traits<MatrixT>::size_type size_type;
 
-	// Safety check: P is squared && size(P) == num_rows(A)
-	//BOOST_UBLAS_CHECK( size(P) == num_columns(P) && size(P) == num_rows(A), bad_size() );
-	size_type nr_A = num_rows(A);
-	if (size(P) != nr_A)
-	{
-		P.resize(nr_A, false);
-	}
+    // Safety check: P is squared && size(P) == num_rows(A)
+    //BOOST_UBLAS_CHECK( size(P) == num_columns(P) && size(P) == num_rows(A), bad_size() );
+    size_type nr_A = num_rows(A);
+    if (size(P) != nr_A)
+    {
+        P.resize(nr_A, false);
+    }
 
-	return lu_factorize(A(), P);
+    return lu_factorize(A(), P);
 //
-//	// postcondition: P is squared && size(P) == num_rows(A)
-//	BOOST_UBLAS_CHECK( size(P) == num_columns(P) && size(P) == num_rows(A), bad_size() );
+//  // postcondition: P is squared && size(P) == num_rows(A)
+//  BOOST_UBLAS_CHECK( size(P) == num_columns(P) && size(P) == num_rows(A), bad_size() );
 }
 
 
@@ -146,9 +148,9 @@ template <typename AMatrixExprT, typename LUMatrixT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixExprT>::size_type lu_decompose(matrix_expression<AMatrixExprT> const& A, matrix_container<LUMatrixT>& LU)
 {
-	LU = A;
+    LU = A;
 
-	return lu_decompose_inplace(LU);
+    return lu_decompose_inplace(LU);
 }
 
 
@@ -175,19 +177,19 @@ template <typename AMatrixExprT, typename PermutationMatrixT, typename LUMatrixT
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixExprT>::size_type lu_decompose(matrix_expression<AMatrixExprT> const& A, PermutationMatrixT& P, matrix_container<LUMatrixT>& LU)
 {
-	typedef typename matrix_traits<AMatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<AMatrixExprT>::size_type size_type;
 
-	// Safety check: size(P) == num_rows(A)
-	//BOOST_UBLAS_CHECK( size(P) == num_rows(A), bad_size() );
-	size_type nr_A = num_rows(A);
-	if (size(P) != nr_A)
-	{
-		P.resize(nr_A, false);
-	}
+    // Safety check: size(P) == num_rows(A)
+    //BOOST_UBLAS_CHECK( size(P) == num_rows(A), bad_size() );
+    size_type nr_A = num_rows(A);
+    if (size(P) != nr_A)
+    {
+        P.resize(nr_A, false);
+    }
 
-	LU = A;
+    LU = A;
 
-	return lu_decompose_inplace(LU, P);
+    return lu_decompose_inplace(LU, P);
 }
 
 
@@ -216,10 +218,10 @@ template <typename MatrixExprT, typename VectorT>
 BOOST_UBLAS_INLINE
 void lu_apply_inplace(matrix_expression<MatrixExprT> const& LU, vector_container<VectorT>& b)
 {
-	// pre: size(b) == size(P)
-	BOOST_UBLAS_CHECK( size(b) == num_rows(LU), bad_size() );
+    // pre: size(b) == size(P)
+    BOOST_UBLAS_CHECK( size(b) == num_rows(LU), bad_size() );
 
-	lu_substitute(LU(), b());
+    lu_substitute(LU(), b());
 }
 
 
@@ -248,10 +250,10 @@ template <typename LUMatrixExprT, typename BMatrixT>
 BOOST_UBLAS_INLINE
 void lu_apply_inplace(matrix_expression<LUMatrixExprT> const& LU, matrix_container<BMatrixT>& B)
 {
-	// pre: num_rows(B) == num_rows(LU)
-	BOOST_UBLAS_CHECK( num_rows(B) == num_rows(LU), bad_size() );
+    // pre: num_rows(B) == num_rows(LU)
+    BOOST_UBLAS_CHECK( num_rows(B) == num_rows(LU), bad_size() );
 
-	lu_substitute(LU(), B());
+    lu_substitute(LU(), B());
 }
 
 
@@ -282,12 +284,12 @@ template <typename LUMatrixExprT, typename PermutationMatrixT, typename BVectorT
 BOOST_UBLAS_INLINE
 void lu_apply_inplace(matrix_expression<LUMatrixExprT> const& LU, PermutationMatrixT const& P, vector_container<BVectorT>& b)
 {
-	// precondition: size(P) == num_rows(LU)
-	BOOST_UBLAS_CHECK( size(P) == num_rows(LU), bad_size() );
-	// precondition: size(b) == num_rows(LU)
-	BOOST_UBLAS_CHECK( size(b) == num_rows(LU), bad_size() );
+    // precondition: size(P) == num_rows(LU)
+    BOOST_UBLAS_CHECK( size(P) == num_rows(LU), bad_size() );
+    // precondition: size(b) == num_rows(LU)
+    BOOST_UBLAS_CHECK( size(b) == num_rows(LU), bad_size() );
 
-	lu_substitute(LU(), P, b());
+    lu_substitute(LU(), P, b());
 }
 
 
@@ -318,12 +320,12 @@ template <typename LUMatrixExprT, typename PermutationMatrixT, typename BMatrixT
 BOOST_UBLAS_INLINE
 void lu_apply_inplace(matrix_expression<LUMatrixExprT> const& LU, PermutationMatrixT const& P, matrix_container<BMatrixT>& B)
 {
-	// pre: size(P) == num_rows(LU)
-	BOOST_UBLAS_CHECK( size(P) == num_rows(LU), bad_size() );
-	// pre: num_rows(b) == num_rows(LU)
-	BOOST_UBLAS_CHECK( num_rows(B) == num_rows(LU), bad_size() );
+    // pre: size(P) == num_rows(LU)
+    BOOST_UBLAS_CHECK( size(P) == num_rows(LU), bad_size() );
+    // pre: num_rows(b) == num_rows(LU)
+    BOOST_UBLAS_CHECK( num_rows(B) == num_rows(LU), bad_size() );
 
-	lu_substitute(LU(), P, B());
+    lu_substitute(LU(), P, B());
 }
 
 
@@ -348,15 +350,15 @@ template <typename LUMatrixExprT, typename BVectorExprT>
 BOOST_UBLAS_INLINE
 typename vector_temporary_traits<BVectorExprT>::type lu_apply(matrix_expression<LUMatrixExprT> const& LU, vector_expression<BVectorExprT> const& b)
 {
-	//	preconditions check delegated to lu_apply_inplace
+    //  preconditions check delegated to lu_apply_inplace
 
-	typedef typename vector_temporary_traits<BVectorExprT>::type out_vector_type;
+    typedef typename vector_temporary_traits<BVectorExprT>::type out_vector_type;
 
-	out_vector_type x(b);
+    out_vector_type x(b);
 
-	lu_apply_inplace(LU, x);
+    lu_apply_inplace(LU, x);
 
-	return x;
+    return x;
 }
 
 
@@ -372,15 +374,15 @@ template <typename LUMatrixExprT, typename BMatrixExprT>
 BOOST_UBLAS_INLINE
 typename matrix_temporary_traits<BMatrixExprT>::type lu_apply(matrix_expression<LUMatrixExprT> const& LU, matrix_expression<BMatrixExprT> const& B)
 {
-	//	preconditions check delegated to lu_apply_inplace
+    //  preconditions check delegated to lu_apply_inplace
 
-	typedef typename matrix_temporary_traits<BMatrixExprT>::type out_matrix_type;
+    typedef typename matrix_temporary_traits<BMatrixExprT>::type out_matrix_type;
 
-	out_matrix_type X(B);
+    out_matrix_type X(B);
 
-	lu_apply_inplace(LU, X);
+    lu_apply_inplace(LU, X);
 
-	return X;
+    return X;
 }
 
 
@@ -408,15 +410,15 @@ template <typename LUMatrixExprT, typename PermutationMatrixT, typename BVectorE
 BOOST_UBLAS_INLINE
 typename vector_temporary_traits<BVectorExprT>::type lu_apply(matrix_expression<LUMatrixExprT> const& LU, PermutationMatrixT const& P, vector_expression<BVectorExprT> const& b)
 {
-	//	preconditions check delegated to lu_apply_inplace
+    //  preconditions check delegated to lu_apply_inplace
 
-	typedef typename vector_temporary_traits<BVectorExprT>::type out_vector_type;
+    typedef typename vector_temporary_traits<BVectorExprT>::type out_vector_type;
 
-	out_vector_type x(b);
+    out_vector_type x(b);
 
-	lu_apply_inplace(LU, P, x);
+    lu_apply_inplace(LU, P, x);
 
-	return x;
+    return x;
 }
 
 
@@ -433,15 +435,15 @@ template <typename LUMatrixExprT, typename PermutationMatrixT, typename BMatrixE
 BOOST_UBLAS_INLINE
 typename matrix_temporary_traits<BMatrixExprT>::type lu_apply(matrix_expression<LUMatrixExprT> const& LU, PermutationMatrixT const& P, matrix_expression<BMatrixExprT> const& B)
 {
-	//	preconditions check delegated to lu_apply_inplace
+    //  preconditions check delegated to lu_apply_inplace
 
-	typedef typename matrix_temporary_traits<BMatrixExprT>::type out_matrix_type;
+    typedef typename matrix_temporary_traits<BMatrixExprT>::type out_matrix_type;
 
-	out_matrix_type X(B);
+    out_matrix_type X(B);
 
-	lu_apply_inplace(LU, P, X);
+    lu_apply_inplace(LU, P, X);
 
-	return X;
+    return X;
 }
 
 
@@ -470,27 +472,27 @@ template <typename MatrixExprT, typename VectorT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::size_type lu_solve_inplace(matrix_expression<MatrixExprT> const& A, vector_container<VectorT>& b)
 {
-	// precondition: size(b) == num_rows(A)
-	BOOST_UBLAS_CHECK( size(b) == num_rows(A), bad_size() );
+    // precondition: size(b) == num_rows(A)
+    BOOST_UBLAS_CHECK( size(b) == num_rows(A), bad_size() );
 
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename layout_type<MatrixExprT>::type layout_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename layout_type<MatrixExprT>::type layout_type;
 
-	// Ax=b ==> LUx=b ==> Ly=b AND Ux=y
+    // Ax=b ==> LUx=b ==> Ly=b AND Ux=y
 
-	matrix<value_type, layout_type> LU(A);
-	permutation_matrix<size_type> P(num_rows(LU));
+    matrix<value_type, layout_type> LU(A);
+    permutation_matrix<size_type> P(num_rows(LU));
 
-	size_type singular;
-	singular = lu_decompose_inplace(LU, P);
+    size_type singular;
+    singular = lu_decompose_inplace(LU, P);
 
-	if (!singular)
-	{
-		lu_apply_inplace(LU, P, b());
-	}
+    if (!singular)
+    {
+        lu_apply_inplace(LU, P, b());
+    }
 
-	return singular;
+    return singular;
 }
 
 
@@ -519,27 +521,27 @@ template <typename AMatrixExprT, typename BMatrixExprT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixExprT>::size_type lu_solve_inplace(matrix_expression<AMatrixExprT> const& A, matrix_container<BMatrixExprT>& B)
 {
-	// pre: num_rows(B) == num_rows(A)
-	BOOST_UBLAS_CHECK( num_rows(B) == num_rows(A), bad_size() );
+    // pre: num_rows(B) == num_rows(A)
+    BOOST_UBLAS_CHECK( num_rows(B) == num_rows(A), bad_size() );
 
-	typedef typename matrix_traits<AMatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<AMatrixExprT>::value_type value_type;
-	typedef typename layout_type<AMatrixExprT>::type layout_type;
+    typedef typename matrix_traits<AMatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<AMatrixExprT>::value_type value_type;
+    typedef typename layout_type<AMatrixExprT>::type layout_type;
 
-	// Ax=B ==> LUx=B ==> Ly=B AND Ux=y
+    // Ax=B ==> LUx=B ==> Ly=B AND Ux=y
 
-	matrix<value_type, layout_type> LU(A());
-	permutation_matrix<size_type> P(num_rows(LU));
+    matrix<value_type, layout_type> LU(A());
+    permutation_matrix<size_type> P(num_rows(LU));
 
-	size_type singular;
-	singular = lu_decompose_inplace(LU, P);
+    size_type singular;
+    singular = lu_decompose_inplace(LU, P);
 
-	if (!singular)
-	{
-		lu_apply_inplace(LU, P, B());
-	}
+    if (!singular)
+    {
+        lu_apply_inplace(LU, P, B());
+    }
 
-	return singular;
+    return singular;
 }
 
 
@@ -566,29 +568,29 @@ template <typename MatrixExprT, typename VectorExprT, typename OutVectorT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::size_type lu_solve(matrix_expression<MatrixExprT> const& A, vector_expression<VectorExprT> const& b, OutVectorT& x)
 {
-	// precondition: size(b) == num_rows(A)
-	BOOST_UBLAS_CHECK( size(b) == num_rows(A), bad_size() );
+    // precondition: size(b) == num_rows(A)
+    BOOST_UBLAS_CHECK( size(b) == num_rows(A), bad_size() );
 
-	// Ax=b ==> LUx=b ==> Ly=b AND Ux=y
+    // Ax=b ==> LUx=b ==> Ly=b AND Ux=y
 
-	typedef typename matrix_traits<MatrixExprT>::value_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
-	typedef typename layout_type<MatrixExprT>::type layout_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename layout_type<MatrixExprT>::type layout_type;
 
-	matrix<value_type,layout_type> LU(A);
-	permutation_matrix<size_type> P(num_rows(LU));
+    matrix<value_type,layout_type> LU(A);
+    permutation_matrix<size_type> P(num_rows(LU));
 
-	size_type singular;
-	singular = lu_decompose_inplace(LU, P);
+    size_type singular;
+    singular = lu_decompose_inplace(LU, P);
 
-	if (!singular)
-	{
-		x = b;
+    if (!singular)
+    {
+        x = b;
 
-		lu_apply_inplace(LU, P, x);
-	}
+        lu_apply_inplace(LU, P, x);
+    }
 
-	return singular;
+    return singular;
 }
 
 /**
@@ -614,29 +616,29 @@ template <typename AMatrixExprT, typename BMatrixExprT, typename OutMatrixT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<AMatrixExprT>::size_type lu_solve(matrix_expression<AMatrixExprT> const& A, matrix_expression<BMatrixExprT> const& B, OutMatrixT& X)
 {
-	// precondition: size(b) == num_rows(A)
-	BOOST_UBLAS_CHECK( num_rows(B) == num_rows(A), bad_size() );
+    // precondition: size(b) == num_rows(A)
+    BOOST_UBLAS_CHECK( num_rows(B) == num_rows(A), bad_size() );
 
-	// Ax=b ==> LUx=b ==> Ly=b AND Ux=y
+    // Ax=b ==> LUx=b ==> Ly=b AND Ux=y
 
-	typedef typename matrix_traits<AMatrixExprT>::value_type size_type;
-	typedef typename matrix_traits<AMatrixExprT>::value_type value_type;
-	typedef typename layout_type<AMatrixExprT>::type layout_type;
+    typedef typename matrix_traits<AMatrixExprT>::value_type size_type;
+    typedef typename matrix_traits<AMatrixExprT>::value_type value_type;
+    typedef typename layout_type<AMatrixExprT>::type layout_type;
 
-	matrix<value_type,layout_type> LU(A);
-	permutation_matrix<size_type> P(num_rows(LU));
+    matrix<value_type,layout_type> LU(A);
+    permutation_matrix<size_type> P(num_rows(LU));
 
-	size_type singular;
-	singular = lu_decompose_inplace(LU, P);
+    size_type singular;
+    singular = lu_decompose_inplace(LU, P);
 
-	if (!singular)
-	{
-		X = B;
+    if (!singular)
+    {
+        X = B;
 
-		lu_apply_inplace(LU, P, X);
-	}
+        lu_apply_inplace(LU, P, X);
+    }
 
-	return singular;
+    return singular;
 }
 
 }}} // Namespace boost::numeric::ublasx

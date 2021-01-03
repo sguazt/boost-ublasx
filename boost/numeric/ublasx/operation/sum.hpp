@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/sum.hpp
  *
@@ -153,121 +155,121 @@ struct sum_by_tag_impl;
 template <>
 struct sum_by_dim_impl<1, vector_tag>
 {
-	template <typename VectorExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename vector_traits<VectorExprT>::value_type> apply(vector_expression<VectorExprT> const& ve)
-	{
-		typedef typename vector_traits<VectorExprT>::value_type value_type;
+    template <typename VectorExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename vector_traits<VectorExprT>::value_type> apply(vector_expression<VectorExprT> const& ve)
+    {
+        typedef typename vector_traits<VectorExprT>::value_type value_type;
 
-		vector<value_type> res(1);
+        vector<value_type> res(1);
 
-		res(0) = sum(ve);
+        res(0) = sum(ve);
 
-		return res;
-	}
+        return res;
+    }
 };
 
 
 template <>
 struct sum_by_dim_impl<1, matrix_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_rows(me);
+    }
 };
 
 
 template <>
 struct sum_by_dim_impl<2, matrix_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_columns(me);
+    }
 };
 
 
 template <>
 struct sum_by_tag_impl<tag::major, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_rows(me);
+    }
 };
 
 
 template <>
 struct sum_by_tag_impl<tag::minor, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_columns(me);
+    }
 };
 
 
 template <>
 struct sum_by_tag_impl<tag::leading, matrix_tag, row_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_columns(me);
+    }
 };
 
 
 template <>
 struct sum_by_tag_impl<tag::major, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_columns(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_columns(me);
+    }
 };
 
 
 template <>
 struct sum_by_tag_impl<tag::minor, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_rows(me);
+    }
 };
 
 
 template <>
 struct sum_by_tag_impl<tag::leading, matrix_tag, column_major_tag>
 {
-	template <typename MatrixExprT>
-	BOOST_UBLAS_INLINE
-	static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
-	{
-		return sum_rows(me);
-	}
+    template <typename MatrixExprT>
+    BOOST_UBLAS_INLINE
+    static vector<typename matrix_traits<MatrixExprT>::value_type> apply(matrix_expression<MatrixExprT> const& me)
+    {
+        return sum_rows(me);
+    }
 };
 
 
 template <typename TagT>
 struct sum_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: sum_by_tag_impl<TagT, matrix_tag, row_major_tag>
 {
-	// Empty
+    // Empty
 };
 
 //@} Definitions
@@ -282,18 +284,18 @@ struct sum_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: sum_by_tag_im
 //BOOST_UBLAS_INLINE
 //typename vector_traits<VectorExprT>::value_type sum(vector_expression<VectorExprT> const& ve)
 //{
-//	typedef typename vector_traits<VectorExprT>::const_iterator iterator_type;;
-//	typedef typename vector_traits<VectorExprT>::value_type value_type;
+//  typedef typename vector_traits<VectorExprT>::const_iterator iterator_type;;
+//  typedef typename vector_traits<VectorExprT>::value_type value_type;
 //
-//	iterator_type it_end = end(ve);
-//	value_type s = 0;
+//  iterator_type it_end = end(ve);
+//  value_type s = 0;
 //
-//	for (iterator_type it = begin(ve); it != it_end; ++it)
-//	{
-//		s += *it;
-//	}
+//  for (iterator_type it = begin(ve); it != it_end; ++it)
+//  {
+//      s += *it;
+//  }
 //
-//	return s;
+//  return s;
 //}
 
 
@@ -301,22 +303,22 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename matrix_traits<MatrixExprT>::value_type sum_all(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	value_type s = 0;
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			s += me()(r,c);
-		}
-	}
+    value_type s = 0;
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            s += me()(r,c);
+        }
+    }
 
-	return s;
+    return s;
 }
 
 
@@ -324,7 +326,7 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> sum(matrix_expression<MatrixExprT> const& me)
 {
-	return sum_rows(me);
+    return sum_rows(me);
 }
 
 
@@ -332,27 +334,27 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> sum_rows(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	vector<value_type> s(nc);
-	size_type j = 0;
-	for (size_type c = 0; c < nc; ++c)
-	{
-		//s(j++) = sum(column(me, c)); //FIXME: don't work
+    vector<value_type> s(nc);
+    size_type j = 0;
+    for (size_type c = 0; c < nc; ++c)
+    {
+        //s(j++) = sum(column(me, c)); //FIXME: don't work
 
-		value_type cs = 0;
-		for (size_type r = 0; r < nr; ++r)
-		{
-			cs += me()(r,c);
-		}
-		s(j++) = cs;
-	}
+        value_type cs = 0;
+        for (size_type r = 0; r < nr; ++r)
+        {
+            cs += me()(r,c);
+        }
+        s(j++) = cs;
+    }
 
-	return s;
+    return s;
 }
 
 
@@ -360,27 +362,27 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> sum_columns(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
-	typedef typename matrix_traits<MatrixExprT>::value_type value_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::value_type value_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
 
-	vector<value_type> s(nr);
-	size_type j = 0;
-	for (size_type r = 0; r < nr; ++r)
-	{
-		//s(j++) = sum(row(me, r)); // FIXME don't work
+    vector<value_type> s(nr);
+    size_type j = 0;
+    for (size_type r = 0; r < nr; ++r)
+    {
+        //s(j++) = sum(row(me, r)); // FIXME don't work
 
-		value_type rs = 0;
-		for (size_type c = 0; c < nc; ++c)
-		{
-			rs += me()(r,c);
-		}
-		s(j++) = rs;
-	}
+        value_type rs = 0;
+        for (size_type c = 0; c < nc; ++c)
+        {
+            rs += me()(r,c);
+        }
+        s(j++) = rs;
+    }
 
-	return s;
+    return s;
 }
 
 
@@ -388,7 +390,7 @@ template <size_t Dim, typename VectorExprT>
 BOOST_UBLAS_INLINE
 vector<typename vector_traits<VectorExprT>::value_type> sum(vector_expression<VectorExprT> const& ve)
 {
-	return detail::sum_by_dim_impl<Dim, vector_tag>::template apply(ve);
+    return detail::sum_by_dim_impl<Dim, vector_tag>::template apply(ve);
 }
 
 
@@ -396,7 +398,7 @@ template <size_t Dim, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> sum(matrix_expression<MatrixExprT> const& me)
 {
-	return detail::sum_by_dim_impl<Dim, matrix_tag>::template apply(me);
+    return detail::sum_by_dim_impl<Dim, matrix_tag>::template apply(me);
 }
 
 
@@ -405,7 +407,7 @@ template <typename TagT, typename MatrixExprT>
 BOOST_UBLAS_INLINE
 vector<typename matrix_traits<MatrixExprT>::value_type> sum_by_tag(matrix_expression<MatrixExprT> const& me)
 {
-	return detail::sum_by_tag_impl<TagT, matrix_tag, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
+    return detail::sum_by_tag_impl<TagT, matrix_tag, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me);
 }
 
 //@} Definitions

@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/empty.hpp
  *
@@ -39,7 +41,7 @@ using namespace ::boost::numeric::ublas;
 template <typename VectorExprT>
 bool empty(vector_expression<VectorExprT> const& ve)
 {
-	return size(ve) == 0;
+    return size(ve) == 0;
 }
 
 
@@ -56,7 +58,7 @@ bool empty(vector_expression<VectorExprT> const& ve)
 template <typename MatrixExprT>
 bool empty(matrix_expression<MatrixExprT> const& me)
 {
-	return num_rows(me) == 0 || num_columns(me) == 0;
+    return num_rows(me) == 0 || num_columns(me) == 0;
 }
 
 

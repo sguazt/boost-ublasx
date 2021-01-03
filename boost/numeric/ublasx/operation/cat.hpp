@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/cat.hpp
  *
@@ -37,24 +39,24 @@ using namespace ::boost::numeric::ublas;
 
 
 template <
-	typename M1,
-	typename M2
+    typename M1,
+    typename M2
 >
 struct matrix_cat_traits
 {
-	typedef typename promote_traits<
-			typename matrix_traits<M1>::value_type,
-			typename matrix_traits<M2>::value_type
-		>::promote_type value_type;
-	// Currently, the result type is simply a dense matrix since it is difficult
-	// to know in advance whether a particular matrix structure will be
-	// preserved after the 'cat' operation.
-	// TODO: we might use the matrix_temporary_traits. However, how do we choose
-	// between matrix_temporary_traits<M1> and matrix_temporary_traits<M2>?
-	typedef matrix<
-			value_type,
-			typename layout_type<M1>::type
-		> result_type;
+    typedef typename promote_traits<
+            typename matrix_traits<M1>::value_type,
+            typename matrix_traits<M2>::value_type
+        >::promote_type value_type;
+    // Currently, the result type is simply a dense matrix since it is difficult
+    // to know in advance whether a particular matrix structure will be
+    // preserved after the 'cat' operation.
+    // TODO: we might use the matrix_temporary_traits. However, how do we choose
+    // between matrix_temporary_traits<M1> and matrix_temporary_traits<M2>?
+    typedef matrix<
+            value_type,
+            typename layout_type<M1>::type
+        > result_type;
 };
 
 
@@ -76,48 +78,48 @@ struct cat_by_dim_impl<1>
      * \param B The second matrix expression.
      */
     template <typename Expr1T,
-			  typename Expr2T>
+              typename Expr2T>
     BOOST_UBLAS_INLINE
-	static typename matrix_cat_traits<Expr1T,Expr2T>::result_type apply(matrix_expression<Expr1T> const& A, matrix_expression<Expr2T> const& B)
+    static typename matrix_cat_traits<Expr1T,Expr2T>::result_type apply(matrix_expression<Expr1T> const& A, matrix_expression<Expr2T> const& B)
     {
-		typedef typename matrix_cat_traits<Expr1T,Expr2T>::result_type out_matrix_type;
-		typedef typename matrix_traits<out_matrix_type>::value_type value_type;
-		typedef typename matrix_traits<out_matrix_type>::size_type size_type;
+        typedef typename matrix_cat_traits<Expr1T,Expr2T>::result_type out_matrix_type;
+        typedef typename matrix_traits<out_matrix_type>::value_type value_type;
+        typedef typename matrix_traits<out_matrix_type>::size_type size_type;
 
-	//	// precondition: num_columns(A) == num_columns(B)
-	//	BOOST_UBLAS_CHECK(
-	//		num_columns(A) == num_columns(B),
-	//		bad_argument()
-	//	);
+    //  // precondition: num_columns(A) == num_columns(B)
+    //  BOOST_UBLAS_CHECK(
+    //      num_columns(A) == num_columns(B),
+    //      bad_argument()
+    //  );
 
-		size_type A_nr = num_rows(A);
-		size_type A_nc = num_columns(A);
-		size_type B_nr = num_rows(B);
-		size_type B_nc = num_columns(B);
-		size_type nc = ::std::max(A_nc, B_nc);
+        size_type A_nr = num_rows(A);
+        size_type A_nc = num_columns(A);
+        size_type B_nr = num_rows(B);
+        size_type B_nc = num_columns(B);
+        size_type nc = ::std::max(A_nc, B_nc);
 
-		out_matrix_type X(A_nr+B_nr, nc, value_type());
+        out_matrix_type X(A_nr+B_nr, nc, value_type());
 
-		for (size_type c = 0; c < nc; ++c)
-		{
-			if (c < A_nc)
-			{
-				for (size_type r = 0; r < A_nr; ++r)
-				{
-					X(r,c) = A()(r,c);
-				}
-			}
-			if (c < B_nc)
-			{
-				for (size_type r = 0; r < B_nr; ++r)
-				{
-					X(r+A_nr,c) = B()(r,c);
-				}
-			}
-		}
+        for (size_type c = 0; c < nc; ++c)
+        {
+            if (c < A_nc)
+            {
+                for (size_type r = 0; r < A_nr; ++r)
+                {
+                    X(r,c) = A()(r,c);
+                }
+            }
+            if (c < B_nc)
+            {
+                for (size_type r = 0; r < B_nr; ++r)
+                {
+                    X(r+A_nr,c) = B()(r,c);
+                }
+            }
+        }
 
-		return X;
-	}
+        return X;
+    }
 };
 
 template <>
@@ -132,41 +134,41 @@ struct cat_by_dim_impl<2>
      * \param B The second matrix expression.
      */
     template <typename Expr1T,
-			  typename Expr2T>
+              typename Expr2T>
     BOOST_UBLAS_INLINE
-	static typename matrix_cat_traits<Expr1T,Expr2T>::result_type apply(matrix_expression<Expr1T> const& A, matrix_expression<Expr2T> const& B)
+    static typename matrix_cat_traits<Expr1T,Expr2T>::result_type apply(matrix_expression<Expr1T> const& A, matrix_expression<Expr2T> const& B)
     {
-		typedef typename matrix_cat_traits<Expr1T,Expr2T>::result_type out_matrix_type;
-		typedef typename matrix_traits<out_matrix_type>::value_type value_type;
-		typedef typename matrix_traits<out_matrix_type>::size_type size_type;
+        typedef typename matrix_cat_traits<Expr1T,Expr2T>::result_type out_matrix_type;
+        typedef typename matrix_traits<out_matrix_type>::value_type value_type;
+        typedef typename matrix_traits<out_matrix_type>::size_type size_type;
 
-		size_type A_nr = num_rows(A);
-		size_type A_nc = num_columns(A);
-		size_type B_nr = num_rows(B);
-		size_type B_nc = num_columns(B);
-		size_type nr = ::std::max(A_nr, B_nr);
+        size_type A_nr = num_rows(A);
+        size_type A_nc = num_columns(A);
+        size_type B_nr = num_rows(B);
+        size_type B_nc = num_columns(B);
+        size_type nr = ::std::max(A_nr, B_nr);
 
-		out_matrix_type X(nr, A_nc+B_nc, value_type());
+        out_matrix_type X(nr, A_nc+B_nc, value_type());
 
-		for (size_type r = 0; r < nr; ++r)
-		{
-			if (r < A_nr)
-			{
-				for (size_type c = 0; c < A_nc; ++c)
-				{
-					X(r,c) = A()(r,c);
-				}
-			}
-			if (r < B_nr)
-			{
-				for (size_type c = 0; c < B_nc; ++c)
-				{
-					X(r,c+A_nc) = B()(r,c);
-				}
-			}
-		}
+        for (size_type r = 0; r < nr; ++r)
+        {
+            if (r < A_nr)
+            {
+                for (size_type c = 0; c < A_nc; ++c)
+                {
+                    X(r,c) = A()(r,c);
+                }
+            }
+            if (r < B_nr)
+            {
+                for (size_type c = 0; c < B_nc; ++c)
+                {
+                    X(r,c+A_nc) = B()(r,c);
+                }
+            }
+        }
 
-		return X;
+        return X;
     }
 };
 
@@ -224,8 +226,8 @@ struct cat_by_dim_impl<2>
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 template <
-	typename InMatrixExpr1T,
-	typename InMatrixExpr2T
+    typename InMatrixExpr1T,
+    typename InMatrixExpr2T
 >
 typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_columns(matrix_expression<InMatrixExpr1T> const& A, matrix_expression<InMatrixExpr2T> const& B)
 {
@@ -278,8 +280,8 @@ typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_colum
  * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 template <
-	typename InMatrixExpr1T,
-	typename InMatrixExpr2T
+    typename InMatrixExpr1T,
+    typename InMatrixExpr2T
 >
 typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_rows(matrix_expression<InMatrixExpr1T> const& A, matrix_expression<InMatrixExpr2T> const& B)
 {
@@ -287,9 +289,9 @@ typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat_rows(
 }
 
 template <
-	std::size_t Dim,
-	typename InMatrixExpr1T,
-	typename InMatrixExpr2T
+    std::size_t Dim,
+    typename InMatrixExpr1T,
+    typename InMatrixExpr2T
 >
 BOOST_UBLAS_INLINE
 typename matrix_cat_traits<InMatrixExpr1T,InMatrixExpr2T>::result_type cat(matrix_expression<InMatrixExpr1T> const& A, matrix_expression<InMatrixExpr2T> const& B)

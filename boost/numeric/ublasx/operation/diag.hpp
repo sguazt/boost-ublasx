@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/diag.hpp
  *
@@ -36,12 +38,12 @@ using namespace ::boost::numeric::ublas;
 template <typename VectorT, typename LayoutT>
 struct vector_matrix_diag_traits
 {
-	typedef typename vector_traits<VectorT>::value_type value_type;
-	typedef typename vector_traits<VectorT>::difference_type difference_type;
-	typedef typename vector_traits<VectorT>::size_type size_type;
-	typedef LayoutT layout_type;
-	typedef typename VectorT::array_type array_type; //FIXME: not in vector_traits
-	typedef generalized_diagonal_matrix<value_type, layout_type, array_type> result_type;
+    typedef typename vector_traits<VectorT>::value_type value_type;
+    typedef typename vector_traits<VectorT>::difference_type difference_type;
+    typedef typename vector_traits<VectorT>::size_type size_type;
+    typedef LayoutT layout_type;
+    typedef typename VectorT::array_type array_type; //FIXME: not in vector_traits
+    typedef generalized_diagonal_matrix<value_type, layout_type, array_type> result_type;
 };
 
 
@@ -53,12 +55,12 @@ struct vector_matrix_diag_traits
 template <typename VectorExprT, typename LayoutT>
 struct vector_matrix_diag_traits<vector_expression<VectorExprT>, LayoutT>
 {
-	typedef typename vector_traits<VectorExprT>::value_type value_type;
-	typedef typename vector_traits<VectorExprT>::difference_type difference_type;
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
-	typedef LayoutT layout_type;
-	typedef typename VectorExprT::array_type array_type; //FIXME: not in vector_traits
-	typedef generalized_diagonal_matrix<value_type, layout_type, array_type> result_type;
+    typedef typename vector_traits<VectorExprT>::value_type value_type;
+    typedef typename vector_traits<VectorExprT>::difference_type difference_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef LayoutT layout_type;
+    typedef typename VectorExprT::array_type array_type; //FIXME: not in vector_traits
+    typedef generalized_diagonal_matrix<value_type, layout_type, array_type> result_type;
 };
 
 
@@ -82,18 +84,18 @@ template <typename VectorT, typename LayoutT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT,LayoutT>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k=0, LayoutT /*l*/=LayoutT())
 {
-	typedef vector_matrix_diag_traits<VectorT,LayoutT> traits;
-	typedef typename traits::size_type size_type;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT,LayoutT> traits;
+    typedef typename traits::size_type size_type;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	size_type d(k > 0 ? k : -k);
+    size_type d(k > 0 ? k : -k);
 
-	return result_type(
-			v().size() + d,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            v().size() + d,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -119,18 +121,18 @@ template <typename VectorT, typename LayoutT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT const,LayoutT>::result_type diag(vector_expression<VectorT> const& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k=0, LayoutT /*l*/=LayoutT())
 {
-	typedef vector_matrix_diag_traits<VectorT const,LayoutT> traits;
-	typedef typename traits::size_type size_type;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT const,LayoutT> traits;
+    typedef typename traits::size_type size_type;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	size_type d(k > 0 ? k : -k);
+    size_type d(k > 0 ? k : -k);
 
-	return result_type(
-			v().size() + d,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            v().size() + d,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -152,18 +154,18 @@ template <typename VectorT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT,row_major>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k=0)
 {
-	typedef vector_matrix_diag_traits<VectorT,row_major> traits;
-	typedef typename traits::size_type size_type;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT,row_major> traits;
+    typedef typename traits::size_type size_type;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	size_type d(k > 0 ? k : -k);
+    size_type d(k > 0 ? k : -k);
 
-	return result_type(
-			v().size() + d,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            v().size() + d,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -187,18 +189,18 @@ template <typename VectorT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT const,row_major>::result_type diag(vector_expression<VectorT> const& v, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k=0)
 {
-	typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
-	typedef typename traits::size_type size_type;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
+    typedef typename traits::size_type size_type;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	size_type d(k > 0 ? k : -k);
+    size_type d(k > 0 ? k : -k);
 
-	return result_type(
-			v().size() + d,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            v().size() + d,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -224,16 +226,16 @@ template <typename VectorT, typename LayoutT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT,LayoutT>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size1, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size2, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k=0, LayoutT /*l*/=LayoutT())
 {
-	typedef vector_matrix_diag_traits<VectorT,row_major> traits;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT,row_major> traits;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	return result_type(
-			size1,
-			size2,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            size1,
+            size2,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -261,16 +263,16 @@ template <typename VectorT, typename LayoutT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT const,LayoutT>::result_type diag(vector_expression<VectorT> const& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size1, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size2, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k=0, LayoutT /*l*/=LayoutT())
 {
-	typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	return result_type(
-			size1,
-			size2,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            size1,
+            size2,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -294,16 +296,16 @@ template <typename VectorT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT,row_major>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size1, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size2, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k=0)
 {
-	typedef vector_matrix_diag_traits<VectorT,row_major> traits;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT,row_major> traits;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	return result_type(
-			size1,
-			size2,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            size1,
+            size2,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -329,16 +331,16 @@ template <typename VectorT>
 BOOST_UBLAS_INLINE
 typename vector_matrix_diag_traits<VectorT const,row_major>::result_type diag(vector_expression<VectorT> const& v, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size1, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size2, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k=0)
 {
-	typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
-	typedef typename traits::array_type array_type;
-	typedef typename traits::result_type result_type;
+    typedef vector_matrix_diag_traits<VectorT const,row_major> traits;
+    typedef typename traits::array_type array_type;
+    typedef typename traits::result_type result_type;
 
-	return result_type(
-			size1,
-			size2,
-			k,
-			array_type(v().data())
-	);
+    return result_type(
+            size1,
+            size2,
+            k,
+            array_type(v().data())
+    );
 }
 
 
@@ -364,16 +366,16 @@ typename vector_matrix_diag_traits<VectorT const,row_major>::result_type diag(ve
 //BOOST_UBLAS_INLINE
 //typename vector_matrix_diag_traits<VectorT,LayoutT>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,LayoutT>::size_type size, typename vector_matrix_diag_traits<VectorT,LayoutT>::difference_type k, LayoutT /*l*//*=LayoutT()*/)
 //{
-//	typedef vector_matrix_diag_traits<VectorT,LayoutT> traits;
-//	typedef typename traits::size_type size_type;
-//	typedef typename traits::array_type array_type;
-//	typedef typename traits::result_type result_type;
+//  typedef vector_matrix_diag_traits<VectorT,LayoutT> traits;
+//  typedef typename traits::size_type size_type;
+//  typedef typename traits::array_type array_type;
+//  typedef typename traits::result_type result_type;
 //
-//	return result_type(
-//			size,
-//			k,
-//			array_type(v().data())
-//	);
+//  return result_type(
+//          size,
+//          k,
+//          array_type(v().data())
+//  );
 //}
 
 
@@ -395,16 +397,16 @@ typename vector_matrix_diag_traits<VectorT const,row_major>::result_type diag(ve
 //BOOST_UBLAS_INLINE
 //typename vector_matrix_diag_traits<VectorT,row_major>::result_type diag(vector_expression<VectorT>& v, typename vector_matrix_diag_traits<VectorT,row_major>::size_type size, typename vector_matrix_diag_traits<VectorT,row_major>::difference_type k)
 //{
-//	typedef vector_matrix_diag_traits<VectorT,row_major> traits;
-//	typedef typename traits::size_type size_type;
-//	typedef typename traits::array_type array_type;
-//	typedef typename traits::result_type result_type;
+//  typedef vector_matrix_diag_traits<VectorT,row_major> traits;
+//  typedef typename traits::size_type size_type;
+//  typedef typename traits::array_type array_type;
+//  typedef typename traits::result_type result_type;
 //
-//	return result_type(
-//			size,
-//			k,
-//			array_type(v().data())
-//	);
+//  return result_type(
+//          size,
+//          k,
+//          array_type(v().data())
+//  );
 //}
 //[/FIXME]
 
@@ -425,7 +427,7 @@ template<typename MatrixT>
 BOOST_UBLAS_INLINE
 matrix_diagonal<MatrixT> diag(matrix_expression<MatrixT>& me, typename MatrixT::difference_type k=0)
 {
-	return matrix_diagonal<MatrixT>(me(), k);
+    return matrix_diagonal<MatrixT>(me(), k);
 }
 
 
@@ -445,7 +447,7 @@ template<typename MatrixT>
 BOOST_UBLAS_INLINE
 matrix_diagonal<MatrixT const> const diag(matrix_expression<MatrixT> const& me, typename MatrixT::difference_type k=0)
 {
-	return matrix_diagonal<MatrixT const>(me(), k);
+    return matrix_diagonal<MatrixT const>(me(), k);
 }
 
 }}} // Namespace boost::numeric::ublasx

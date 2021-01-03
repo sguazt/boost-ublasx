@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/for_each.hpp
  *
@@ -38,41 +40,41 @@ struct for_each_by_dim_impl;
 template <>
 struct for_each_by_dim_impl<1>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type r = 0; r < nr; ++r)
-		{
-			for (size_type c = 0; c < nc; ++c)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type r = 0; r < nr; ++r)
+        {
+            for (size_type c = 0; c < nc; ++c)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 template <>
 struct for_each_by_dim_impl<2>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type c = 0; c < nc; ++c)
-		{
-			for (size_type r = 0; r < nr; ++r)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type c = 0; c < nc; ++c)
+        {
+            for (size_type r = 0; r < nr; ++r)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 
@@ -82,121 +84,121 @@ struct for_each_by_tag_impl;
 template <>
 struct for_each_by_tag_impl<tag::major, row_major_tag>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type r = 0; r < nr; ++r)
-		{
-			for (size_type c = 0; c < nc; ++c)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type r = 0; r < nr; ++r)
+        {
+            for (size_type c = 0; c < nc; ++c)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 template <>
 struct for_each_by_tag_impl<tag::major, column_major_tag>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type c = 0; c < nc; ++c)
-		{
-			for (size_type r = 0; r < nr; ++r)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type c = 0; c < nc; ++c)
+        {
+            for (size_type r = 0; r < nr; ++r)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 template <>
 struct for_each_by_tag_impl<tag::minor, row_major_tag>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type c = 0; c < nc; ++c)
-		{
-			for (size_type r = 0; r < nr; ++r)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type c = 0; c < nc; ++c)
+        {
+            for (size_type r = 0; r < nr; ++r)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 template <>
 struct for_each_by_tag_impl<tag::minor, column_major_tag>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type r = 0; r < nr; ++r)
-		{
-			for (size_type c = 0; c < nc; ++c)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type r = 0; r < nr; ++r)
+        {
+            for (size_type c = 0; c < nc; ++c)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 template <>
 struct for_each_by_tag_impl<tag::leading, row_major_tag>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type c = 0; c < nc; ++c)
-		{
-			for (size_type r = 0; r < nr; ++r)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type c = 0; c < nc; ++c)
+        {
+            for (size_type r = 0; r < nr; ++r)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 template <>
 struct for_each_by_tag_impl<tag::leading, column_major_tag>
 {
-	template <typename MatrixExprT, typename UnaryFunctorT>
-	static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
-	{
-		typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    template <typename MatrixExprT, typename UnaryFunctorT>
+    static void apply(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
+    {
+        typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-		size_type nr = num_rows(me);
-		size_type nc = num_columns(me);
-		for (size_type r = 0; r < nr; ++r)
-		{
-			for (size_type c = 0; c < nc; ++c)
-			{
-				f(me()(r,c));
-			}
-		}
-	}
+        size_type nr = num_rows(me);
+        size_type nc = num_columns(me);
+        for (size_type r = 0; r < nr; ++r)
+        {
+            for (size_type c = 0; c < nc; ++c)
+            {
+                f(me()(r,c));
+            }
+        }
+    }
 };
 
 
@@ -217,13 +219,13 @@ struct for_each_by_tag_impl<tag::leading, column_major_tag>
 template <typename VectorExprT, typename UnaryFunctorT>
 void for_each(vector_expression<VectorExprT> const& ve, UnaryFunctorT f)
 {
-	typedef typename vector_traits<VectorExprT>::size_type size_type;
+    typedef typename vector_traits<VectorExprT>::size_type size_type;
 
-	size_type n = size(ve);
-	for (size_type i = 0; i < n; ++i)
-	{
-		f(ve()(i));
-	}
+    size_type n = size(ve);
+    for (size_type i = 0; i < n; ++i)
+    {
+        f(ve()(i));
+    }
 }
 
 
@@ -241,17 +243,17 @@ void for_each(vector_expression<VectorExprT> const& ve, UnaryFunctorT f)
 template <typename MatrixExprT, typename UnaryFunctorT>
 void for_each(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
 {
-	typedef typename matrix_traits<MatrixExprT>::size_type size_type;
+    typedef typename matrix_traits<MatrixExprT>::size_type size_type;
 
-	size_type nr = num_rows(me);
-	size_type nc = num_columns(me);
-	for (size_type r = 0; r < nr; ++r)
-	{
-		for (size_type c = 0; c < nc; ++c)
-		{
-			f(me()(r,c));
-		}
-	}
+    size_type nr = num_rows(me);
+    size_type nc = num_columns(me);
+    for (size_type r = 0; r < nr; ++r)
+    {
+        for (size_type c = 0; c < nc; ++c)
+        {
+            f(me()(r,c));
+        }
+    }
 }
 
 
@@ -271,7 +273,7 @@ void for_each(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
 template <std::size_t Dim, typename MatrixExprT, typename UnaryFunctorT>
 void for_each(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
 {
-	detail::for_each_by_dim_impl<Dim>::template apply(me, f);
+    detail::for_each_by_dim_impl<Dim>::template apply(me, f);
 }
 
 
@@ -291,7 +293,7 @@ void for_each(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
 template <typename TagT, typename MatrixExprT, typename UnaryFunctorT>
 void for_each_by_tag(matrix_expression<MatrixExprT> const& me, UnaryFunctorT f)
 {
-	detail::for_each_by_tag_impl<TagT, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me, f);
+    detail::for_each_by_tag_impl<TagT, typename matrix_traits<MatrixExprT>::orientation_category>::template apply(me, f);
 }
 
 

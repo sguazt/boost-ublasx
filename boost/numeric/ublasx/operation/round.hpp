@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/round.hpp
  *
@@ -41,30 +43,30 @@ namespace detail {
 template <typename VectorExprT>
 struct vector_round_functor_traits
 {
-	typedef VectorExprT input_expression_type;
-	typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef vector_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef VectorExprT input_expression_type;
+    typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
+    typedef signature_argument_type signature_result_type;
+    typedef vector_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
 template <typename MatrixExprT>
 struct matrix_round_functor_traits
 {
-	typedef MatrixExprT input_expression_type;
-	typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
-	typedef signature_argument_type signature_result_type;
-	typedef matrix_unary_functor_traits<
-				input_expression_type,
-				signature_result_type (signature_argument_type)
-			> unary_functor_expression_type;
-	typedef typename unary_functor_expression_type::result_type result_type;
-	typedef typename unary_functor_expression_type::expression_type expression_type;
+    typedef MatrixExprT input_expression_type;
+    typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
+    typedef signature_argument_type signature_result_type;
+    typedef matrix_unary_functor_traits<
+                input_expression_type,
+                signature_result_type (signature_argument_type)
+            > unary_functor_expression_type;
+    typedef typename unary_functor_expression_type::result_type result_type;
+    typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
 
@@ -75,7 +77,7 @@ template <typename T>
 BOOST_UBLAS_INLINE
 T round(T x)
 {
-	return (x > 0.0) ? ::std::floor(x + 0.5) : ::std::ceil(x - 0.5);
+    return (x > 0.0) ? ::std::floor(x + 0.5) : ::std::ceil(x - 0.5);
 }
 
 /// Auxiliary function used to replace ::std::round when that is not available.
@@ -83,10 +85,10 @@ template <typename T>
 BOOST_UBLAS_INLINE
 ::std::complex<T> round(::std::complex<T> x)
 {
-	T r = (x.real() > 0.0) ? ::std::floor(x.real() + 0.5) : ::std::ceil(x.real() - 0.5);
-	T i = (x.imag() > 0.0) ? ::std::floor(x.imag() + 0.5) : ::std::ceil(x.imag() - 0.5);
+    T r = (x.real() > 0.0) ? ::std::floor(x.real() + 0.5) : ::std::ceil(x.real() - 0.5);
+    T i = (x.imag() > 0.0) ? ::std::floor(x.imag() + 0.5) : ::std::ceil(x.imag() - 0.5);
 
-	return ::std::complex<T>(r,i);
+    return ::std::complex<T>(r,i);
 }
 
 //} // Namespace <unnamed>
@@ -109,15 +111,15 @@ template <typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename detail::vector_round_functor_traits<VectorExprT>::result_type round(vector_expression<VectorExprT> const& ve)
 {
-	typedef typename detail::vector_round_functor_traits<VectorExprT>::expression_type expression_type;
-	typedef typename detail::vector_round_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
-	typedef typename detail::vector_round_functor_traits<VectorExprT>::signature_result_type signature_result_type;
+    typedef typename detail::vector_round_functor_traits<VectorExprT>::expression_type expression_type;
+    typedef typename detail::vector_round_functor_traits<VectorExprT>::signature_argument_type signature_argument_type;
+    typedef typename detail::vector_round_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 
-//	return expression_type(ve(), BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round<signature_result_type>);
-//	signature_result_type (*)(ptr_round_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round); 
-	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-	fun_ptr_type ptr_round_fun(&BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round); 
-	return expression_type(ve(), ptr_round_fun);
+//  return expression_type(ve(), BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round<signature_result_type>);
+//  signature_result_type (*)(ptr_round_fun)(signature_argument_type)(BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round); 
+    typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
+    fun_ptr_type ptr_round_fun(&BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round); 
+    return expression_type(ve(), ptr_round_fun);
 }
 
 
@@ -136,14 +138,14 @@ template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename detail::matrix_round_functor_traits<MatrixExprT>::result_type round(matrix_expression<MatrixExprT> const& me)
 {
-	typedef typename detail::matrix_round_functor_traits<MatrixExprT>::expression_type expression_type;
-	typedef typename detail::matrix_round_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
-	typedef typename detail::matrix_round_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
+    typedef typename detail::matrix_round_functor_traits<MatrixExprT>::expression_type expression_type;
+    typedef typename detail::matrix_round_functor_traits<MatrixExprT>::signature_argument_type signature_argument_type;
+    typedef typename detail::matrix_round_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 
-//	return expression_type(me(), BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round<signature_result_type>(signature_argument_type));
-	typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
-	fun_ptr_type ptr_round_fun(&BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round); 
-	return expression_type(me(), ptr_round_fun);
+//  return expression_type(me(), BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round<signature_result_type>(signature_argument_type));
+    typedef signature_result_type(*fun_ptr_type)(signature_argument_type);
+    fun_ptr_type ptr_round_fun(&BOOST_NUMERIC_UBLASX_OPERATION_ROUND_NS_::round); 
+    return expression_type(me(), ptr_round_fun);
 }
 
 }}} // Namespace boost::numeric::ublasx

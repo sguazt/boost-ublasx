@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/realmin.hpp
  *
@@ -27,7 +29,7 @@ template <typename RealT>
 BOOST_UBLAS_INLINE
 typename type_traits<RealT>::real_type realmin()
 {
-	return ::std::numeric_limits<typename type_traits<RealT>::real_type>::min();
+    return ::std::numeric_limits<typename type_traits<RealT>::real_type>::min();
 }
 
 }}} // Namespace boost::numeric::ublasx

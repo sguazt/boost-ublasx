@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/lsq.hpp
  *
@@ -42,114 +44,114 @@ namespace detail { namespace /*<unnamed>*/ {
 template <typename MatrixT, typename VectorT>
 void llsq_qr_impl(MatrixT& A, VectorT& b, column_major_tag)
 {
-	typedef typename promote_traits<
-				typename matrix_traits<MatrixT>::size_type,
-				typename vector_traits<VectorT>::size_type
-		>::promote_type size_type;
+    typedef typename promote_traits<
+                typename matrix_traits<MatrixT>::size_type,
+                typename vector_traits<VectorT>::size_type
+        >::promote_type size_type;
 
-//	size_type m = num_rows(A);
-	size_type n = num_columns(A);
+//  size_type m = num_rows(A);
+    size_type n = num_columns(A);
 
-	::boost::numeric::bindings::lapack::gels(A, b);
+    ::boost::numeric::bindings::lapack::gels(A, b);
 
-	b.resize(n, true);
+    b.resize(n, true);
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_qr_impl(MatrixT& A, VectorT& b, row_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef matrix<value_type, column_major> colmaj_matrix_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef matrix<value_type, column_major> colmaj_matrix_type;
 
-	colmaj_matrix_type tmp_A(A);
+    colmaj_matrix_type tmp_A(A);
 
-	llsq_qr_impl(tmp_A, b, column_major_tag());
+    llsq_qr_impl(tmp_A, b, column_major_tag());
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_qr_impl(matrix_expression<MatrixT> const& A, VectorT& b, column_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef matrix<value_type, column_major> colmaj_matrix_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef matrix<value_type, column_major> colmaj_matrix_type;
 
-	colmaj_matrix_type tmp_A(A);
+    colmaj_matrix_type tmp_A(A);
 
-	llsq_qr_impl(tmp_A, b, column_major_tag());
+    llsq_qr_impl(tmp_A, b, column_major_tag());
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_qr_impl(matrix_expression<MatrixT> const& A, VectorT& b, row_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef matrix<value_type, column_major> colmaj_matrix_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef matrix<value_type, column_major> colmaj_matrix_type;
 
-	colmaj_matrix_type tmp_A(A);
+    colmaj_matrix_type tmp_A(A);
 
-	llsq_qr_impl(tmp_A, b, column_major_tag());
+    llsq_qr_impl(tmp_A, b, column_major_tag());
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_svd_impl(MatrixT& A, VectorT& b, column_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef typename type_traits<value_type>::real_type real_type;
-	typedef typename promote_traits<
-				typename matrix_traits<MatrixT>::size_type,
-				typename vector_traits<VectorT>::size_type
-		>::promote_type size_type;
-	typedef vector<real_type> work_vector_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef typename type_traits<value_type>::real_type real_type;
+    typedef typename promote_traits<
+                typename matrix_traits<MatrixT>::size_type,
+                typename vector_traits<VectorT>::size_type
+        >::promote_type size_type;
+    typedef vector<real_type> work_vector_type;
 
-	size_type m = num_rows(A);
-	size_type n = num_columns(A);
-	size_type k = ::std::min(m, n);
-	real_type rc = rcond(A);
-	::fortran_int_t r;
-	//work_vector_type tmp_b(b);//TODO: should we do this in order to avoid problem with other types of vector (like sparse vector)
-	work_vector_type dummy_s(k);
+    size_type m = num_rows(A);
+    size_type n = num_columns(A);
+    size_type k = ::std::min(m, n);
+    real_type rc = rcond(A);
+    ::fortran_int_t r;
+    //work_vector_type tmp_b(b);//TODO: should we do this in order to avoid problem with other types of vector (like sparse vector)
+    work_vector_type dummy_s(k);
 
-	::boost::numeric::bindings::lapack::gelss(A, b, dummy_s, rc, r);
+    ::boost::numeric::bindings::lapack::gelss(A, b, dummy_s, rc, r);
 
-	b.resize(n, true);
+    b.resize(n, true);
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_svd_impl(MatrixT& A, VectorT& b, row_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef matrix<value_type, column_major> colmaj_matrix_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef matrix<value_type, column_major> colmaj_matrix_type;
 
-	colmaj_matrix_type tmp_A(A);
+    colmaj_matrix_type tmp_A(A);
 
-	llsq_svd_impl(tmp_A, b, column_major_tag());
+    llsq_svd_impl(tmp_A, b, column_major_tag());
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_svd_impl(matrix_expression<MatrixT> const& A, VectorT& b, column_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef matrix<value_type, column_major> colmaj_matrix_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef matrix<value_type, column_major> colmaj_matrix_type;
 
-	colmaj_matrix_type tmp_A(A);
+    colmaj_matrix_type tmp_A(A);
 
-	llsq_svd_impl(tmp_A, b, column_major_tag());
+    llsq_svd_impl(tmp_A, b, column_major_tag());
 }
 
 
 template <typename MatrixT, typename VectorT>
 void llsq_svd_impl(matrix_expression<MatrixT> const& A, VectorT& b, row_major_tag)
 {
-	typedef typename matrix_traits<MatrixT>::value_type value_type;
-	typedef matrix<value_type, column_major> colmaj_matrix_type;
+    typedef typename matrix_traits<MatrixT>::value_type value_type;
+    typedef matrix<value_type, column_major> colmaj_matrix_type;
 
-	colmaj_matrix_type tmp_A(A);
+    colmaj_matrix_type tmp_A(A);
 
-	llsq_svd_impl(tmp_A, b, column_major_tag());
+    llsq_svd_impl(tmp_A, b, column_major_tag());
 }
 
 }} // Namespace detail::<unnamed>
@@ -172,9 +174,9 @@ template <typename MatrixExprT, typename VectorT>
 BOOST_UBLAS_INLINE
 void llsq_qr_inplace(matrix_expression<MatrixExprT> const& A, VectorT& b)
 {
-	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
+    typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
 
-	detail::llsq_qr_impl(A, b, orientation_category());
+    detail::llsq_qr_impl(A, b, orientation_category());
 }
 
 
@@ -195,13 +197,13 @@ template <typename MatrixExprT, typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename vector_temporary_traits<VectorExprT>::type llsq_qr(matrix_expression<MatrixExprT> const& A, vector_expression<VectorExprT> const& b)
 {
-	typedef typename vector_temporary_traits<VectorExprT>::type out_vector_type;
+    typedef typename vector_temporary_traits<VectorExprT>::type out_vector_type;
 
-	out_vector_type x(b);
+    out_vector_type x(b);
 
-	llsq_qr_inplace(A, x);
+    llsq_qr_inplace(A, x);
 
-	return x;
+    return x;
 }
 
 
@@ -223,9 +225,9 @@ template <typename MatrixExprT, typename VectorT>
 BOOST_UBLAS_INLINE
 void llsq_svd_inplace(matrix_expression<MatrixExprT> const& A, VectorT& b)
 {
-	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
+    typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
 
-	detail::llsq_svd_impl(A, b, orientation_category());
+    detail::llsq_svd_impl(A, b, orientation_category());
 }
 
 
@@ -247,13 +249,13 @@ template <typename MatrixExprT, typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename vector_temporary_traits<VectorExprT>::type llsq_svd(matrix_expression<MatrixExprT> const& A, vector_expression<VectorExprT> const& b)
 {
-	typedef typename vector_temporary_traits<VectorExprT>::type out_vector_type;
+    typedef typename vector_temporary_traits<VectorExprT>::type out_vector_type;
 
-	out_vector_type x(b);
+    out_vector_type x(b);
 
-	llsq_svd_inplace(A, x);
+    llsq_svd_inplace(A, x);
 
-	return x;
+    return x;
 }
 
 
@@ -269,9 +271,9 @@ template <typename MatrixExprT, typename VectorT>
 BOOST_UBLAS_INLINE
 void llsq_inplace(matrix_expression<MatrixExprT> const& A, VectorT& b)
 {
-	typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
+    typedef typename matrix_traits<MatrixExprT>::orientation_category orientation_category;
 
-	detail::llsq_svd_impl(A, b, orientation_category());
+    detail::llsq_svd_impl(A, b, orientation_category());
 }
 
 
@@ -287,13 +289,13 @@ template <typename MatrixExprT, typename VectorExprT>
 BOOST_UBLAS_INLINE
 typename vector_temporary_traits<VectorExprT>::type llsq(matrix_expression<MatrixExprT> const& A, vector_expression<VectorExprT> const& b)
 {
-	typedef typename vector_temporary_traits<VectorExprT>::type out_vector_type;
+    typedef typename vector_temporary_traits<VectorExprT>::type out_vector_type;
 
-	out_vector_type x(b);
+    out_vector_type x(b);
 
-	llsq_inplace(A, x);
+    llsq_inplace(A, x);
 
-	return x;
+    return x;
 }
 
 }}} // Namespace boost::numeric::ublasx

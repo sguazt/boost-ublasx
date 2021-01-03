@@ -1,3 +1,5 @@
+/* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
+
 /**
  * \file boost/numeric/ublasx/operation/seq.hpp
  *
@@ -28,40 +30,40 @@ using namespace boost::numeric::ublas;
 template <typename ValueT, typename SizeT>
 sequence_vector<ValueT> seq(ValueT from, SizeT size)
 {
-	return sequence_vector<ValueT>(from, size);
+    return sequence_vector<ValueT>(from, size);
 }
 
 
 template <typename ValueT, typename StrideT, typename SizeT>
 sequence_vector<ValueT, StrideT> seq(ValueT from, StrideT stride, SizeT size)
 {
-	return sequence_vector<ValueT, StrideT>(from, stride, size);
+    return sequence_vector<ValueT, StrideT>(from, stride, size);
 }
 
 
 sequence_vector<> seq(sequence_vector<>::value_type from, sequence_vector<>::size_type size)
 {
-	return sequence_vector<>(from, size);
+    return sequence_vector<>(from, size);
 }
 
 
 sequence_vector<> seq(sequence_vector<>::value_type from, sequence_vector<>::stride_type stride, sequence_vector<>::size_type size)
 {
-	return sequence_vector<>(from, stride, size);
+    return sequence_vector<>(from, stride, size);
 }
 
 
 template <typename SizeT, typename DifferenceT>
 sequence_vector<SizeT,DifferenceT> seq(basic_range<SizeT,DifferenceT> const& r)
 {
-	return sequence_vector<SizeT,DifferenceT>(r);
+    return sequence_vector<SizeT,DifferenceT>(r);
 }
 
 
 template <typename SizeT, typename DifferenceT>
 sequence_vector<SizeT,DifferenceT> seq(basic_slice<SizeT,DifferenceT> const& s)
 {
-	return sequence_vector<SizeT,DifferenceT>(s);
+    return sequence_vector<SizeT,DifferenceT>(s);
 }
 
 }}} // Namespace boost::numeric::ublasx
