@@ -12,7 +12,7 @@ The aim of this project is to extend the [Boost.uBLAS](https://www.boost.org/doc
 In a nutshell, Boost.uBLASx provides the following features:
 * A set of vector/matrix operations (e.g., the `reshape` operation, for changing the shape of an array).
 The list of currently available operations, together with a comparison with similar MATLAB/Octave functions, is available [here](libs/numeric/ublasx/doc/MATLAB).
-* New container classes and adaptors (e.g., the `generalized_diagonal_matrix` class`, for representing generalized diagonal matrices).
+* New container classes and adaptors (e.g., the `generalized_diagonal_matrix` class, for representing generalized diagonal matrices).
 * New expression types (e.g., the `matrix_binary_function` class, for representing binary matrix functions).
 * New proxy classes (e.g., the `matrix_diagonal` class, for accessing to a specific diagonal of a given matrix)
 * New storage classes (e.g., the `array_reference` class, for representing references to an array).
