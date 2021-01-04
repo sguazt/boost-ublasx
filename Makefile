@@ -12,6 +12,7 @@ ifneq (,$(wildcard ./user-config.mk))
 endif
 
 CXXFLAGS += -Wall -Wextra -pedantic -ansi
+#CXXFLAGS += -Wall -Wextra -pedantic -std=c++11
 CXXFLAGS += -I$(src_path)
 CXXFLAGS += $(USER_CXXFLAGS)
 #CXXFLAGS += -g -O0
@@ -41,6 +42,7 @@ test_cases =	abs \
 				empty \
 				eps \
 				exp \
+				eye \
 				find \
 				for_each \
 				generalized_diagonal_matrix \
