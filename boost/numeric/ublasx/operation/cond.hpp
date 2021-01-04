@@ -31,6 +31,8 @@
  *              \end{cases}
  * \f}
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
@@ -38,8 +40,6 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_COND_HPP
@@ -67,7 +67,7 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 enum norm_categories
 {
@@ -143,7 +143,7 @@ typename type_traits<typename matrix_traits<MatrixExprT>::value_type>::real_type
     return c;
 }
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 /**

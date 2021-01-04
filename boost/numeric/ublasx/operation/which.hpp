@@ -6,7 +6,7 @@
  * \brief Find the positions of the elments of a given container which satisfy
  *  a given unary predicate.
  *
- * \todo Implementation for matrix expressions.
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *
@@ -15,8 +15,6 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompwhiching file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_WHICH_HPP
@@ -33,7 +31,7 @@
 #include <functional>
 
 
-//TODO: implement the 'which' operation for matrix containers
+//TODO: implement the 'which' operation for matrix expressions
 
 namespace boost { namespace numeric { namespace ublasx {
 

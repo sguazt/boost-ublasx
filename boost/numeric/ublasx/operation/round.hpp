@@ -3,15 +3,18 @@
 /**
  * \file boost/numeric/ublasx/operation/round.hpp
  *
- * \brief Apply the \c std::round function to a vector or matrix expression.
+ * \brief Compute the interger nearest to each element of a vector or matrix
+ *  expression.
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_ROUND_HPP
@@ -70,8 +73,6 @@ struct matrix_round_functor_traits
 };
 
 
-//namespace /*<unnamed>*/ {
-
 /// Auxiliary function used to replace ::std::round when that is not available.
 template <typename T>
 BOOST_UBLAS_INLINE
@@ -90,8 +91,6 @@ BOOST_UBLAS_INLINE
 
     return ::std::complex<T>(r,i);
 }
-
-//} // Namespace <unnamed>
 
 } // Namespace detail
 

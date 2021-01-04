@@ -1,17 +1,19 @@
 /* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
 
 /**
- *  \file boost/numeric/ublasx/container/generalized_triangular_matrix.hpp
+ * \file boost/numeric/ublasx/container/generalized_triangular_matrix.hpp
  *
- *  \brief Generalized triangular matrix class and adaptor.
+ * \brief Generalized triangular matrix class and adaptor.
  *
- *  Copyright (c) 2009-2010, Marco Guazzone
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
- *  Distributed under the Boost Software License, Version 1.0. (See
- *  accompanying file LICENSE_1_0.txt or copy at
- *  http://www.boost.org/LICENSE_1_0.txt)
+ * <hr/>
  *
- *  \author Marco Guazzone, marco.guazzone@gmail.com
+ * Copyright (c) 2009-2010, Marco Guazzone
+ *
+ * Distributed under the Boost Software License, Version 1.0. (See
+ * accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_CONTAINER_GENERALIZED_DIAGONAL_MATRIX_HPP
@@ -36,7 +38,7 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 // Matrix resizing algorithm
 template <typename L, typename T, typename M>
@@ -73,7 +75,7 @@ void matrix_resize_preserve(M& m, M& temporary)
     m.assign_temporary (temporary);
 }
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 struct kth_lower_tag: public lower_tag {};

@@ -3,15 +3,18 @@
 /**
  * \file boost/numeric/ublasx/operation/log2.hpp
  *
- * \brief Apply the \c std::log2 function to a vector or matrix expression.
+ * \brief Compute the base-2 logarithm of each element of a vector or matrix
+ *  expression.
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_LOG2_HPP
@@ -61,8 +64,6 @@ struct matrix_log2_functor_traits
 };
 
 
-namespace /*<unnamed>*/ {
-
 /// Auxiliary function used to replace ::std::log2 when that is not available.
 template <typename T>
 BOOST_UBLAS_INLINE
@@ -72,8 +73,6 @@ T log2(T x)
   // doesn't work with complex numbers.
     return ::std::log(x)/::std::log(2);
 }
-
-} // Namespace <unnamed>
 
 } // Namespace detail
 

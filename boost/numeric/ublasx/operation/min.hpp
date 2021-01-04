@@ -5,6 +5,8 @@
  *
  * \brief The \c min operation.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * <hr/>
  *
  * Copyright (c) 2010-2011, Marco Guazzone
@@ -12,12 +14,13 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_MIN_HPP
 #define BOOST_NUMERIC_UBLASX_OPERATION_MIN_HPP
+
+//TODO: When possible, use vector/matrix_temporary_traits instead of
+//      expliciting the type of the container.
 
 
 #include <boost/numeric/ublas/detail/config.hpp>
@@ -142,7 +145,7 @@ vector<typename matrix_traits<MatrixExprT>::value_type> min_by_tag(matrix_expres
 //@} Declarations
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 //@{ Declarations
 
@@ -354,7 +357,7 @@ struct min_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: min_by_tag_im
 
 //@} Definitions
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 //@{ Definitions

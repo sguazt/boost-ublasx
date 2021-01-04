@@ -9,11 +9,13 @@
  *  `sign` function (e.g., returning `0` for element of the input expression
  *  that are equal to `0`).
  *
+ * \author comcon1 based on code of Marco Guazzone
+ *
+ * <hr/>
+ *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author comcon1 based on code of Marco Guazzone
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_SIGN_HPP

@@ -81,6 +81,8 @@
  * \todo Optimize mem allocation similarly to eigen.hpp (where we used
  *  work_n_LV, out_n_LV, work_n_RV, and out_n_RV).
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * <hr/>
  *
  * Copyright (c) 2010-2011, Marco Guazzone
@@ -88,8 +90,6 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_QZ_HPP
@@ -379,8 +379,6 @@ BOOST_UBLAS_INLINE
     return ::std::abs(::std::complex<double>(ar, ai)) >= ::std::abs(b);
 }
 
-
-namespace /*<anoymous>*/ {
 
 /// Type for the QZ eigenvalues selector (single precision case).
 typedef ::fortran_bool_t (*qz_single_selector_type)(float, float, float);
@@ -1390,7 +1388,7 @@ struct qz_decomposition_impl<true>
     }
 }; // struct qz_decomposition_impl<true>
 
-}} // Namespace detail::<anonymous>
+} // Namespace detail
 
 
 /**

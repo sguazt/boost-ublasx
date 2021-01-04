@@ -5,13 +5,15 @@
  *
  * \brief Least Square problem solvers.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2010, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_LSQ_HPP
@@ -38,7 +40,7 @@ namespace boost { namespace numeric { namespace ublasx {
 
 using namespace ::boost::numeric::ublas;
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 
 template <typename MatrixT, typename VectorT>
@@ -154,7 +156,7 @@ void llsq_svd_impl(matrix_expression<MatrixT> const& A, VectorT& b, row_major_ta
     llsq_svd_impl(tmp_A, b, column_major_tag());
 }
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 /**

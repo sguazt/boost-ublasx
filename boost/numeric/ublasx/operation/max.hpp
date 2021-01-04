@@ -5,8 +5,7 @@
  *
  * \brief The \c max operation.
  *
- * \todo When possible, use vector/matrix_temporary_traits instead of
- *  expliciting the type of the container.
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *
@@ -15,12 +14,13 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_MAX_HPP
 #define BOOST_NUMERIC_UBLASX_OPERATION_MAX_HPP
+
+//TODO: When possible, use vector/matrix_temporary_traits instead of
+//      expliciting the type of the container.
 
 
 #include <boost/numeric/ublas/detail/config.hpp>
@@ -146,7 +146,7 @@ vector<typename matrix_traits<MatrixExprT>::value_type> max_by_tag(matrix_expres
 //@} Declarations
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 //@{ Declarations
 
@@ -355,7 +355,7 @@ struct max_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: max_by_tag_im
 
 //@} Definitions
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 //@{ Definitions

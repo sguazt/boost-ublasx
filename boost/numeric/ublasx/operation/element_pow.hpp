@@ -6,13 +6,15 @@
  * \brief Apply the \c std::pow function to each element of a vector or a matrix
  *  expression.
  *
+ * <hr/>
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * Copyright (c) 2015, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_ELEMENT_POW_HPP

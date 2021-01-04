@@ -6,7 +6,7 @@
  * \brief Find the elments of a given container which satisfy a given unary
  *  predicate.
  *
- * \todo Implementation for matrix expressions.
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *
@@ -15,13 +15,12 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompfinding file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_FIND_HPP
 #define BOOST_NUMERIC_UBLASX_OPERATION_FIND_HPP
 
+//TODO: Implementation for matrix expressions.
 
 #include <boost/numeric/ublas/detail/config.hpp>
 #include <boost/numeric/ublas/expression_types.hpp>

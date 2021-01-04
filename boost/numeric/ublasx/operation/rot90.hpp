@@ -8,13 +8,15 @@
  * Inspired by the \c rot90 MATLAB function.
  * See http://www.mathworks.com/help/techdoc/ref/rot90.html.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_ROT90_HPP

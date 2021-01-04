@@ -5,6 +5,8 @@
  *
  * \brief Balance a matrix or a pair of matrices to improve eigenvalue accuracy.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
@@ -12,8 +14,6 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_BALANCE_HPP
@@ -49,7 +49,7 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 /**
  * \brief Diagonal matrix balancing to improve eigenvalue accuracy.
@@ -582,7 +582,7 @@ void balance_impl(Matrix1T& A,
     }
 }
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 //@{ Balance of Single Matrix

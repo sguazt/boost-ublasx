@@ -9,13 +9,15 @@
  * of the \e norm of the matrix and the norm of its inverse (or
  * pseudo-inverse), and hence depends on the kind of matrix-norm.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2010, Marco Guazzone
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_RCOND_HPP

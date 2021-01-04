@@ -9,7 +9,7 @@
  * This operation takes inspiration from the MATLAB's \e eye function
  * and the Mathematica's \e IdentityMatrix function.
  *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *

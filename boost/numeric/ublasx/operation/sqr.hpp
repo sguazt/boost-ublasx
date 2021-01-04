@@ -3,15 +3,17 @@
 /**
  * \file boost/numeric/ublasx/operation/sqr.hpp
  *
- * \brief Compute the squared of each element of a vector or matrix expression.
+ * \brief Compute the square of each element of a vector or matrix expression.
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_SQR_HPP
@@ -59,16 +61,12 @@ struct matrix_sqr_functor_traits
 };
 
 
-namespace /*<unnamed>*/ {
-
 template <typename T>
 BOOST_UBLAS_INLINE
 T sqr_impl(T x)
 {
     return x*x;
 }
-
-} // Namespace <unnamed>
 
 } // Namespace detail
 

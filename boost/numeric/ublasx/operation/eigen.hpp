@@ -6,6 +6,8 @@
  * \brief Compute the eigenvalues and eigenvectors of a single matrix or the
  *  generalized eigenvalues and eigeinvector of a pair of matrices.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * <hr/>
  *
  * Copyright (c) 2010-2011, Marco Guazzone
@@ -13,8 +15,6 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_EIGEN_HPP
@@ -55,7 +55,7 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 /// Side of eigenvectors
 enum eigenvectors_side
@@ -1518,7 +1518,7 @@ void geigen_impl(hermitian_matrix<AValueT,TriangularT,row_major> const& A, hermi
 
 //@} Generalized Eigenvalues problem
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 /**

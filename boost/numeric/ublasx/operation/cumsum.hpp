@@ -5,13 +5,15 @@
  *
  * \brief Compute the cumulative sum of an array.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2010, Marco Guazzone
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_CUMSUM_HPP
@@ -114,7 +116,7 @@ matrix<typename matrix_traits<MatrixExprT>::value_type> cumsum_by_tag(matrix_exp
 //@} Declarations
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 //@{ Declarations
 
@@ -258,7 +260,7 @@ struct cumsum_by_tag_impl<TagT, matrix_tag, unknown_orientation_tag>: cumsum_by_
 
 //@} Definitions
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 //@{ Definitions

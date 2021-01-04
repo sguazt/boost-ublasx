@@ -5,9 +5,7 @@
  *
  * \brief Concatenate arrays along specified dimension.
  *
- * \todo cat<tag::major>, ...
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *
@@ -32,6 +30,7 @@
 
 
 //TODO: add overloaded function to cat vectors and vector-matrix pairs
+//TODO: add variant cat<tag::major>, ...
 
 namespace boost { namespace numeric { namespace ublasx {
 

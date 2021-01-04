@@ -3,16 +3,18 @@
 /**
  * \file boost/numeric/ublasx/operation/log.hpp
  *
- * \brief Apply the \c std::log function to each element of a vector or
- *  matrix expression.
+ * \brief Compute the natural logarithm to each element of a vector or matrix
+ *  expression.
+ *
+ * \author Marco Guazzone, marco.guazzone@gmail.com
+ *
+ * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_LOG_HPP
@@ -61,8 +63,6 @@ struct matrix_log_functor_traits
 };
 
 
-namespace /*<unnamed>*/ {
-
 /// Auxiliary function used to replace ::std::log2 when that is not available.
 template <typename T>
 BOOST_UBLAS_INLINE
@@ -70,8 +70,6 @@ T log(T x)
 {
     return ::std::log(x);
 }
-
-} // Namespace <unnamed>
 
 } // Namespace detail
 

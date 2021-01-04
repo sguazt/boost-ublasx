@@ -3,14 +3,16 @@
 /**
  * \file boost/numeric/ublasx/operation/tanh.hpp
  *
- * \brief Apply the \c std::tanh function to each element of a vector or
+ * \brief Compute the hyperbolic tangent for each element of a vector or
  *  matrix expression.
+ *
+ * \author comcon1, [at pm dot me]
+ *
+ * <hr/>
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author comcon1, [at pm dot me]
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_TANH_HPP
@@ -59,16 +61,12 @@ struct matrix_tanh_functor_traits
 };
 
 
-namespace /*<unnamed>*/ {
-
 template <typename T>
 BOOST_UBLAS_INLINE
 T tanh(T x)
 {
     return ::std::tanh(x);
 }
-
-} // Namespace <unnamed>
 
 } // Namespace detail
 

@@ -22,9 +22,7 @@
  * having the same number of rows as \f$A\f$, while \f$U\f$ is exactly the same
  * shape as \f$A\f$.
  *
- * \todo Use LAPACK functions in order to handle different types of matrices.
- * \todo How about full pivoting?
- * \todo Create a \c lu_decomposition class (e.g., \sa qr.hpp).
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *
@@ -33,12 +31,14 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_LU_HPP
 #define BOOST_NUMERIC_UBLASX_OPERATION_LU_HPP
+
+//TODO: Use LAPACK functions in order to handle different types of matrices.
+//TODO: How about full pivoting?
+//TODO: Create a \c lu_decomposition class (e.g., \sa qr.hpp).
 
 
 #include <boost/numeric/ublas/detail/temporary.hpp>

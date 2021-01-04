@@ -44,6 +44,8 @@
  * The QL factorization is particular useful for computing minimum-phase
  * filters.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
  * <hr/>
  *
  * Copyright (c) 2010, Marco Guazzone
@@ -51,8 +53,6 @@
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_QL_HPP
@@ -92,7 +92,7 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 struct ql_decomposition_impl_common;
 
@@ -758,7 +758,7 @@ void ql_decompose_impl(matrix_expression<MatrixExprT> const& A, QMatrixT& Q, LMa
         >::template extract_L(tmp_QL, L, full, orientation);
 }
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 /**

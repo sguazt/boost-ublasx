@@ -3,15 +3,17 @@
 /**
  * \file boost/numeric/ublasx/operation/sqrt.hpp
  *
- * \brief Apply the \c std::sqrt function to a vector or matrix expression.
+ * \brief Compute the square root of element of a vector or matrix expression.
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_SQRT_HPP
@@ -60,8 +62,6 @@ struct matrix_sqrt_functor_traits
     typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
-namespace /*<unnamed>*/ {
-
 // Note: this wrapper is needed since we have both templated and non-templated
 //       overloaded versions of the 'sqrt' function.
 //       So whithout this wrapper, the the compiler is not able to infer what
@@ -72,8 +72,6 @@ T sqrt_impl(T const& x)
 {
     return ::std::sqrt(x);
 }
-
-} // Namespace <unnamed>
 
 } // Namespace detail
 

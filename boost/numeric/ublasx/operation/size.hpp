@@ -5,13 +5,15 @@
  *
  * \brief The family of \c size operations.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2009-2010, Marco Guazzone
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_SIZE_HPP
@@ -33,7 +35,7 @@ namespace boost { namespace numeric { namespace ublasx {
 using namespace ::boost::numeric::ublas;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 
 /// Define a \c has_size_type trait class.
@@ -277,7 +279,7 @@ struct size_by_tag_impl<TagT, CategoryT, unknown_orientation_tag>: size_by_tag_i
     // Empty
 };
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 /**

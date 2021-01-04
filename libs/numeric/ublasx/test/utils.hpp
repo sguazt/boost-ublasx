@@ -66,7 +66,7 @@
 #include <stdexcept>
 
 
-namespace boost { namespace numeric { namespace ublas { namespace test { namespace detail { namespace /*<unnamed>*/ {
+namespace boost { namespace numeric { namespace ublas { namespace test { namespace detail {
 
 /// Check if the given complex number is a NaN.
 template <typename T>
@@ -142,7 +142,7 @@ bool rel_close_to(::std::complex<T1> const& x, ::std::complex<T2> const& y, T3 t
     return ::std::abs(xx-yy)/::std::abs(yy) <= tol;
 }
 
-}}}}}} // Namespace boost::numeric::ublas::test::detail::<unnamed>
+}}}}} // Namespace boost::numeric::ublas::test::detail
 
 
 /// Expand its argument \a x.

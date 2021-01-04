@@ -5,13 +5,15 @@
  *
  * \brief Reshape a matrix.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_RESHAPE_HPP
@@ -46,7 +48,7 @@ template <typename T>
 struct reshape_traits;
 
 
-namespace detail { namespace /*<unnamed>*/ {
+namespace detail {
 
 // /// Define a \c has_matrix_temp_type trait class.
 //BOOST_MPL_HAS_XXX_TRAIT_DEF(matrix_temp_type)
@@ -331,7 +333,7 @@ struct reshape_by_tag_impl<tag::leading, column_major_tag>
     }
 };
 
-}} // Namespace detail::<unnamed>
+} // Namespace detail
 
 
 template <typename T>
