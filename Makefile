@@ -71,6 +71,8 @@ test_cases =	abs \
 				qz \
 				rank \
 				rcond \
+				realmax \
+				realmin \
 				relational_ops \
 				rep \
 				reshape \

@@ -38,7 +38,8 @@
 #include <boost/numeric/ublasx/operation/end.hpp>
 #include <boost/numeric/ublasx/operation/eps.hpp>
 #include <boost/numeric/ublasx/operation/exp.hpp>
-#include <boost/numeric/ublasx/operation/expm.hpp>
+//#include <boost/numeric/ublasx/operation/expm.hpp>
+#include <boost/numeric/ublasx/operation/eye.hpp>
 #include <boost/numeric/ublasx/operation/find.hpp>
 #include <boost/numeric/ublasx/operation/for_each.hpp>
 #include <boost/numeric/ublasx/operation/hilb.hpp>
