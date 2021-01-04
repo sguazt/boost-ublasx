@@ -100,12 +100,13 @@ Any help is always appreciated.
 For instance, you can contributed by adding new features (e.g., new operations), or by fixing errors, or even by improving the documentation and adding more examples.
 
 If you want to contribute, please, follow these guidelines:
-* Stick to the C++ standard requirements of Boost.uBLASx.
+* Stick to the C++ standard requirements of this project.
 * Use 4 spaces instead of tabs as indentation characters.
 * Write _readable_ code to ease maintainability in the future.
 * Comment your code with Doxygen.
 * Don't add new dependencies to external libraries.
 * If you add new features, also add a test suite by following the same approached used for the already available test suites.
+* Follow the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 
 Authors

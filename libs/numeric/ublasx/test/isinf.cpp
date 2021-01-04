@@ -44,7 +44,7 @@ template <typename T>
 inline
 static int isinf_impl(::std::complex<T> const& x)
 {
-    return ::std::isinf(x.real()) && ::std::isnan(x.imag());
+    return ::std::isinf(x.real()) || ::std::isinf(x.imag());
 }
 
 }} // Namespace detail::<unnamed>
