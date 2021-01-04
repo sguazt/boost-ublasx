@@ -19,10 +19,13 @@
 
 
 #include <boost/numeric/ublas/fwd.hpp>
+#include <boost/numeric/ublas/traits.hpp>
 #include <limits>
 
 
 namespace boost { namespace numeric { namespace ublasx {
+
+using namespace ::boost::numeric::ublas;
 
 /// Return the smallest positive normalized floating-point number.
 template <typename RealT>
