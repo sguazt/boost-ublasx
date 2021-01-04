@@ -121,6 +121,8 @@ typename detail::matrix_log2_functor_traits<MatrixExprT>::result_type log2(matri
     return expression_type(me(), detail::log2<signature_result_type>);
 }
 
+//TODO: added variant for log(A, F, E), where F is the output mantissa array and E is the exponent array such that A = F .*2.^E. To do so, apply the `f = std::frexp(a, &e)` function to each element of A; complex values must be treated separately
+
 }}} // Namespace boost::numeric::ublasx
 
 
