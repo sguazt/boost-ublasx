@@ -150,6 +150,8 @@ BOOST_UBLASX_TEST_DEF( double_scalar_arg )
 
 int main()
 {
+    BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'eps' operations");
+
     BOOST_UBLASX_TEST_BEGIN();
 
     BOOST_UBLASX_TEST_DO( float_no_arg )
