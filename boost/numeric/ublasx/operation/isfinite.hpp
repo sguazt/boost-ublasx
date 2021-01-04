@@ -3,15 +3,39 @@
 /**
  * \file boost/numeric/ublasx/operation/isfinite.hpp
  *
- * \brief Apply the \c std::isfinite function to a vector or matrix expression.
+ * \brief Returns a logical vector/matrix expression telling whether each
+ *  element of a given vector/matrix expression is finite.
+ *
+ * The logical vector/matrix expression returned by this function is an
+ * integral vector/matrix expression containing only `1` (i.e., `true`) or `0`
+ * (i.e., `false`) values.
+ *
+ * Specifically, given a vector/matrix expression `A`, a call to `isfinite(A)`
+ * returns an integral vector/matrix expression of the same dimension as `A` and
+ * containing `1`s (i.e., `true`) or `0`s (i.e., `false`) depending on whether
+ * the corresponding elements of `A` are finite or not, respecitively.
+ * When the type of the elements of the input vector/matrix expression is a C++
+ * built-in arithmetic type, this function calls the `std::isfinite` function
+ * for every element of the vector/matrix expression, and converts the returned
+ * value to `1` or `0` depending on whether such value is `true` or `false`,
+ * respectively.
+ * If the vector/matrix expression contains complex numbers, the value returned
+ * by this function contains `1` when the corresponding element in the input
+ * expression has finite real and imaginary part, and `0` otherwise.
+ * This behavior is similar to the one used by the MATLAB's \c isfinite function.
+ *
+ * \sa C++'s `std::inf` function: https://en.cppreference.com/w/cpp/numeric/math/isfinite
+ * \sa MATLAB's `isfinte` function: https://www.mathworks.com/help/matlab/ref/isfinite.html
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
  *
  * Copyright (c) 2011, Marco Guazzone
  * 
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #ifndef BOOST_NUMERIC_UBLASX_OPERATION_ISFINITE_HPP
@@ -33,6 +57,7 @@ using namespace ::boost::numeric::ublas;
 
 namespace detail {
 
+/// Helper type traits used by the `isfinite` function when it takes a vector expresion as input paramter.
 template <typename VectorExprT>
 struct vector_isfinite_functor_traits
 {
@@ -48,6 +73,7 @@ struct vector_isfinite_functor_traits
 };
 
 
+/// Helper type traits used by the `isfinite` function when it takes a matrix expresion as input paramter.
 template <typename MatrixExprT>
 struct matrix_isfinite_functor_traits
 {
@@ -62,8 +88,6 @@ struct matrix_isfinite_functor_traits
     typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
-
-namespace /*<unnamed>*/ {
 
 /// Wrapper for ::std::isfinite.
 template <typename T>
@@ -85,10 +109,11 @@ typename ::boost::enable_if<
             int
 >::type isfinite_impl(T x)
 {
-    return ::std::isfinite(x.real()) && ::std::isfinite(x.imag());
-}
+	// See the MATLAB's isfinite function
+	// (https://www.mathworks.com/help/matlab/ref/isfinite.html)
 
-} // Namespace <unnamed>
+	return ::std::isfinite(x.real()) && ::std::isfinite(x.imag());
+}
 
 } // Namespace detail
 
@@ -102,7 +127,7 @@ typename ::boost::enable_if<
  * \return A vector expression representing the application of \c std::isfinite to
  *  each element of \a ve.
  *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  */
 template <typename VectorExprT>
 BOOST_UBLAS_INLINE
@@ -124,7 +149,7 @@ typename detail::vector_isfinite_functor_traits<VectorExprT>::result_type isfini
  * \return A matrix expression representing the application of \c std::isfinite to
  *  each element of \a me.
  *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  */
 template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
