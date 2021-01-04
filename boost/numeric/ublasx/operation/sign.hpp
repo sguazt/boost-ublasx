@@ -3,13 +3,29 @@
 /**
  * \file boost/numeric/ublasx/operation/sign.hpp
  *
- * \brief Implement SIGN function through \c std::signbit for a vector or matrix expression.
+ * \brief Compute the sign function for each element of a vector or matrix
+ *  expression.
  *
- * \note Future versions of this function may be more similar to the MATLAB's
- *  `sign` function (e.g., returning `0` for element of the input expression
- *  that are equal to `0`).
+ * The sign function for real numbers as defined as follows:
+ * \f[
+ * \operatorname{sign}(x):=\begin{cases}
+ *                          -1 & \text{if } x<0,\\
+ *                           0 & \text{if } x=0,\\
+ *                           1 & \text{if } x>0.
+ *                         \end{cases}
+ * \f]
+ * In case of complex numbers, the sign function is defined as follows:
+ * \f[
+ * \operatorname{sign}(z)=\begin{cases}
+ *                          \frac{z}{|z|} & \text{if } z \ne 0,\\
+ *                          0 & \text{if } z = 0+0i.
+ *                        \end{cases}
+ * \f]
  *
- * \author comcon1 based on code of Marco Guazzone
+ * \sa The sign function at Wikipedia: https://en.wikipedia.org/wiki/Sign_function
+ *
+ * \author comcon1 (original version)
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *
@@ -25,7 +41,11 @@
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublasx/expression/matrix_unary_functor.hpp>
 #include <boost/numeric/ublasx/expression/vector_unary_functor.hpp>
+#include <boost/type_traits/is_complex.hpp>
+#include <boost/utility/enable_if.hpp>
 #include <cmath>
+#include <complex>
+#include <limits>
 
 
 namespace boost { namespace numeric { namespace ublasx {
@@ -39,7 +59,7 @@ struct vector_sign_functor_traits
 {
     typedef VectorExprT input_expression_type;
     typedef typename vector_traits<input_expression_type>::value_type signature_argument_type;
-    typedef typename type_traits<signature_argument_type>::real_type signature_result_type;
+    typedef typename type_traits<signature_argument_type>::value_type signature_result_type;
     typedef vector_unary_functor_traits<
                 input_expression_type,
                 signature_result_type (signature_argument_type)
@@ -54,7 +74,7 @@ struct matrix_sign_functor_traits
 {
     typedef MatrixExprT input_expression_type;
     typedef typename matrix_traits<input_expression_type>::value_type signature_argument_type;
-    typedef typename type_traits<signature_argument_type>::real_type signature_result_type;
+    typedef typename type_traits<signature_argument_type>::value_type signature_result_type;
     typedef matrix_unary_functor_traits<
                 input_expression_type,
                 signature_result_type (signature_argument_type)
@@ -63,11 +83,39 @@ struct matrix_sign_functor_traits
     typedef typename unary_functor_expression_type::expression_type expression_type;
 };
 
-template <typename RealType> 
-BOOST_UBLAS_INLINE 
-RealType sign(RealType v) {
-        return ( -(RealType)( ::std::signbit(v) ) + 0.5 ) * 2.0;
+/// Auxiliary function for real types: sign(x) = 1 if x > 0, 0 if x == 0, -1 otherwise.
+template <typename T>
+BOOST_UBLAS_INLINE
+typename ::boost::disable_if<
+            ::boost::is_complex<T>,
+            T
+>::type sign_impl(T x)
+{
+    if (::std::isnan(x))
+    {
+        return ::std::numeric_limits<T>::quiet_NaN();
+    }
+    return (x > 0) ? 1 : ((x < 0) ? -1 : 0);
 }
+
+/// Auxiliary function for complex types: sign(x) = x ./ abs(x)
+template <typename T>
+BOOST_UBLAS_INLINE
+typename ::boost::enable_if<
+            ::boost::is_complex<T>,
+            T
+>::type sign_impl(T x)
+{
+    typename T::value_type a = ::std::abs(x);
+    return (a == 0) ? T(0,0) : (x / a);
+}
+
+//template <typename RealType> 
+//BOOST_UBLAS_INLINE 
+//RealType sign(RealType v)
+//{
+//    return ( -(RealType)( ::std::signbit(v) ) + 0.5 ) * 2.0;
+//}
 
 
 } // Namespace detail
@@ -91,7 +139,7 @@ typename detail::vector_sign_functor_traits<VectorExprT>::result_type sign(vecto
     typedef typename detail::vector_sign_functor_traits<VectorExprT>::expression_type expression_type;
     typedef typename detail::vector_sign_functor_traits<VectorExprT>::signature_result_type signature_result_type;
 
-    return expression_type(ve(), detail::sign<signature_result_type>);
+    return expression_type(ve(), detail::sign_impl<signature_result_type>);
 }
 
 
@@ -113,7 +161,7 @@ typename detail::matrix_sign_functor_traits<MatrixExprT>::result_type sign(matri
     typedef typename detail::matrix_sign_functor_traits<MatrixExprT>::expression_type expression_type;
     typedef typename detail::matrix_sign_functor_traits<MatrixExprT>::signature_result_type signature_result_type;
 
-    return expression_type(me(), detail::sign<signature_result_type>);
+    return expression_type(me(), detail::sign_impl<signature_result_type>);
 }
 
 }}} // Namespace boost::numeric::ublasx
