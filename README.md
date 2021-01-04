@@ -18,6 +18,8 @@ The list of currently available operations, together with a comparison with simi
 * New storage classes (e.g., the `array_reference` class, for representing references to an array).
 * New type traits (e.g., the `layout_type` class, for determining the layout of a matrix expression).
 
+To find out what's new in the current release, please go to the [changes page](libs/numeric/ublasx/doc/Chagens.md).
+
 
 Building
 --------
