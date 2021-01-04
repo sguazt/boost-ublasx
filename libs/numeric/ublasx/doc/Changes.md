@@ -8,7 +8,8 @@ For a more detailed list, please see the commit log (e.g., go to the GitHub [his
 
 ### Breaking Changes
 
-- Changed the `isinf` operation to behave like the MATLAB/Octave counterpart.
+- Dropped support for C++ standards less than C++11.
+- Changed the following operations to work like their MATLAB/Octave counterparts: `isinf`, `sign`.
 
 ### New Features
 
