@@ -11,8 +11,10 @@ ifneq (,$(wildcard ./user-config.mk))
 -include ./user-config.mk
 endif
 
-CXXFLAGS += -Wall -Wextra -pedantic -ansi
-#CXXFLAGS += -Wall -Wextra -pedantic -std=c++11
+# Until version 1.x
+#CXXFLAGS += -Wall -Wextra -pedantic -ansi
+# Since version 2.x
+CXXFLAGS += -Wall -Wextra -pedantic -std=c++11
 CXXFLAGS += -I$(src_path)
 CXXFLAGS += $(USER_CXXFLAGS)
 #CXXFLAGS += -g -O0

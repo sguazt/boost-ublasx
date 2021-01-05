@@ -3,6 +3,8 @@ Boost.uBLASx
 
 Extensions to the C++ [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library.
 
+To find out what's new in the current release, please go to the [changes page](libs/numeric/ublasx/doc/Changes.md).
+
 
 Overview
 --------
@@ -18,13 +20,30 @@ The list of currently available operations, together with a comparison with simi
 * New storage classes (e.g., the `array_reference` class, for representing references to an array).
 * New type traits (e.g., the `layout_type` class, for determining the layout of a matrix expression).
 
-To find out what's new in the current release, please go to the [changes page](libs/numeric/ublasx/doc/Changes.md).
+In the long term, I would like to integrate many of the functionalities provided by Boost.uBLASx into Boost.uBLAS.
+Some of them (e.g., `begin`, `end`, `num_columns`, `num_rows`, and `size` operations) have already been included in Boost.uBLAS.
+Once a functionality is moved into Boost.uBLAS, the corrensponding Boost.uBLASx counterpart will use the one from Boost.uBLAS.
+Other functionality will likely never be integrated as they depends on libraries outside the Boost project (e.g., LAPACK).
 
 
 Building
 --------
 
 ### Prerequisites
+
+#### Since version 2.x
+
+* A modern C++11 compiler
+    * Tested for GCC 10.2.1
+* [Boost](http://boost.org) C++ libraries (v1.54 or newer)
+    * Tested for Boost 1.73, 1.62, 1.54
+* [Boost Numeric Bindings](https://github.com/uBLAS/numeric_bindings)
+    * One may also choose using older SVN version of [Boost Numeric Bindings](https://svn.boost.org/svn/boost/sandbox/numeric_bindings)
+* [LAPACK](http://www.netlib.org/lapack/) Linear Algebra PACKage (v3.5 or newer)
+    * LAPACK is needed only by the followin operations: `balance`, `eigen`, `expm`, `lsq`, `ql`, `qr`, `qz`, `rcond`, `svd`.
+    * Tested for LAPACK 3.9.0, 3.5.0
+
+#### Until version 1.x
 
 * A modern C++98 compiler (e.g., GCC v4.8 or newer is fine)
     * Tested for GCC 10.2.1, 7.4.1, 6.3.0, 4.8.4
