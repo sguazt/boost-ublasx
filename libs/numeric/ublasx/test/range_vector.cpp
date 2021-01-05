@@ -1,5 +1,21 @@
 /* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
 
+/**
+ * \file libs/numeric/ublasx/test/range_vector.cpp
+ *
+ * \brief Test suite for the range vector.
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
+ * Copyright (c) 2010, Marco Guazzone
+ *
+ * Distributed under the Boost Software License, Version 1.0. (See
+ * accompwhiching file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
+ */
+
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/numeric/ublas/storage.hpp>
 #include <boost/numeric/ublasx/container/range_vector.hpp>

@@ -5,13 +5,15 @@
  *
  * \brief Test the \c size operation.
  *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
+ *
  * Copyright (c) 2010, Marco Guazzone
  *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompwhiching file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 

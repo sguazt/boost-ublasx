@@ -5,11 +5,13 @@
  *
  * \brief Test suite for the \c sign operation.
  *
+ * \author comcon1 based on code of Marco Guazzone
+ *
+ * <hr/>
+ *
  * Distributed under the Boost Software License, Version 1.0. (See
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
- *
- * \author comcon1 based on code of Marco Guazzone
  */
 
 #include <boost/numeric/ublas/io.hpp>

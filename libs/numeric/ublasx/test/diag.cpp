@@ -1,17 +1,19 @@
 /* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
 
 /**
- *  \file libs/numeric/ublasx/diag.cpp
+ * \file libs/numeric/ublasx/diag.cpp
  *
- *  \brief Test suite for the \c diag operation.
+ * \brief Test suite for the \c diag operation.
+ *
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
+ *
+ * <hr/>
  *
  *  Copyright (c) 2009, Marco Guazzone
  *
  *  Distributed under the Boost Software License, Version 1.0. (See
  *  accompanying file LICENSE_1_0.txt or copy at
  *  http://www.boost.org/LICENSE_1_0.txt)
- *
- *  \author Marco Guazzone, marco.guazzone@gmail.com
  */
 
 #include <boost/numeric/ublas/fwd.hpp>

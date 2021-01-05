@@ -5,7 +5,7 @@
  *
  * \brief Test suite for the \c realmax operation.
  *
- * \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
  * <hr/>
  *

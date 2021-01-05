@@ -1,19 +1,19 @@
 /* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
 
 /**
- *  \file libs/numeric/ublasx/eye.cpp
+ * \file libs/numeric/ublasx/eye.cpp
  *
- *  \brief Test suite for the \c eye operation.
+ * \brief Test suite for the \c eye operation.
  *
- *  \author Marco Guazzone, marco.guazzone@gmail.com
+ * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
- *  <hr/>
+ * <hr/>
  *
- *  Copyright (c) 2009, Marco Guazzone
+ * Copyright (c) 2009, Marco Guazzone
  *
- *  Distributed under the Boost Software License, Version 1.0. (See
- *  accompanying file LICENSE_1_0.txt or copy at
- *  http://www.boost.org/LICENSE_1_0.txt)
+ * Distributed under the Boost Software License, Version 1.0. (See
+ * accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #include <boost/numeric/ublas/fwd.hpp>
