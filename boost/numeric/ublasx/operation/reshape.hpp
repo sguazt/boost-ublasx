@@ -3,7 +3,7 @@
 /**
  * \file boost/numeric/ublasx/operation/reshape.hpp
  *
- * \brief Reshape a matrix.
+ * \brief Reshape a vector or a matrix.
  *
  * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
@@ -80,8 +80,6 @@ typename reshape_traits<VectorExprT>::result_type reshape_impl(vector_expression
                                                                ::std::size_t nr,
                                                                ::std::size_t nc)
 {
-    //FIXME: this function behaves differently from the MATLAB/Octave countepart as it works row-wise instead of column-wise
-
     typedef typename reshape_traits<VectorExprT>::result_type result_matrix_type;
     typedef typename vector_traits<VectorExprT>::size_type size_type;
 
@@ -102,9 +100,10 @@ typename reshape_traits<VectorExprT>::result_type reshape_impl(vector_expression
 
     size_type k(0);
 
-    for (size_type i = 0; i < nr; ++i)
+    // Work column-wise as done by the MATLAB/Octave reshape function
+    for (size_type j = 0; j < nc; ++j)
     {
-        for (size_type j = 0; j < nc; ++j)
+        for (size_type i = 0; i < nr; ++i)
         {
             res(i,j) = ve()(k);
 
@@ -396,8 +395,8 @@ typename ::boost::lazy_enable_if_c<
 template <typename MatrixExprT>
 BOOST_UBLAS_INLINE
 typename reshape_traits<MatrixExprT>::result_type reshape(matrix_expression<MatrixExprT> const& me,
-                                                            ::std::size_t nr,
-                                                            ::std::size_t nc)
+                                                          ::std::size_t nr,
+                                                          ::std::size_t nc)
 {
     return detail::reshape_by_dim_impl<1>::template apply(me, nr, nc);
 }

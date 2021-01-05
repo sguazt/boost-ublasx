@@ -697,9 +697,24 @@ BOOST_UBLASX_TEST_DEF( reshape_vec )
     new_nr = 3;
     new_nc = 2;
     E = matrix_type(new_nr,new_nc);
-    E(0,0) = 1; E(0,1) = 2;
-    E(1,0) = 3; E(1,1) = 4;
-    E(2,0) = 5; E(2,1) = 6;
+    E(0,0) = 1; E(0,1) = 4;
+    E(1,0) = 2; E(1,1) = 5;
+    E(2,0) = 3; E(2,1) = 6;
+    X = ublasx::reshape(v, new_nr, new_nc);
+    BOOST_UBLASX_DEBUG_TRACE("v=" << v);
+    BOOST_UBLASX_DEBUG_TRACE("reshape(v," << new_nr << "," << new_nc << ")=" << X);
+    BOOST_UBLASX_DEBUG_TRACE("Expected reshape(v," << new_nr << "," << new_nc << ")=" << E);
+    BOOST_UBLASX_TEST_CHECK( ublasx::num_rows(X) == new_nr );
+    BOOST_UBLASX_TEST_CHECK( ublasx::num_columns(X) == new_nc );
+    BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( X, E, new_nr, new_nc, tol );
+
+
+    // vector(n) => matrix(n1,n2)
+    new_nr = 2;
+    new_nc = 3;
+    E = matrix_type(new_nr,new_nc);
+    E(0,0) = 1; E(0,1) = 3; E(0,2) = 5;
+    E(1,0) = 2; E(1,1) = 4; E(1,2) = 6;
     X = ublasx::reshape(v, new_nr, new_nc);
     BOOST_UBLASX_DEBUG_TRACE("v=" << v);
     BOOST_UBLASX_DEBUG_TRACE("reshape(v," << new_nr << "," << new_nc << ")=" << X);
