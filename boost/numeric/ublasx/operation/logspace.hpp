@@ -24,7 +24,7 @@
 
 #include <boost/numeric/ublas/exception.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublasx/operation/element_pow.hpp>
+#include <boost/numeric/ublasx/operation/pow.hpp>
 #include <boost/numeric/ublasx/operation/linspace.hpp>
 #include <cstddef>
 
@@ -67,7 +67,7 @@ vector<ValueT> logspace(ValueT a, ValueT b, std::size_t n = 100, ValueT base = 1
     BOOST_UBLAS_CHECK( base > 0,
                        bad_argument() );
 
-    return element_pow(base, linspace(a, b, n));
+    return pow(base, linspace(a, b, n));
 }
 
 }}} // Namespace boost::numeric::ublasx
