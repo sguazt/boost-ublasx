@@ -1,7 +1,7 @@
 # Release Highlights
 
 This page summarizes the most important changes.
-For a more detailed list, please see the commit log (e.g., go to the GitHub [history page](/commits/master) or run `git log` command from the command line).
+For a more detailed list, please see the commit log (e.g., go to the GitHub [history page](https://github.com/sguazt/boost-ublasx/commits/master) or run the `git log` command from the command line).
 
 
 ## Version 2.x
