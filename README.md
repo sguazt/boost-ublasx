@@ -35,13 +35,13 @@ Building
 
 * A modern C++11 compiler
     * Tested for GCC 10.2.1
-* [Boost](http://boost.org) C++ libraries (v1.54 or newer)
-    * Tested for Boost 1.73, 1.62, 1.54
+* [Boost](http://boost.org) C++ libraries
+    * Tested for Boost 1.73
 * [Boost Numeric Bindings](https://github.com/uBLAS/numeric_bindings)
     * One may also choose using older SVN version of [Boost Numeric Bindings](https://svn.boost.org/svn/boost/sandbox/numeric_bindings)
-* [LAPACK](http://www.netlib.org/lapack/) Linear Algebra PACKage (v3.5 or newer)
+* [LAPACK](http://www.netlib.org/lapack/) Linear Algebra PACKage
     * LAPACK is needed only by the followin operations: `balance`, `eigen`, `expm`, `lsq`, `ql`, `qr`, `qz`, `rcond`, `svd`.
-    * Tested for LAPACK 3.9.0, 3.5.0
+    * Tested for LAPACK 3.9.0
 
 #### Until version 1.x
 
