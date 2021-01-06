@@ -23,7 +23,7 @@ The list of currently available operations, together with a comparison with simi
 In the long term, I would like to integrate many of the functionalities provided by Boost.uBLASx into Boost.uBLAS.
 Some of them (e.g., `begin`, `end`, `num_columns`, `num_rows`, and `size` operations) have already been included in Boost.uBLAS.
 Once a functionality is moved into Boost.uBLAS, the corrensponding Boost.uBLASx counterpart will use the one from Boost.uBLAS.
-Other functionality will likely never be integrated as they depends on libraries outside the Boost project (e.g., LAPACK).
+Other functionality will likely never be integrated as they depend on libraries outside the Boost project (e.g., LAPACK).
 
 
 Building
