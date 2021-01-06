@@ -50,7 +50,7 @@ int main()
     std::cout << "inverse of A = " << B << "\n";
 
     // MATLAB/Octave:
-    //   C = reshape(linspace(1, 9, 9), 3, 3)'
+    //   C = reshape(linspace(1, 9, 9), 3, 3)
     //   D = pow2(C)
     //   E = cat(2, C, D)
     ublas::matrix<double> C = ublasx::reshape(ublasx::linspace(1.0, 9.0, 9), 3, 3); // C = [1 2 3; 4 5 6; 7 8 9]
