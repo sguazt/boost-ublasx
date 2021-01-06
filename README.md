@@ -9,7 +9,8 @@ To find out what's new in the current release, please go to the [changes page](l
 Overview
 --------
 
-The aim of the __Boost.uBLASx__ project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful functions and features similar to those available in numerical packages (e.g., [MATLAB](https://www.mathworks.com/products/matlab.html) and [Octave](https://www.gnu.org/software/octave/index), and libraries for scientific computing (e.g., [Armadillo](http://arma.sourceforge.net/) and [Eigen](http://eigen.tuxfamily.org/)).
+The aim of the __Boost.uBLASx__ project is to extend the [Boost.uBLAS](https://www.boost.org/doc/libs/release/libs/numeric/ublas/doc/index.html) library with useful high-level functions and features similar to those available in numerical packages (e.g., [MATLAB](https://www.mathworks.com/products/matlab.html) and [Octave](https://www.gnu.org/software/octave/index), and libraries for scientific computing (e.g., [Armadillo](http://arma.sourceforge.net/) and [Eigen](http://eigen.tuxfamily.org/)).
+That way, translating a MATLAB/Octave script into a C++ program should be pretty straightforward.
 
 In a nutshell, Boost.uBLASx is a C++ library that provides the following features:
 * A set of vector/matrix operations (e.g., the `reshape` operation, for changing the shape of an array).
