@@ -33,7 +33,6 @@
 #include <boost/numeric/ublasx/operation/diag.hpp>
 #include <boost/numeric/ublasx/operation/dot.hpp>
 #include <boost/numeric/ublasx/operation/eigen.hpp>
-#include <boost/numeric/ublasx/operation/element_pow.hpp>
 #include <boost/numeric/ublasx/operation/empty.hpp>
 #include <boost/numeric/ublasx/operation/end.hpp>
 #include <boost/numeric/ublasx/operation/eps.hpp>
@@ -58,10 +57,11 @@
 #include <boost/numeric/ublasx/operation/max.hpp>
 #include <boost/numeric/ublasx/operation/min.hpp>
 #include <boost/numeric/ublasx/operation/mldivide.hpp>
+#include <boost/numeric/ublasx/operation/mpow.hpp>
 #include <boost/numeric/ublasx/operation/num_columns.hpp>
 #include <boost/numeric/ublasx/operation/num_rows.hpp>
-#include <boost/numeric/ublasx/operation/pow2.hpp>
 #include <boost/numeric/ublasx/operation/pow.hpp>
+#include <boost/numeric/ublasx/operation/pow2.hpp>
 #include <boost/numeric/ublasx/operation/ql.hpp>
 #include <boost/numeric/ublasx/operation/qr.hpp>
 #include <boost/numeric/ublasx/operation/qz.hpp>

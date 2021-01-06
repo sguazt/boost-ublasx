@@ -40,7 +40,6 @@ test_cases =	abs \
 				diag \
 				dot \
 				eigen \
-				element_pow \
 				empty \
 				eps \
 				exp \
@@ -64,6 +63,7 @@ test_cases =	abs \
 				max \
 				min \
 				mldivide \
+				mpow \
 				num_columns \
 				num_rows \
 				pow \

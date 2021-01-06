@@ -1,9 +1,9 @@
 /* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
 
 /**
- * \file libs/numeric/ublasx/test/pow.cpp
+ * \file libs/numeric/ublasx/test/mpow.cpp
  *
- * \brief Test suite for the \c pow operation.
+ * \brief Test suite for the \c mpow operation.
  *
  * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
@@ -19,7 +19,7 @@
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublasx/operation/pow.hpp>
+#include <boost/numeric/ublasx/operation/mpow.hpp>
 #include <cmath>
 #include <complex>
 #include <cstddef>
@@ -52,10 +52,10 @@ BOOST_UBLASX_TEST_DEF( test_real_matrix_positive_exponent )
     matrix_type R;
     matrix_type expect_R;
 
-    R = ublasx::pow(A, exp);
+    R = ublasx::mpow(A, exp);
 
     BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-    BOOST_UBLASX_DEBUG_TRACE( "pow(A, " << exp << ") = " << R );
+    BOOST_UBLASX_DEBUG_TRACE( "mpow(A, " << exp << ") = " << R );
 
     expect_R = A;
     for (size_type i = 0; i < (exp-1); ++i)
@@ -85,10 +85,10 @@ BOOST_UBLASX_TEST_DEF( test_real_matrix_negative_exponent )
     matrix_type R;
     matrix_type expect_R;
 
-    R = ublasx::pow(A, exp);
+    R = ublasx::mpow(A, exp);
 
     BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-    BOOST_UBLASX_DEBUG_TRACE( "pow(A, " << exp << ") = " << R );
+    BOOST_UBLASX_DEBUG_TRACE( "mpow(A, " << exp << ") = " << R );
 
     matrix_type invA(n,n);
     invA(0,0) = -5.0/3.0; invA(0,1) =  2.0/3.0;
@@ -123,10 +123,10 @@ BOOST_UBLASX_TEST_DEF( test_real_matrix_zero_exponent )
     matrix_type R;
     matrix_type expect_R = ublas::identity_matrix<value_type>(n);
 
-    R = ublasx::pow(A, exp);
+    R = ublasx::mpow(A, exp);
 
     BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-    BOOST_UBLASX_DEBUG_TRACE( "pow(A, " << exp << ") = " << R );
+    BOOST_UBLASX_DEBUG_TRACE( "mpow(A, " << exp << ") = " << R );
 
     BOOST_UBLASX_TEST_CHECK_MATRIX_CLOSE( R, expect_R, n, n, tol );
 }
@@ -152,10 +152,10 @@ BOOST_UBLASX_TEST_DEF( test_complex_matrix_positive_exponent )
     out_matrix_type R;
     out_matrix_type expect_R;
 
-    R = ublasx::pow(A, exp);
+    R = ublasx::mpow(A, exp);
 
     BOOST_UBLASX_DEBUG_TRACE( "A = " << A );
-    BOOST_UBLASX_DEBUG_TRACE( "pow(A, " << exp << ") = " << R );
+    BOOST_UBLASX_DEBUG_TRACE( "mpow(A, " << exp << ") = " << R );
 
     expect_R = A;
     for (size_type i = 0; i < (exp-1); ++i)
@@ -170,7 +170,7 @@ BOOST_UBLASX_TEST_DEF( test_complex_matrix_positive_exponent )
 int main()
 {
 
-    BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'pow' operation");
+    BOOST_UBLASX_DEBUG_TRACE("Test Suite: 'mpow' operation");
 
     BOOST_UBLASX_TEST_BEGIN();
 

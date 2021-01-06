@@ -10,6 +10,7 @@ For a more detailed list, please see the commit log (e.g., go to the GitHub [his
 
 - Dropped support for C++ standards less than C++11.
 - Changed the following operations to work like their MATLAB/Octave counterparts: `isinf`, `reshape`, `sign`.
+- Renamed the following operations: `element_pow` -> `pow`, `pow` -> `mpow`
 
 ### New Features
 

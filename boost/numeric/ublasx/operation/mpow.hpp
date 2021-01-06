@@ -1,9 +1,9 @@
 /* vim: set tabstop=4 expandtab shiftwidth=4 softtabstop=4: */
 
 /**
- * \file boost/numeric/ublasx/operation/pow.hpp
+ * \file boost/numeric/ublasx/operation/mpow.hpp
  *
- * \brief Apply the \c std::pow function to a vector or matrix expression.
+ * \brief Compute the power of a vector or matrix expression.
  *
  * \author Marco Guazzone (marco.guazzone@gmail.com)
  *
@@ -16,8 +16,8 @@
  * http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#ifndef BOOST_NUMERIC_UBLASX_OPERATION_POW_HPP
-#define BOOST_NUMERIC_UBLASX_OPERATION_POW_HPP
+#ifndef BOOST_NUMERIC_UBLASX_OPERATION_MPOW_HPP
+#define BOOST_NUMERIC_UBLASX_OPERATION_MPOW_HPP
 
 
 #include <boost/numeric/ublas/functional.hpp>
@@ -35,7 +35,7 @@ using namespace ::boost::numeric::ublas;
 namespace detail {
 
 template <typename MatrixExprT>
-struct matrix_pow_traits
+struct matrix_mpow_traits
 {
     typedef typename MatrixExprT::matrix_temporary_type result_type;
 };
@@ -63,9 +63,9 @@ struct matrix_pow_traits
  */
 template <typename MatrixExprT, typename T>
 BOOST_UBLAS_INLINE
-typename detail::matrix_pow_traits<MatrixExprT>::result_type pow(matrix_expression<MatrixExprT> const& me, T p)
+typename detail::matrix_mpow_traits<MatrixExprT>::result_type mpow(matrix_expression<MatrixExprT> const& me, T p)
 {
-    typedef typename detail::matrix_pow_traits<MatrixExprT>::result_type result_type;
+    typedef typename detail::matrix_mpow_traits<MatrixExprT>::result_type result_type;
 
     result_type res;
 
@@ -104,4 +104,4 @@ typename detail::matrix_pow_traits<MatrixExprT>::result_type pow(matrix_expressi
 }}} // Namespace boost::numeric::ublasx
 
 
-#endif // BOOST_NUMERIC_UBLASX_OPERATION_POW_HPP
+#endif // BOOST_NUMERIC_UBLASX_OPERATION_MPOW_HPP
